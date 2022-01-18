@@ -5,7 +5,7 @@ import styles from './Header.module.scss'
 
 export default function Header() {
     return (
-        <>
+        <nav>
             <Head>
                 <title>Zenon Scraper</title>
                 <meta name="description" content="Explorer for Zenon Network DAG"/>
@@ -21,7 +21,7 @@ export default function Header() {
                     </Link>
                     <div className={styles.options}>
                         <Link href='/'>
-                        <a className={styles.optionsText}>Home</a>
+                            <a className={styles.optionsText}>Home</a>
                         </Link>
                         <span className={styles.optionsText}>Blockchain</span>
                         <span className={styles.optionsText}>Tokens</span>
@@ -29,6 +29,6 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-       </>
+       </nav>
     )
 }

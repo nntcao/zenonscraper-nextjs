@@ -46,17 +46,17 @@ function Token(props: any) {
                 <div className={styles.card}>
                     <div className={styles.row}>
                         <div className={styles.rowleft}>Name: </div>
-                        <div className={styles.rowright}>{token.name}</div>
+                        <div className={styles.rowright}>{token.name ?? 'N/A'}</div>
                     </div>
                     <div className={styles.row}>
                         <div className={styles.rowleft}>Symbol: </div>
-                        <div className={styles.rowright}>{token.symbol}</div>
+                        <div className={styles.rowright}>{token.symbol ?? 'N/A'}</div>
                     </div>
                     <div className={styles.row}>
                         <div className={styles.rowleft}>Token Standard:</div>
                         <div className={styles.rowright}>
                             <Link href={{pathname: '/token/[token]', query: { token: token.tokenstandard }}}>
-                                <a>{token.tokenstandard}</a>
+                                <a>{token.tokenstandard ?? 'N/A'}</a>
                             </Link>
                         </div>
                     </div>
@@ -65,7 +65,7 @@ function Token(props: any) {
                         <div className={styles.rowright}>
                             <a href={`${formatExternalLink(token.domain)}`}
                             rel="noopener noreferrer">
-                                {token.domain}
+                                {token.domain ?? 'N/A'}
                             </a>
                         </div>
                     </div>
@@ -73,7 +73,7 @@ function Token(props: any) {
                         <div className={styles.rowleft}>Owner: </div>
                         <div className={styles.rowright}>
                             <Link href={{pathname: '/address/[address]', query: { address: token.owner }}}>
-                                <a>{token.owner}</a>
+                                <a>{token.owner ?? 'N/A'}</a>
                             </Link>
                         </div>
                     </div>
@@ -87,19 +87,19 @@ function Token(props: any) {
                     </div>
                     <div className={styles.row}>
                         <div className={styles.rowleft}>Decimals: </div>
-                        <div className={styles.rowright}>{token.decimals}</div>
+                        <div className={styles.rowright}>{token.decimals ?? 'N/A'}</div>
                     </div>
                     <div className={styles.row}>
                         <div className={styles.rowleft}>Is Burnable:</div>
-                        <div className={styles.rowright}>{token.isburnable.toString()}</div>
+                        <div className={styles.rowright}>{token?.isburnable?.toString() ?? 'N/A'}</div>
                     </div>
                     <div className={styles.row}>
                         <div className={styles.rowleft}>Is Mintable: </div>
-                        <div className={styles.rowright}>{token.ismintable.toString()}</div>
+                        <div className={styles.rowright}>{token?.ismintable?.toString() ?? 'N/A'}</div>
                     </div>
                     <div className={styles.row}>
                         <div className={styles.rowleft}>Is Utility: </div>
-                        <div className={styles.rowright}>{token.isutility.toString()}</div>
+                        <div className={styles.rowright}>{token?.isutility?.toString() ?? 'N/A'}</div>
                     </div>
                 </div>
             </div>

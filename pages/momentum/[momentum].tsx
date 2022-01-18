@@ -9,7 +9,7 @@ import Searchbar from '../../components/Searchbar'
 export async function getServerSideProps(context) {
     const searchString: string = context.params.momentum
     if (isNaN(Number(searchString))) {
-        const momentumQuery = await db.query(`
+        var momentumQuery = await db.query(`
             SELECT momentum.hash, momentum.version, momentum.height, momentum.timestamp, 
                 momentum.previoushash, momentum.data, momentum.changeshash, momentum.publickey, 
                 momentum.signature, momentum.producer, momentum.chainidentifier, COUNT(accountblock.hash) as countblocks
@@ -19,13 +19,8 @@ export async function getServerSideProps(context) {
                 WHERE momentum.hash = $1
                 GROUP BY momentum.hash
         `, [searchString])
-        return { 
-            props: {
-                momentumInformation: momentumQuery?.rows[0] ?? null
-            }
-        }
     } else {
-        const momentumQuery = await db.query(`
+        var momentumQuery = await db.query(`
         SELECT momentum.hash, momentum.version, momentum.height, momentum.timestamp, 
             momentum.previoushash, momentum.data, momentum.changeshash, momentum.publickey, 
             momentum.signature, momentum.producer, momentum.chainidentifier, COUNT(accountblock.hash) as countblocks
@@ -35,12 +30,23 @@ export async function getServerSideProps(context) {
             WHERE momentum.height = $1
             GROUP BY momentum.hash
             `, [searchString])
-        return { 
-            props: {
-                momentumInformation: momentumQuery?.rows[0] ?? null
-            }
+    }
+
+    var prevMomentumQuery = await db.query(`
+        SELECT 1 FROM momentum WHERE height = $1
+    `, [Number(momentumQuery?.rows[0]?.height) - 1])
+    var nextMomentumQuery = await db.query(`
+        SELECT 1 FROM momentum WHERE height = $1
+    `, [Number(momentumQuery?.rows[0]?.height) + 1])
+
+    return { 
+        props: {
+            momentumInformation: momentumQuery?.rows[0] ?? null,
+            prevMomentumInformation: prevMomentumQuery?.rows[0] ?? null,
+            nextMomentumInformation: nextMomentumQuery?.rows[0] ?? null
         }
     }
+
 }
 
 function Momentum(props: any) {
@@ -55,7 +61,10 @@ function Momentum(props: any) {
             <div className={styles.main}>
                 <Searchbar />
                 <div className={styles.card}>
-                    <h2 className={styles.cardTitle}>Momentum #{momentum.height}</h2>
+                    <div className={styles.titleline}>
+                        <h2 className={styles.cardTitle}>Momentum #{momentum.height}</h2>
+                        <Choices prev={props.prevMomentumInformation} next={props.nextMomentumInformation} momentum={momentum}/>
+                    </div>
                     <hr className={styles.hr}/>
                     <div className={styles.row}>
                         <div className={styles.rowleft}>Height</div>
@@ -122,18 +131,41 @@ function Momentum(props: any) {
                         <div className={styles.rowright}>{momentum.changeshash}</div>
                     </div>
                 </div>
-                <div className={styles.choices}>
-                    <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height - 1 }}}>
-                        <a>Previous Momentum</a>
-                    </Link>
-                    <br />
-                    <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height + 1 }}}>
-                        <a>Next Momentum</a>
-                    </Link>
-                </div>
             </div>
         </Layout>
     )
+}
+
+function Choices({ prev, next, momentum} ) {
+    if (prev && next) {
+        return (
+            <div className={styles.choices}>
+                <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height - 1 }}}>
+                    <a className={styles.momentumButton}>Previous Momentum</a>
+                </Link>
+                <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height + 1 }}}>
+                    <a className={styles.momentumButton}>Next Momentum</a>
+                </Link>
+            </div>
+        )
+    } else if (prev) {
+        return (
+            <div className={styles.choices}>
+                <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height - 1 }}}>
+                    <a className={styles.momentumButton}>Previous Momentum</a>
+                </Link>
+            </div>
+
+        )
+    } else if (next) {
+        <div className={styles.choices}>
+            <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height + 1 }}}>
+                <a className={styles.momentumButton}>Next Momentum</a>
+            </Link>
+       </div>
+    } else {
+        return null
+    }
 }
 
 export default Momentum
