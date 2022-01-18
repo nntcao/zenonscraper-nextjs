@@ -1,0 +1,51 @@
+.main {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardTitle {
+    align-self: flex-start;
+    font-family: 'Roboto-Regular';
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.truncate {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 171px;
+}
+
+.rowleft {
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
+    min-width: 33%;
+}
+
+.rightrow {
+    justify-self: start;
+}
+
+.choices {
+    align-self: flex-start;
+}
+
+.hr {
+}

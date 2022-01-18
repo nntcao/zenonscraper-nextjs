@@ -1,0 +1,43 @@
+.header {
+    background: black;
+    color: white;
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: clamp(70%, 85%, 100%);
+        margin: auto;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    a {
+        color: white
+    }
+}
+
+.titlelogo {
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.optionsText {
+    margin: 1.25rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: white;
+}
+
+.optionsText:hover {
+    color: #6fff61;
+    font-weight: 700;
+}

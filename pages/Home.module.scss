@@ -1,0 +1,102 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titlebox {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-family: 'Lato-Black';
+    font-size: 4.5rem;
+    text-align: center;
+}
+
+.subtitle {
+    font-family: 'Roboto-Light';
+    font-size: 1.25rem;
+    opacity: 0.7;
+    text-align: center;
+    
+    .emphasis{
+        font-family: 'Roboto-Light';
+        font-size: 1.25rem;
+        color: #00e100;
+        font-weight: 600;
+        display: inline-block;
+    }
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    margin: 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardTitle {
+    font-family: 'Roboto-Regular';
+    font-size: 1.25rem;
+    font-weight: 400;
+    align-self: flex-start;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: .75fr 1fr .45fr;
+    align-items: center;
+}
+
+// .row {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     justify-content: space-between;
+// }
+
+.truncate {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: clamp(1vw, 10vw, 50vw);
+}
+
+.leftrow {
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
+    padding: 3px;
+}
+
+.middlerow {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    padding: 3px;
+}
+
+.rightrow {
+    justify-self: end;
+    padding: 3px;
+}
+
+
+.footer {
+    background-color: black;
+    color: white;
+    min-height: 10%;
+    min-width: 100%;
+}

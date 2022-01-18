@@ -1,0 +1,41 @@
+
+.search {
+    display: flex;
+    flex-direction: row;
+    margin: 0.5rem;
+    padding: .5rem;
+    border-style: solid;
+    border-radius: 1.5rem;
+    width: clamp(350px, 30%, 30%);
+    border-width:0.2px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchbar {
+    width: clamp(350px, 100%, 100%);
+    border-style: none;
+    margin-left: 0.25rem;
+    height: 100%;
+    font-size: 1rem;    
+    
+}
+
+.searchbar:focus {
+    outline-width: 0;
+    border: none;
+}
+
+.button {
+    background: none;
+    color: inherit;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    display: inherit;
+}
+
+.searchIcon {
+    
+}

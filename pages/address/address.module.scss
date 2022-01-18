@@ -1,0 +1,58 @@
+.main {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.balances {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.values {
+
+}
+
+.cardTitle {
+    align-self: flex-start;
+    font-family: 'Roboto-Regular';
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 171px;
+}
+
+.rowleft {
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
+}
+
+.balancelist {
+    justify-self: start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.balance {
+}
+
+.table {
+    border-spacing: .5rem;
+}
