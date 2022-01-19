@@ -28,6 +28,9 @@ export default function Header() {
                         <Link href='/resources'>
                             <a className={styles.optionsText}>Resources</a>
                         </Link>
+                        <Link href='/donate'>
+                            <a className={styles.optionsText}>Donate</a>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -23,6 +23,7 @@ export async function getServerSideProps(context) {
         SELECT * FROM balance 
         WHERE tokenstandard = $1
         ORDER BY balance DESC
+        LIMIT 25
     `, [tokenQuery?.rows[0]?.tokenstandard])
 
 
@@ -46,7 +47,7 @@ function Token({ tokenInformation, holdersInformation }) {
         <Layout>
             <div className={styles.main}>
                 <TokenCard token={tokenInformation}/>
-                <h2 className={styles.tableTitle}>Top Holders</h2>
+                <h2 className={styles.tableTitle}>Top 25 Holders</h2>
                 <hr/>
                 <Holders holders={holdersInformation} token={tokenInformation}/>
             </div>

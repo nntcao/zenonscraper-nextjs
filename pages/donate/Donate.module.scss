@@ -1,0 +1,42 @@
+.main {
+}
+
+.content {
+    margin: 1rem;
+    width: 90vw;
+    margin:auto;
+}
+
+.card {
+    margin: 1.5rem;
+    width: clamp(500px, 40vw, 1600px)
+}
+
+.subtitle {
+    align-self: flex-start;
+    font-family: 'Roboto-Regular';
+    font-size: clamp(1rem, 6vw, 3rem);
+    font-weight: 400;
+
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1rem;
+    margin: .75rem;
+    margin-left: 1rem;
+    
+    .listitem {
+        font-size: 1.4rem;
+    }
+    
+    .emphasis {
+        font-family: 'Roboto-Regular';
+        font-weight: 600;
+        font-size: 1.4rem;
+    }
+}
+
+

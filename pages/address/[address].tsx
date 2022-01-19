@@ -63,19 +63,7 @@ function Address({ address, accountBlocks, balances}) {
                     </div>
                     <hr />
                     <div className={styles.cardbody}>
-                        <div className={styles.cardleft}>Balance:</div>
-                        <div className={styles.cardbalance}>
-                            {balances.map(balance => {
-                                return (
-                                    <div key={`${balance.tokenstandard} ${balance.amount}`}> 
-                                        {Number(balance.balance) / (10 ** balance.decimals)} 
-                                        <Link href={{pathname: '/token/[token]', query: { token: balance.tokenstandard }}}>
-                                            <a> {balance.symbol}</a>
-                                        </Link>
-                                    </div>   
-                                )
-                            })}
-                        </div>
+                        <Balance balances={balances}/>
                         <div className={styles.cardleft}>Value:</div>
                         <div className={styles.cardright}></div>
                     </div>
@@ -85,6 +73,37 @@ function Address({ address, accountBlocks, balances}) {
                 <AccountBlockTable accountBlocks={accountBlocks} />
             </div>
         </Layout>
+    )
+}
+
+function Balance( { balances } ) {
+    if (!balances || balances === null || balances.length === 0) {
+        return (
+            <>
+                <div className={styles.cardleft}>Balance:</div>
+                <div className={styles.cardright}>None</div>
+            </>
+
+        )
+    }
+
+    return (
+        <>
+            <div className={styles.cardleft}>Balance:</div>
+            <div className={styles.cardbalance}>
+                {balances.map(balance => {
+                    return (
+                        <div key={`${balance.tokenstandard} ${balance.amount}`}> 
+                            {Number(balance.balance) / (10 ** balance.decimals)} 
+                            <Link href={{pathname: '/token/[token]', query: { token: balance.tokenstandard }}}>
+                                <a> {balance.symbol}</a>
+                            </Link>
+                        </div>   
+                    )
+                })}
+            </div>
+        </>
+        
     )
 }
 

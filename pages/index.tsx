@@ -80,15 +80,19 @@ function MomentumComponent({ momentum }) {
      <hr/>
      <div className={styles.row} >
        <div className={styles.leftrow}>
-          <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height }}}>
-            <span>Height: <a>{momentum.height}</a></span>
-          </Link>
+          <div>
+            <span>Height: </span>
+            <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height }}}>
+              <a>{momentum.height}</a>
+            </Link>
+          </div>
           <span className={styles.time}>{time.timeConverter(momentum.timestamp).toString()}</span>
        </div>
        <div className={styles.middlerow}>
-         <Link href={{pathname: '/address/[address]', query: { address: momentum.producer }}}>
-           <span className={styles.producer}>Producer:&ensp;<a className={styles.truncate}> {momentum.producer}</a></span>
-         </Link>
+          <span className={styles.producer}>Producer:&ensp;</span>
+          <Link href={{pathname: '/address/[address]', query: { address: momentum.producer }}}>
+            <a className={styles.truncate}> {momentum.producer}</a>
+          </Link>
        </div>
        <div className={styles.rightrow}>
          {momentum.countblocks} Txs

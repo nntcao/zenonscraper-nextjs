@@ -9,6 +9,9 @@ export default function Footer() {
                 <span className={styles.text}>Telegram: <a className={styles.link} href='https://t.me/vovi_z'>@vovi_z</a></span>
                 <span className={styles.text}>Email: <a className={styles.link} href='mailto:vovinhivo@gmail.com'>vovinhivo@gmail.com</a></span>
             </div>
+            <div className={styles.footerright}>
+                <div className={styles.text}>© 2021 vovi__z</div>
+            </div>
         </nav>
     )
 }

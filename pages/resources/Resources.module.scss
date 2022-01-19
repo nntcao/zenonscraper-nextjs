@@ -1,0 +1,42 @@
+.main {
+}
+
+.content {
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card {
+    margin: 1.5rem;
+    width: clamp(500px, 20vw, 1000px)
+}
+
+.subtitle {
+    align-self: flex-start;
+    font-family: 'Roboto-Regular';
+    font-size: clamp(1rem, 6vw, 3rem);
+    font-weight: 400;
+
+}
+
+.linksList {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1rem;
+    margin: .75rem;
+    margin-left: 1rem;
+    
+    .link {
+        font-size: 1.25rem;
+    }
+    
+    .link:hover {
+        text-decoration: underline;
+    }
+}
+
+
