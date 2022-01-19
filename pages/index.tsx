@@ -80,17 +80,14 @@ function MomentumComponent({ momentum }) {
      <hr/>
      <div className={styles.row} >
        <div className={styles.leftrow}>
-         <span> Height:&ensp;
-           <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height }}}>
-             <a>{momentum.height}</a>
-           </Link>
-         </span>
-         <span className={styles.time}>{time.timeConverter(momentum.timestamp).toString()}</span>
+          <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height }}}>
+            <span>Height: <a>{momentum.height}</a></span>
+          </Link>
+          <span className={styles.time}>{time.timeConverter(momentum.timestamp).toString()}</span>
        </div>
        <div className={styles.middlerow}>
-         Producer:&ensp;
          <Link href={{pathname: '/address/[address]', query: { address: momentum.producer }}}>
-           <a className={styles.truncate}> {momentum.producer}</a>
+           <span className={styles.producer}>Producer:&ensp;<a className={styles.truncate}> {momentum.producer}</a></span>
          </Link>
        </div>
        <div className={styles.rightrow}>
@@ -115,16 +112,14 @@ function AccountBlockComponent({ accountblock }) {
           <span className={styles.time}>{time.timeConverter(accountblock.timestamp)}</span>
         </div>
         <div className={styles.middlerow}>
-          <span className={styles.element}>From:&ensp;
-            <Link href={{pathname: '/address/[address]', query: { address: accountblock.address }}}>
-              <a className={styles.truncate}>{accountblock.address}&ensp;</a>
-            </Link>
-          </span>
-          <span className={styles.element}>To:&ensp;
-            <Link href={{pathname: '/address/[address]', query: { address: accountblock.toaddress }}}>
-              <a className={styles.truncate}>{accountblock.toaddress}</a> 
-            </Link>
-          </span>
+          From:&ensp;
+          <Link href={{pathname: '/address/[address]', query: { address: accountblock.address }}}>
+            <a className={styles.truncate}>{accountblock.address}&ensp;</a>
+          </Link>
+          To:&ensp;
+          <Link href={{pathname: '/address/[address]', query: { address: accountblock.toaddress }}}>
+            <a className={styles.truncate}>{accountblock.toaddress}</a> 
+          </Link>
         </div>
         <div className={styles.rightrow}>
           <span className={styles.amount}>{accountblock?.symbol ? (Math.round(accountblock.amount / (10 ** accountblock.decimals) * 100) / 100) : 'N/A'}</span> 

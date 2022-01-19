@@ -46,7 +46,6 @@ export async function getServerSideProps(context) {
             nextMomentumInformation: nextMomentumQuery?.rows[0] ?? null
         }
     }
-
 }
 
 function Momentum(props: any) {
@@ -66,69 +65,48 @@ function Momentum(props: any) {
                         <Choices prev={props.prevMomentumInformation} next={props.nextMomentumInformation} momentum={momentum}/>
                     </div>
                     <hr className={styles.hr}/>
-                    <div className={styles.row}>
-                        <div className={styles.rowleft}>Height</div>
-                        <div className={styles.rowright}>
+                    <div className={styles.cardbody}>
+                        <div className={styles.cardleft}>Height</div>
+                        <div className={styles.cardright}>
                             <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height }}}>
                                 <a>{momentum.height}</a>
                             </Link>
                         </div>
-                    </div>
-                    <div className={styles.row}>
-                        <div className={styles.rowleft}>Hash: </div>
-                        <div className={styles.rowright}>
+                        <div className={styles.cardleft}>Hash: </div>
+                        <div className={styles.cardright}>
                             <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.hash }}}>
                                 <a>{momentum.hash}</a>
                             </Link>
                         </div>
-                    </div>
-                    <div className={styles.row}>
-                        <div className={styles.rowleft}>Timestamp: </div>
-                        <div className={styles.rowright}>{momentum.timestamp} ({time.timeConverter(momentum.timestamp)})</div>
-                    </div>
-                    <div className={styles.row}>
-                        <div className={styles.rowleft}>No. AccountBlocks/Txs</div>
-                        <div className={styles.rowright}>{momentum.countblocks}</div>
-                    </div>
-                    <div className={styles.row}>
-                        <div className={styles.rowleft}>Producer: </div>
-                        <div className={styles.rowright}>
+                        <div className={styles.cardleft}>Timestamp: </div>
+                        <div className={styles.cardright}>{momentum.timestamp} ({time.timeConverter(momentum.timestamp)})</div>
+                        <div className={styles.cardleft}># Txs</div>
+                        <div className={styles.cardright}>{momentum.countblocks}</div>
+                        <div className={styles.cardleft}>Producer: </div>
+                        <div className={styles.cardright}>
                             <Link href={{pathname: '/address/[address]', query: { address: momentum.producer }}}>
                                 <a>{momentum.producer}</a>
                             </Link>
                         </div>
-                    </div>
-                    <div className={styles.row}>
-                        <div className={styles.rowleft}>Data: </div>
-                        <div className={styles.rowright}>{momentum.data}</div>
-                    </div>
-                    <div className={styles.row}>
-                        <div className={styles.rowleft}>Previous Hash: </div>
-                        <div className={styles.rowright}>
+                        <div className={styles.cardleft}>Data: </div>
+                        <div className={styles.cardright}>{momentum.data}</div>
+                        <div className={styles.cardleft}>Previous Hash: </div>
+                        <div className={styles.cardright}>
                             <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.previoushash }}}>
                                 <a>{momentum.previoushash}</a>
                             </Link>
                         </div>
-                    </div>
-                    <div className={styles.row}>
-                        <div className={styles.rowleft}>Public Key: </div>
-                        <div className={styles.rowright}>{momentum.publickey}</div>
-                    </div>
-                    <div className={styles.row}>
-                        <div className={styles.rowleft}>Signature: </div>
-                        <div className={styles.rowright}>{momentum.signature}</div>
-                    </div>
-                    <div className={styles.row}>
-                        <div className={styles.rowleft}>Chain Identifier: </div>
-                        <div className={styles.rowright}>{momentum.chainidentifier}</div>
-                    </div>
-                    <div className={styles.row}>
-                        <div className={styles.rowleft}>Version: </div>
-                        <div className={styles.rowright}>{momentum.version}</div>
-                    </div>
-                    <div className={styles.row}>
-                        <div className={styles.rowleft}>Changes Hash</div>
-                        <div className={styles.rowright}>{momentum.changeshash}</div>
+                        <div className={styles.cardleft}>Public Key: </div>
+                        <div className={styles.cardright}>{momentum.publickey}</div>
+                        <div className={styles.cardleft}>Signature: </div>
+                        <div className={styles.cardright}>{momentum.signature}</div>
+                        <div className={styles.cardleft}>Chain Identifier: </div>
+                        <div className={styles.cardright}>{momentum.chainidentifier}</div>
+                        <div className={styles.cardleft}>Version: </div>
+                        <div className={styles.cardright}>{momentum.version}</div>
+                        <div className={styles.cardleft}>Changes Hash</div>
+                        <div className={styles.cardright}>{momentum.changeshash}</div>
+
                     </div>
                 </div>
             </div>
@@ -136,15 +114,15 @@ function Momentum(props: any) {
     )
 }
 
-function Choices({ prev, next, momentum} ) {
+function Choices({ prev, next, momentum }) {
     if (prev && next) {
         return (
             <div className={styles.choices}>
                 <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height - 1 }}}>
-                    <a className={styles.momentumButton}>Previous Momentum</a>
+                    <a className={styles.prevnext}>Previous</a>
                 </Link>
                 <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height + 1 }}}>
-                    <a className={styles.momentumButton}>Next Momentum</a>
+                    <a className={styles.prevnext}>Next</a>
                 </Link>
             </div>
         )
@@ -152,19 +130,20 @@ function Choices({ prev, next, momentum} ) {
         return (
             <div className={styles.choices}>
                 <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height - 1 }}}>
-                    <a className={styles.momentumButton}>Previous Momentum</a>
+                    <a className={styles.prevnext}>Previous</a>
                 </Link>
             </div>
-
         )
     } else if (next) {
-        <div className={styles.choices}>
-            <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height + 1 }}}>
-                <a className={styles.momentumButton}>Next Momentum</a>
-            </Link>
-       </div>
+        return (
+            <div className={styles.choices}>
+                <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height + 1 }}}>
+                    <a className={styles.prevnext}>Next</a>
+                </Link>
+            </div>
+        )
     } else {
-        return null
+        return <></>
     }
 }
 

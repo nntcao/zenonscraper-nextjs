@@ -58,14 +58,16 @@ function Address({ address, accountBlocks, balances}) {
             <div className={styles.main}>
                 <Searchbar />
                 <div className={styles.card}>
-                    <h2 className={styles.cardTitle}>Address {address.address}</h2>
+                    <div className={styles.titleline}>
+                        <h2 className={styles.cardTitle}>Address {address.address}</h2>
+                    </div>
                     <hr />
-                    <div className={styles.balances}>
-                        <div className={styles.rowleft}>Balance: </div>
-                        <div className={styles.balancelist}>
+                    <div className={styles.cardbody}>
+                        <div className={styles.cardleft}>Balance:</div>
+                        <div className={styles.cardbalance}>
                             {balances.map(balance => {
                                 return (
-                                    <div key={`${balance.tokenstandard} ${balance.amount}`} className={styles.balance}> 
+                                    <div key={`${balance.tokenstandard} ${balance.amount}`}> 
                                         {Number(balance.balance) / (10 ** balance.decimals)} 
                                         <Link href={{pathname: '/token/[token]', query: { token: balance.tokenstandard }}}>
                                             <a> {balance.symbol}</a>
@@ -74,17 +76,11 @@ function Address({ address, accountBlocks, balances}) {
                                 )
                             })}
                         </div>
-                    </div>
-                    <div className={styles.values}>
-                        <div className={styles.row}>
-                            <div className={styles.rowleft}>Value:</div>
-                            <div className={styles.rowright}></div>
-                        </div>
-                    </div>
-                    <div className={styles.accountblock}>
-                        <AccountBlockTable accountBlocks={accountBlocks} />
+                        <div className={styles.cardleft}>Value:</div>
+                        <div className={styles.cardright}></div>
                     </div>
                 </div>
+                <AccountBlockTable accountBlocks={accountBlocks} />
             </div>
         </Layout>
     )
@@ -97,56 +93,58 @@ function AccountBlockTable({ accountBlocks }) {
         )
     } else {
         return (
-            <table className={styles.table}>
-                <thead>
-                    <tr className={styles.abheader}>
-                        <th className="abrow">Momentum Height</th>
-                        <th className="abrow">Timestamp</th>
-                        <th className="abrow">Hash</th>
-                        <th className="abrow">From</th>
-                        <th className="abrow">To</th>
-                        <th className="abrow">Amount</th>
-                        <th className="abrow">Token Standard</th>
-                        <th className="abrow">Used Plasma</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {accountBlocks.map(accountBlock => {    
-                        return (
-                            <tr className={styles.abrows} key = {accountBlock.hash}>
-                                <td className={styles.abrow}>
-                                    <Link href={{pathname: '/momentum/[momentum]', query: { momentum: accountBlock.momentumheight }}}>
-                                            <a>{accountBlock.momentumheight}</a>
-                                    </Link>
-                                </td>
-                                <td className={styles.abrow}>
-                                    {time.timeConverter(accountBlock.timestamp)}
-                                </td>
-                                <td className={`${styles.abrow} ${styles.truncate}`}>
-                                    <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlock.hash }}}>
-                                            <a>{accountBlock.hash}</a>
-                                    </Link>
-                                </td>
-                                <td className={`${styles.abrow} ${styles.truncate}`}>
-                                    <Link href={{pathname: '/address/[address]', query: { address: accountBlock.address }}}>
-                                            <a>{accountBlock.address}</a>
-                                    </Link>
-                                </td>
-                                <td className={`${styles.abrow} ${styles.truncate}`}>
-                                    <Link href={{pathname: '/address/[address]', query: { address: accountBlock.toaddress }}}>
-                                            <a>{accountBlock.toaddress}</a>
-                                    </Link>
-                                </td>
-                                <td className={styles.abrow}>
-                                    {Number(accountBlock.amount) / (10 ** accountBlock.decimals)}
-                                </td>
-                                <td className={styles.abrow}>{accountBlock.tokenstandard}</td>
-                                <td className={styles.abrow}>{accountBlock.usedplasma}</td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+            <div className={styles.tablescroll}>
+                <table className={styles.table}>
+                    <thead>
+                        <tr className={styles.abheader}>
+                            <th className="abrow">Momentum Height</th>
+                            <th className="abrow">Timestamp</th>
+                            <th className="abrow">Hash</th>
+                            <th className="abrow">From</th>
+                            <th className="abrow">To</th>
+                            <th className="abrow">Amount</th>
+                            <th className="abrow">Token Standard</th>
+                            <th className="abrow">Used Plasma</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {accountBlocks.map(accountBlock => {    
+                            return (
+                                <tr className={styles.abrows} key = {accountBlock.hash}>
+                                    <td className={styles.abrow}>
+                                        <Link href={{pathname: '/momentum/[momentum]', query: { momentum: accountBlock.momentumheight }}}>
+                                                <a>{accountBlock.momentumheight}</a>
+                                        </Link>
+                                    </td>
+                                    <td className={styles.abrow}>
+                                        {time.timeConverter(accountBlock.timestamp)}
+                                    </td>
+                                    <td className={`${styles.abrow} ${styles.truncate}`}>
+                                        <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlock.hash }}}>
+                                                <a>{accountBlock.hash}</a>
+                                        </Link>
+                                    </td>
+                                    <td className={`${styles.abrow} ${styles.truncate}`}>
+                                        <Link href={{pathname: '/address/[address]', query: { address: accountBlock.address }}}>
+                                                <a>{accountBlock.address}</a>
+                                        </Link>
+                                    </td>
+                                    <td className={`${styles.abrow} ${styles.truncate}`}>
+                                        <Link href={{pathname: '/address/[address]', query: { address: accountBlock.toaddress }}}>
+                                                <a>{accountBlock.toaddress}</a>
+                                        </Link>
+                                    </td>
+                                    <td className={styles.abrow}>
+                                        {Number(accountBlock.amount) / (10 ** accountBlock.decimals)}
+                                    </td>
+                                    <td className={styles.abrow}>{accountBlock.tokenstandard}</td>
+                                    <td className={styles.abrow}>{accountBlock.usedplasma}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 }

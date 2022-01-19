@@ -43,7 +43,7 @@
     margin: clamp(1rem, 1vw, 2.5rem);
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    width: 40vw;
 }
 
 .cardTitle {
@@ -53,28 +53,23 @@
     align-self: flex-start;
 }
 
+
+
 // .row {
-//     display: grid;
-//     grid-template-columns: .75fr 1fr .45fr;
+//     display: flex;
+//     flex-direction: row;
 //     align-items: center;
+//     justify-content: space-between;
+//     margin-bottom: .25rem;
+//     margin-top: .25rem;
 // }
 
-.time {
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: "";
-}
-
-.element {
-    display: inline-block;
-}
-
 .row {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1.25fr 2fr .45fr;
     align-items: center;
-    justify-content: space-between;
+    margin-bottom: .25rem;
+    margin-top: .25rem;
 }
 
 .truncate {
@@ -92,12 +87,15 @@
     flex-direction: column;
     justify-self: start;
     margin: 3px;
-    width: 150px
 }
 
 .middlerow {
     margin-left: .5rem;
     vertical-align: middle;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
+
 }
 
 .rightrow {
@@ -129,8 +127,16 @@
 }
 
 @media screen and (max-width: 570px) {
+    .time {
+    }
+    
     .row {
+        display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: .25rem;
+        margin-top: .25rem;
         align-items: flex-start;
         margin-bottom: 0.25rem;
         margin-top:0.25rem;
@@ -143,8 +149,6 @@
     .leftrow {
         margin: 0rem;
         padding: 0rem;
-        flex-direction: row;
-        justify-content: space-between;
         width: 100%;
     }
 
@@ -156,5 +160,10 @@
     .rightrow {
         margin: 0rem;
         padding: 0rem;
+    }
+    
+    .producer {
+        display: grid;
+        grid-template-columns: auto auto;
     }
 }

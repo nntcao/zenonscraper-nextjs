@@ -9,30 +9,39 @@
     margin: 1rem;
     display: flex;
     flex-direction: column;
-    width: clamp(150px, 80vw, 1000px)
-}
+    width: clamp(150px, 85vw, 1000px);
 
-.titleline {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
+    .titleline {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
 
-.cardTitle {
-    align-self: flex-start;
-    font-family: 'Roboto-Regular';
-    font-size: 1.25rem;
-    font-weight: 400;
-}
+    .cardTitle {
+        align-self: flex-start;
+        font-family: 'Roboto-Regular';
+        font-size: clamp(1rem, 2vw ,1.25rem);
+        font-weight: 400;
+    }
 
-.row {
-    display: flex;
-    flex-direction: row;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    justify-content: flex-start;
+    .cardbody {
+        margin: .25rem;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 15px;
+    }
+
+    .cardleft {
+        justify-self: start;
+    }
+
+    .cardright {
+        justify-self: start;
+        overflow-wrap: break-word;
+        word-break: break-all;
+    }
 }
 
 .truncate {
@@ -43,20 +52,7 @@
     max-width: 171px;
 }
 
-.rowleft {
-    display: flex;
-    flex-direction: column;
-    justify-self: start;
-    min-width: clamp(170px, 20%, 100%);
-}
-
-.rowright {
-    justify-self: start;
-    overflow-wrap: break-word;
-    word-break: break-all;
-}
-
-
-.momentumButton {
-    margin-left: 1rem;
+.prevnext {
+    margin-left: clamp(0.4rem, 2vw, 1rem);
+    font-size: clamp(0.95rem, 2vw, 1rem);
 }

@@ -3,56 +3,92 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
 }
 
 .card {
+    margin: 1rem;
     display: flex;
     flex-direction: column;
-}
+    width: clamp(150px, 85vw, 1000px);
 
-.balances {
-    display: flex;
-    flex-direction: row;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    justify-content: flex-start;
-    gap: 1rem;
-}
+    .titleline {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
 
-.values {
+    .cardTitle {
+        align-self: flex-start;
+        font-family: 'Roboto-Regular';
+        font-size: clamp(1rem, 2vw ,1.25rem);
+        font-weight: 400;
+        overflow-wrap: break-word;
+        word-break: break-all;
+    }
 
-}
+    .cardbody {
+        margin: .25rem;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 15px;
 
-.cardTitle {
-    align-self: flex-start;
-    font-family: 'Roboto-Regular';
-    font-size: 1.25rem;
-    font-weight: 400;
+        .cardleft {
+            justify-self: start;
+        }
+    
+        .cardright {
+            justify-self: start;
+        }
+
+        .cardbalance {
+            overflow-x: auto;
+            justify-self: start;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            max-height: 20vh;
+            gap: 3px clamp(4px, 10vh, 30px);
+            min-width: 90%;
+        }
+
+    }
 }
 
 .truncate {
+    display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 171px;
 }
 
-.rowleft {
+.prevnext {
+    margin-left: clamp(0.4rem, 2vw, 1rem);
+    font-size: clamp(0.95rem, 2vw, 1rem);
+}
+
+.tablescroll {
     display: flex;
+    align-items: center;
     flex-direction: column;
-    justify-self: start;
-}
-
-.balancelist {
-    justify-self: start;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
-
-.balance {
+    overflow-x: auto;
+    width: 100%;
 }
 
 .table {
+    display: unset;
     border-spacing: .5rem;
+    border-collapse: collapse;
+
+    .abheader {
+        display: table-header-group;
+    }
+    
+    .abrow {
+        padding: 0.625rem;
+    }
 }
+
+
