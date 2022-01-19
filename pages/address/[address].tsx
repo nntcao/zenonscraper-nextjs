@@ -80,6 +80,8 @@ function Address({ address, accountBlocks, balances}) {
                         <div className={styles.cardright}></div>
                     </div>
                 </div>
+                <h2 className={styles.tableTitle}>Recent Account Blocks/Transactions</h2>
+                <hr/>
                 <AccountBlockTable accountBlocks={accountBlocks} />
             </div>
         </Layout>
@@ -95,16 +97,16 @@ function AccountBlockTable({ accountBlocks }) {
         return (
             <div className={styles.tablescroll}>
                 <table className={styles.table}>
-                    <thead>
-                        <tr className={styles.abheader}>
-                            <th className="abrow">Momentum Height</th>
-                            <th className="abrow">Timestamp</th>
-                            <th className="abrow">Hash</th>
-                            <th className="abrow">From</th>
-                            <th className="abrow">To</th>
-                            <th className="abrow">Amount</th>
-                            <th className="abrow">Token Standard</th>
-                            <th className="abrow">Used Plasma</th>
+                    <thead className={styles.abheader}>
+                        <tr>
+                            <th scope="col" className="abrow">Momentum Height</th>
+                            <th scope="col" className="abrow">Timestamp</th>
+                            <th scope="col" className="abrow">Hash</th>
+                            <th scope="col" className="abrow">From</th>
+                            <th scope="col" className="abrow">To</th>
+                            <th scope="col" className="abrow">Amount</th>
+                            <th scope="col" className="abrow">Token</th>
+                            <th scope="col" className="abrow">Plasma</th>
                         </tr>
                     </thead>
                     <tbody>

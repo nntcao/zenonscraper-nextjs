@@ -52,7 +52,6 @@
             gap: 3px clamp(4px, 10vh, 30px);
             min-width: 90%;
         }
-
     }
 }
 
@@ -69,26 +68,29 @@
     font-size: clamp(0.95rem, 2vw, 1rem);
 }
 
+
+.tableTitle {
+    font-family: 'Roboto-Regular';
+    font-size: clamp(1rem, 2vw ,1.25rem);
+    font-weight: 400;
+}
+
 .tablescroll {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    display: inline-block;
     overflow-x: auto;
     width: 100%;
-}
 
-.table {
-    display: unset;
-    border-spacing: .5rem;
-    border-collapse: collapse;
+    .table {
+        margin:auto;
+        border-spacing: .5rem;
 
-    .abheader {
-        display: table-header-group;
+        .abheader {
+            display: table-header-group;
+        }
+        
+        .abrow {
+            display: table-cell;
+            text-align: center;
+        }
     }
-    
-    .abrow {
-        padding: 0.625rem;
-    }
 }
-
-

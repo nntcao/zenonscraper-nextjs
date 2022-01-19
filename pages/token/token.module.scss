@@ -55,7 +55,28 @@
     max-width: 171px;
 }
 
-.prevnext {
-    margin-left: clamp(0.4rem, 2vw, 1rem);
-    font-size: clamp(0.95rem, 2vw, 1rem);
+.tableTitle {
+    font-family: 'Roboto-Regular';
+    font-size: clamp(1rem, 2vw ,1.25rem);
+    font-weight: 400;
+}
+
+.tablescroll {
+    display: inline-block;
+    overflow-x: auto;
+    width: 100%;
+
+    .table {
+        margin:auto;
+        border-spacing: .5rem;
+
+        .abheader {
+            display: table-header-group;
+        }
+        
+        .abrow {
+            display: table-cell;
+            text-align: center;
+        }
+    }
 }
