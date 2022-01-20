@@ -137,10 +137,10 @@ function Holders({ holders, token }) {
                                         </Link>
                                     </td>
                                     <td className={`${styles.abrow} ${styles.truncate}`}>
-                                        {(Number(holder.balance) / (10 ** token.decimals)).toFixed(2)}
+                                        {(Number(holder.balance) / (10 ** token.decimals)).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})}
                                     </td>
                                     <td className={`${styles.abrow} ${styles.truncate}`}>
-                                        {(Number(holder.balance) / Number(token.totalsupply) * 100).toFixed(2)}%
+                                        {(Number(holder.balance) / Number(token.totalsupply) * 100).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})}%
                                     </td>
                                 </tr>
                             )
