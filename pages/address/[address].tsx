@@ -7,6 +7,11 @@ import Link from 'next/link'
 import Searchbar from '../../components/Searchbar'
 
 export async function getServerSideProps(context) {
+    context.res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=10, stale-while-revalidate=59'
+      )
+
     const searchString: string = context.params.address
     const addressQuery = await db.query(`
         SELECT address FROM address WHERE address = $1

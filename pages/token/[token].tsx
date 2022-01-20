@@ -6,6 +6,11 @@ import Layout from '../../components/Layout'
 import Link from 'next/link'
 
 export async function getServerSideProps(context) {
+    context.res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=10, stale-while-revalidate=59'
+      )
+
     const searchString: string = context.params.token
     if (searchString.length >= 3 && searchString.substring(0, 3).toLowerCase() == 'zts') {
         var tokenQuery = await db.query(`

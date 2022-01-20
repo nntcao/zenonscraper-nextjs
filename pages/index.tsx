@@ -6,7 +6,12 @@ import * as time from '../utils/time'
 import Layout from '../components/Layout'
 import Searchbar from '../components/Searchbar'
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req, res}) {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
+
   const momentumQueryResult = await db.query(`
     SELECT momentum.height, momentum.hash, momentum.timestamp, momentum.producer, a.countblocks 
     FROM (SELECT m.hash, COUNT(accountblock.hash) AS countblocks FROM
