@@ -4,10 +4,12 @@ export default function Footer() {
     return (
         <nav className={styles.footer}>
             <div className={styles.footerleft}>
-                <span className={styles.text}>Twitter: <a className={styles.link} href='https://twitter.com/vovi__z'>@vovi__z</a></span>
-                <span className={styles.text}>Discord: <a className={styles.link} href='https://discordapp.com/users/173981751427858433'>vovi__z#1208</a></span>
-                <span className={styles.text}>Telegram: <a className={styles.link} href='https://t.me/vovi_z'>@vovi_z</a></span>
-                <span className={styles.text}>Email: <a className={styles.link} href='mailto:vovinhivo@gmail.com'>vovinhivo@gmail.com</a></span>
+                <div className={styles.text}>Contact: </div>
+                <span className={styles.text}><a className={styles.link} href='https://github.com/vovi-z'>Github</a></span>
+                <span className={styles.text}><a className={styles.link} href='https://twitter.com/vovi__z'>Twitter</a></span>
+                <span className={styles.text}><a className={styles.link} href='https://discordapp.com/users/173981751427858433'>Discord</a></span>
+                <span className={styles.text}><a className={styles.link} href='https://t.me/vovi_z'>Telegram</a></span>
+                <span className={styles.text}><a className={styles.link} href='mailto:vovinhivo@gmail.com'>Email</a></span>
             </div>
             <div className={styles.footerright}>
                 <div className={styles.text}>© 2021 vovi__z</div>
