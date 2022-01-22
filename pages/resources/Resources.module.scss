@@ -11,13 +11,13 @@
 
 .card {
     margin: 1.5rem;
-    width: clamp(500px, 20vw, 1000px)
+    width: clamp(400px, 20vw, 1000px)
 }
 
 .subtitle {
     align-self: flex-start;
     font-family: 'Roboto-Regular';
-    font-size: clamp(1rem, 6vw, 3rem);
+    font-size: clamp(1rem, 6vw, 2rem);
     font-weight: 400;
 
 }
@@ -31,7 +31,7 @@
     margin-left: 1rem;
     
     .link {
-        font-size: 1.25rem;
+        font-size: (1rem, 3vw, 1.25rem);
     }
     
     .link:hover {
