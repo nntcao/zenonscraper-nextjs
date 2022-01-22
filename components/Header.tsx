@@ -6,12 +6,6 @@ import styles from './Header.module.scss'
 export default function Header() {
     return (
         <nav>
-            <Head>
-                <title>Zenon Scraper</title>
-                <meta name="description" content="Explorer for Zenon Network DAG"/>
-                <link rel="icon" href="/favicon.png" />
-            </Head>
-
             <div className={styles.header}>
                 <div className={styles.container}>
                     <Link href='/'>
