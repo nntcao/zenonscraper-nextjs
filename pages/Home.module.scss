@@ -118,11 +118,12 @@
         flex-direction: column;
         width: 100%;
         align-items: center;
+
+        .card {
+            width: clamp(50vw, 900px, 80vw);
+        }
     }
 
-    .card {
-        width: clamp(50vw, 900px, 80vw);
-    }
 
     .truncate {
         max-width: clamp(3vw, 35vw, 100vw);
@@ -130,8 +131,6 @@
 }
 
 @media screen and (max-width: 570px) {
-    .time {
-    }
     
     .row {
         display: flex;

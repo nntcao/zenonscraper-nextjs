@@ -9,7 +9,7 @@
 
 .card {
     margin: 1.5rem;
-    width: clamp(500px, 40vw, 1600px)
+    width: clamp(250px, 40vw, 1600px)
 }
 
 .subtitle {
@@ -26,15 +26,17 @@
     gap: 1rem;
     margin: .75rem;
     margin-left: 1rem;
+    font-size: clamp(1rem, 3vw, 1.4rem);
     
     .listitem {
-        font-size: 1.4rem;
+        font-size: clamp(1rem, 3vw, 1.4rem);
+        word-wrap: break-word;
     }
     
     .emphasis {
         font-family: 'Roboto-Regular';
         font-weight: 600;
-        font-size: 1.4rem;
+        font-size: clamp(1rem, 3vw, 1.4rem);
     }
 }
 
