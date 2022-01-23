@@ -53,7 +53,7 @@ export function Searchbar() {
                     onChange={handleParam(setQuery)}
                 />
                 <button className={styles.button} type="submit">
-                    <Image src="/search_black_24dp.svg" width="25" height="25" className={styles.searchIcon}/>
+                    <Image src="/search_black_24dp.svg" width="25" height="25" className={styles.searchIcon} alt="Search Bar Icon"/>
                 </button>
             </form>
         </>
