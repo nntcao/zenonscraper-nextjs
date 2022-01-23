@@ -13,7 +13,7 @@ export async function getServerSideProps(context) {
       )
 
     const searchString: string = String(context.params.token)
-    if (searchString.length >= 3 && searchString.substring(0, 3).toLowerCase() == 'zts') {
+    if (searchString.length > 7 && searchString.substring(0, 3).toLowerCase() == 'zts') {
         var tokenQuery = await db.query(`
             SELECT * FROM token
             WHERE tokenstandard = $1
@@ -32,17 +32,22 @@ export async function getServerSideProps(context) {
         LIMIT 25
     `, [tokenQuery?.rows[0]?.tokenstandard])
 
+    const countHoldersQuery = await db.query(`
+        SELECT COUNT(address) as countholders FROM balance
+        WHERE tokenstandard = $1
+    `, [tokenQuery?.rows[0]?.tokenstandard])
 
     return { 
         props: {
             tokenInformation: tokenQuery?.rows[0] ?? null,
-            holdersInformation: holdersQuery?.rows ?? null
+            holdersInformation: holdersQuery?.rows ?? null,
+            countHolders: countHoldersQuery?.rows[0]?.countholders ?? null
         }
 
     }
 }
 
-function Token({ tokenInformation, holdersInformation }) {
+function Token({ tokenInformation, holdersInformation, countHolders }) {
     if (!tokenInformation) {
         return (
             <ErrorPage />
@@ -52,16 +57,18 @@ function Token({ tokenInformation, holdersInformation }) {
     return (
         <Layout>
             <div className={styles.main}>
-                <TokenCard token={tokenInformation}/>
+                <TokenCard token={tokenInformation} countHolders={countHolders}/>
                 <h2 className={styles.tableTitle}>Top 25 Holders</h2>
-                <hr/>
-                <HoldersTable holders={holdersInformation} token={tokenInformation}/>
+                <HoldersTable holders={holdersInformation} token={tokenInformation} startRank={1}/>
+                <Link href={{pathname: '/token/[token]/[page]', query: { token: tokenInformation.tokenstandard, page: 1 }}}>
+                    <a className={styles.seeMore}>See more</a>
+                </Link>
             </div>
         </Layout>
     )
 }
 
-function TokenCard({ token }) {
+function TokenCard({ token, countHolders }) {
     return (
         <div className={styles.card}>
             <div className={styles.titleline}>
@@ -70,41 +77,43 @@ function TokenCard({ token }) {
             <hr />
 
             <div className={styles.cardbody}>
-                <div className={styles.rowleft}>Name: </div>
-                <div className={styles.rowright}>{token.name ?? 'N/A'}</div>
-                <div className={styles.rowleft}>Symbol: </div>
-                <div className={styles.rowright}>{token.symbol ?? 'N/A'}</div>
-                <div className={styles.rowleft}>Token Standard:</div>
-                <div className={styles.rowright}>
+                <div className={styles.cardleft}>Name: </div>
+                <div className={styles.cardright}>{token.name ?? 'N/A'}</div>
+                <div className={styles.cardleft}>Symbol: </div>
+                <div className={styles.cardright}>{token.symbol ?? 'N/A'}</div>
+                <div className={styles.cardleft}>Token Standard:</div>
+                <div className={styles.cardright}>
                     <Link href={{pathname: '/token/[token]', query: { token: token.tokenstandard }}}>
                         <a>{token.tokenstandard ?? 'N/A'}</a>
                     </Link>
                 </div>
-                <div className={styles.rowleft}>Domain: </div>
-                <div className={styles.rowright}>
+                <div className={styles.cardleft}>Number of Holders:</div>
+                <div className={styles.cardright}>{countHolders ?? 'N/A'}</div>
+                <div className={styles.cardleft}>Domain: </div>
+                <div className={styles.cardright}>
                     <a href={`${formatExternalLink(token.domain)}`}
                     rel="noopener noreferrer">
                         {token.domain ?? 'N/A'}
                     </a>
                 </div>
-                <div className={styles.rowleft}>Owner: </div>
-                <div className={styles.rowright}>
+                <div className={styles.cardleft}>Owner: </div>
+                <div className={styles.cardright}>
                     <Link href={{pathname: '/address/[address]', query: { address: token.owner }}}>
                         <a>{token.owner ?? 'N/A'}</a>
                     </Link>
                 </div>
-                <div className={styles.rowleft}>Total Supply:</div>
-                <div className={styles.rowright}>{Number(token.totalsupply / (10 ** token.decimals)).toLocaleString()} ({Number(token.totalsupply).toLocaleString()})</div>
-                <div className={styles.rowleft}>Max Supply: </div>
-                <div className={styles.rowright}>{Number(token.maxsupply / (10 ** token.decimals)).toLocaleString()} ({Number(token.maxsupply).toLocaleString()})</div>
-                <div className={styles.rowleft}>Decimals: </div>
-                <div className={styles.rowright}>{token.decimals ?? 'N/A'}</div>
-                <div className={styles.rowleft}>Is Burnable:</div>
-                <div className={styles.rowright}>{token?.isburnable?.toString() ?? 'N/A'}</div>
-                <div className={styles.rowleft}>Is Mintable: </div>
-                <div className={styles.rowright}>{token?.ismintable?.toString() ?? 'N/A'}</div>
-                <div className={styles.rowleft}>Is Utility: </div>
-                <div className={styles.rowright}>{token?.isutility?.toString() ?? 'N/A'}</div>
+                <div className={styles.cardleft}>Total Supply:</div>
+                <div className={styles.cardright}>{Number(token.totalsupply / (10 ** token.decimals)).toLocaleString()} ({Number(token.totalsupply).toLocaleString()})</div>
+                <div className={styles.cardleft}>Max Supply: </div>
+                <div className={styles.cardright}>{Number(token.maxsupply / (10 ** token.decimals)).toLocaleString()} ({Number(token.maxsupply).toLocaleString()})</div>
+                <div className={styles.cardleft}>Decimals: </div>
+                <div className={styles.cardright}>{token.decimals ?? 'N/A'}</div>
+                <div className={styles.cardleft}>Is Burnable:</div>
+                <div className={styles.cardright}>{token?.isburnable?.toString() ?? 'N/A'}</div>
+                <div className={styles.cardleft}>Is Mintable: </div>
+                <div className={styles.cardright}>{token?.ismintable?.toString() ?? 'N/A'}</div>
+                <div className={styles.cardleft}>Is Utility: </div>
+                <div className={styles.cardright}>{token?.isutility?.toString() ?? 'N/A'}</div>
             </div>
         </div>
     )

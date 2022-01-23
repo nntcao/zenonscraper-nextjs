@@ -61,6 +61,11 @@
     font-weight: 400;
 }
 
+.seeMore {
+    text-align: end;
+    font-size: clamp(1rem, 5vw, 2.5rem);
+}
+
 .tablescroll {
     display: inline-block;
     overflow-x: auto;
@@ -79,4 +84,18 @@
             text-align: center;
         }
     }
+}
+
+
+.pageNumbers {
+    display: flex;
+    flex-direction: row;
+    margin: .5rem;
+    flex-wrap: wrap;
+}
+
+.pageLink {
+    margin: 0.5rem;
+    text-align: center;
+    vertical-align: middle;
 }

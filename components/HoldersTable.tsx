@@ -1,8 +1,8 @@
 import styles from './HoldersTable.module.scss'
 import Link from 'next/link'
 
-export default function HoldersTable({ holders, token }) {
-    let rank = 1
+export default function HoldersTable({ holders, token, startRank }) {
+    let rank = Number(startRank)
 
     if (!holders || holders === null || holders.length === 0) {
         return (
