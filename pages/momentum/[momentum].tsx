@@ -26,15 +26,15 @@ export async function getServerSideProps(context) {
         `, [searchString])
     } else {
         var momentumQuery = await db.query(`
-        SELECT momentum.hash, momentum.version, momentum.height, momentum.timestamp, 
-            momentum.previoushash, momentum.data, momentum.changeshash, momentum.publickey, 
-            momentum.signature, momentum.producer, momentum.chainidentifier, COUNT(accountblock.hash) as countblocks
-        FROM momentum 
-            LEFT JOIN accountblock
-			ON accountblock.momentumhash = momentum.hash
-            WHERE momentum.height = $1
-            GROUP BY momentum.hash
-            `, [searchString])
+            SELECT momentum.hash, momentum.version, momentum.height, momentum.timestamp, 
+                momentum.previoushash, momentum.data, momentum.changeshash, momentum.publickey, 
+                momentum.signature, momentum.producer, momentum.chainidentifier, COUNT(accountblock.hash) as countblocks
+            FROM momentum 
+                LEFT JOIN accountblock
+                ON accountblock.momentumhash = momentum.hash
+                WHERE momentum.height = $1
+                GROUP BY momentum.hash
+        `, [searchString])
     }
 
     var prevMomentumQuery = await db.query(`
@@ -86,7 +86,9 @@ function Momentum(props: any) {
                         <div className={styles.cardleft}>Timestamp: </div>
                         <div className={styles.cardright}>{momentum.timestamp} ({time.timeConverter(momentum.timestamp)})</div>
                         <div className={styles.cardleft}># Txs</div>
-                        <div className={styles.cardright}>{momentum.countblocks}</div>
+                        <div className={styles.cardright}>
+                            <MoreAccountBlocks momentum={momentum} />
+                        </div>
                         <div className={styles.cardleft}>Producer: </div>
                         <div className={styles.cardright}>
                             <Link href={{pathname: '/address/[address]', query: { address: momentum.producer }}}>
@@ -117,6 +119,24 @@ function Momentum(props: any) {
             </div>
         </Layout>
     )
+}
+
+function MoreAccountBlocks({ momentum }) {
+    if (Number(momentum.countblocks) > 0) {
+        return  (
+            <>
+                <Link href={{pathname: '/momentum/[momentum]/[page]', query: { momentum: momentum.height, page: 1 }}}>
+                    <a>{momentum.countblocks}</a>
+                </Link>
+            </>
+        )
+    } else {
+        return (
+            <>
+                {momentum.countblocks}
+            </>
+        )
+    }
 }
 
 function Choices({ prev, next, momentum }) {

@@ -4,8 +4,8 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
+        <title>Zenon Scraper</title>
         <Head>
-            <title>Zenon Scraper</title>
             <meta name="description" content="Explorer for Zenon Network DAG"/>
             <link rel="icon" href="/favicon.png" />
             {/* Global Site Tag (gtag.js) - Google Analytics */}

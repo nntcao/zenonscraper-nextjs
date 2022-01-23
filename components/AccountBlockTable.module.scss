@@ -1,0 +1,28 @@
+
+.tablescroll {
+    display: inline-block;
+    overflow-x: auto;
+    width: 100%;
+
+    .table {
+        margin:auto;
+        border-spacing: .50rem;
+
+        .abheader {
+            display: table-header-group;
+        }
+        
+        .abrow {
+            display: table-cell;
+            text-align: center;
+        }
+    }
+}
+
+.truncate {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 171px;
+}
