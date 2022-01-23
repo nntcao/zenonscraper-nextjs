@@ -85,13 +85,13 @@ function MomentumComponent({ momentum }) {
      <hr/>
      <div className={styles.row} >
        <div className={styles.leftrow}>
+         <span className={styles.time}>{time.timeConverter(momentum.timestamp).toString()}</span>
           <div>
             <span>Height: </span>
             <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height }}}>
               <a>{momentum.height}</a>
             </Link>
           </div>
-          <span className={styles.time}>{time.timeConverter(momentum.timestamp).toString()}</span>
        </div>
        <div className={styles.middlerow}>
           <span className={styles.producer}>Producer:&ensp;</span>
