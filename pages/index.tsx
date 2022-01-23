@@ -39,8 +39,8 @@ export async function getServerSideProps({ req, res}) {
 
   return {
     props: {
-      momentumList: momentumQueryResult?.rows,
-      accountBlockList: accountBlockQueryResult?.rows
+      momentumList: momentumQueryResult?.rows ?? null,
+      accountBlockList: accountBlockQueryResult?.rows ?? null
     }
   }
 }
@@ -85,13 +85,13 @@ function MomentumComponent({ momentum }) {
      <hr/>
      <div className={styles.row} >
        <div className={styles.leftrow}>
-         <span className={styles.time}>{time.timeConverter(momentum.timestamp).toString()}</span>
           <div>
             <span>Height: </span>
             <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height }}}>
               <a>{momentum.height}</a>
             </Link>
           </div>
+          <span className={styles.time}>{time.timeConverter(momentum.timestamp).toString()}</span>
        </div>
        <div className={styles.middlerow}>
           <span className={styles.producer}>Producer:&ensp;</span>
@@ -100,10 +100,25 @@ function MomentumComponent({ momentum }) {
           </Link>
        </div>
        <div className={styles.rightrow}>
-         {momentum.countblocks} Txs
+        <MomentumTransactionsComponent momentum={momentum}/>
        </div>
      </div>
    </div>
+  )
+}
+
+function MomentumTransactionsComponent({momentum}) {
+  if (momentum.countblocks > 0) {
+    return (
+      <Link href={{pathname: '/momentum/[momentum]/[page]', query: { momentum: momentum.height, page: 1 }}}>
+        <a>{momentum.countblocks} Txs</a>
+      </Link>
+    )
+  }
+  return (
+    <>
+      {momentum.countblocks} Txs
+    </>
   )
 }
 
@@ -114,6 +129,7 @@ function AccountBlockComponent({ accountblock }) {
       <div className={styles.row}>
         <div className={styles.leftrow}>
           <span className={styles.truncate}>
+            <span>Hash: </span>
             <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: accountblock.hash }}}>
               <a>{accountblock.hash}</a>
             </Link>
