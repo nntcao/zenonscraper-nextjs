@@ -11,7 +11,7 @@ export async function getServerSideProps(context) {
         'public, s-maxage=10, stale-while-revalidate=59'
       )
 
-    const searchString: string = context.params.token
+    const searchString: string = String(context.params.token).toUpperCase()
     if (searchString.length >= 3 && searchString.substring(0, 3).toLowerCase() == 'zts') {
         var tokenQuery = await db.query(`
             SELECT * FROM token

@@ -11,7 +11,7 @@ export function Searchbar() {
 
     const handleSubmit = (e) => { 
         e.preventDefault()
-        if (query.length >= 3) {
+        if (query.length > 7) {
             if (query.substring(0,3).toLowerCase() === 'z1q') {
                 router.push({
                     pathname: '/address/[address]',
@@ -22,17 +22,22 @@ export function Searchbar() {
                     pathname: '/token/[token]',
                     query: {address: query}
                 })
-            } else if (!isNaN(Number(query))) {
-                router.push({
-                    pathname: '/momentum/[momentum]',
-                    query: {momentum: query}
-                })
             } else {
                 router.push({
                     pathname: '/accountblock/[accountblock]',
                     query: {accountblock: query}
                 })
             }
+        } else if (!isNaN(Number(query))) {
+            router.push({
+                pathname: '/momentum/[momentum]',
+                query: {momentum: query}
+            })
+        } else {
+            router.push({
+                pathname: '/token/[token]',
+                query: {token: query}
+            })
         }
     }
     const handleParam = setValue => e => setValue(e.target.value)

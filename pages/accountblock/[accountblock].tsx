@@ -12,7 +12,7 @@ export async function getServerSideProps(context) {
         'public, s-maxage=10, stale-while-revalidate=59'
       )
 
-    const searchString: string = context.params.accountblock
+    const searchString: string = String(context.params.accountblock).toLowerCase()
     const accountBlockQuery = await db.query(`
         SELECT a.height, a.hash, a.address, a.toaddress, a.amount, a.tokenstandard,
             a.data, a.fusedplasma, a.baseplasma, a.usedplasma, a.difficulty,
