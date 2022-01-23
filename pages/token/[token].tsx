@@ -4,6 +4,7 @@ import ErrorPage from '../404'
 import styles from './token.module.scss'
 import Layout from '../../components/Layout'
 import Link from 'next/link'
+import HoldersTable from '../../components/HoldersTable'
 
 export async function getServerSideProps(context) {
     context.res.setHeader(
@@ -11,7 +12,7 @@ export async function getServerSideProps(context) {
         'public, s-maxage=10, stale-while-revalidate=59'
       )
 
-    const searchString: string = String(context.params.token).toUpperCase()
+    const searchString: string = String(context.params.token)
     if (searchString.length >= 3 && searchString.substring(0, 3).toLowerCase() == 'zts') {
         var tokenQuery = await db.query(`
             SELECT * FROM token
@@ -21,7 +22,7 @@ export async function getServerSideProps(context) {
         var tokenQuery = await db.query(`
             SELECT * FROM token
             WHERE symbol = $1
-        `, [searchString])
+        `, [searchString.toUpperCase()])
     }
 
     var holdersQuery = await db.query(`
@@ -54,7 +55,7 @@ function Token({ tokenInformation, holdersInformation }) {
                 <TokenCard token={tokenInformation}/>
                 <h2 className={styles.tableTitle}>Top 25 Holders</h2>
                 <hr/>
-                <Holders holders={holdersInformation} token={tokenInformation}/>
+                <HoldersTable holders={holdersInformation} token={tokenInformation}/>
             </div>
         </Layout>
     )
@@ -107,54 +108,6 @@ function TokenCard({ token }) {
             </div>
         </div>
     )
-}
-
-function Holders({ holders, token }) {
-    let rank = 1
-
-    if (!holders || holders === null || holders.length === 0) {
-        return (
-            <div> No holders for this token</div>
-        )
-    } else {
-        return (
-            <div className={styles.tablescroll}>
-                <table className={styles.table}>
-                    <thead className={styles.abheader}>
-                        <tr>
-                            <th scope="col" className="abrow">Rank</th>
-                            <th scope="col" className="abrow">Address</th>
-                            <th scope="col" className="abrow">Amount</th>
-                            <th scope="col" className="abrow">Percentage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            holders.map(holder => {    
-                            return (
-                                <tr className={styles.abrows} key = {holder.address}>
-                                    <td className={styles.abrow}>
-                                        {rank++}
-                                    </td>
-                                    <td className={styles.abrow}>
-                                        <Link href={{pathname: '/address/[address]', query: { address: holder.address }}}>
-                                            <a>{holder.address}</a>
-                                        </Link>
-                                    </td>
-                                    <td className={`${styles.abrow} ${styles.truncate}`}>
-                                        {(Number(holder.balance) / (10 ** token.decimals)).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})}
-                                    </td>
-                                    <td className={`${styles.abrow} ${styles.truncate}`}>
-                                        {(Number(holder.balance) / Number(token.totalsupply) * 100).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})}%
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
 }
 
 function formatExternalLink(url: string) {
