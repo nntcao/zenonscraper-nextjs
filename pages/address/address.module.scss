@@ -74,3 +74,16 @@
     font-size: clamp(1rem, 2vw ,1.25rem);
     font-weight: 400;
 }
+
+.pageNumbers {
+    display: flex;
+    flex-direction: row;
+    margin: .5rem;
+    flex-wrap: wrap;
+}
+
+.pageLink {
+    margin: 0.5rem;
+    text-align: center;
+    vertical-align: middle;
+}

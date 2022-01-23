@@ -77,6 +77,9 @@ function Address({ address, accountBlocks, balances}) {
                 <h2 className={styles.tableTitle}>Recent Account Blocks/Transactions</h2>
                 <hr/>
                 <AccountBlockTable accountBlocks={accountBlocks} />
+                <Link href={{pathname: '/address/[address]/[page]', query: { address: address.address, page: 1 }}}>
+                    <a className={styles.seeMore}>See more</a>
+                </Link>
             </div>
         </Layout>
     )
