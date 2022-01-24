@@ -11,10 +11,12 @@ export async function getServerSideProps(context) {
     )
     
     const tokenQuery = await db.query(`
-    SELECT token.symbol, token.tokenstandard, token.totalsupply, token.decimals, COUNT(address) as countholders FROM balance
-        INNER JOIN token
-        ON token.tokenstandard = balance.tokenstandard
-        GROUP BY token.symbol, token.tokenstandard, token.totalsupply, token.decimals
+    SELECT * FROM
+        (SELECT token.symbol, token.tokenstandard, token.totalsupply, token.decimals, COUNT(address) as countholders FROM balance
+            INNER JOIN token
+            ON token.tokenstandard = balance.tokenstandard
+            GROUP BY token.symbol, token.tokenstandard, token.totalsupply, token.decimals) AS b
+        ORDER BY b.countholders DESC
     `)
     
     return { 
