@@ -63,6 +63,9 @@ function Home(props: any) {
                 return <MomentumComponent momentum={momentum} key={momentum.hash}/>
               })
             }
+            <Link href="/momentumlist/1">
+              <a className={styles.seeMore}>See more...</a>
+            </Link>
           </div>
           <div className={styles.card}>
             <h2 className={styles.cardTitle}>Latest Account Blocks/Transactions</h2>
@@ -72,6 +75,9 @@ function Home(props: any) {
                 }
               )
             }
+            <Link href="/accountblocklist/1">
+              <a className={styles.seeMore}>See more...</a>
+            </Link>
           </div>
         </div>
       </div>
