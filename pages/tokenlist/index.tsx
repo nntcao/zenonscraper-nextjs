@@ -24,9 +24,6 @@ export async function getServerSideProps(context) {
             tokens: tokenQuery?.rows ?? null,
         }
     }
-
-
-
 }
 
 
