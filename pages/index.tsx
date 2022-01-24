@@ -151,7 +151,6 @@ function AccountBlockComponent({ accountblock }) {
           <Link href={{pathname: '/token/[token]', query: { token: accountblock.symbol }}}>
             <a> {accountblock.symbol}</a>
           </Link>
-          
         </div>
       </div>
    </div>

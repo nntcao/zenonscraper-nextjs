@@ -5,7 +5,7 @@ import { timeConverter } from "../utils/time"
 export default function AccountBlockTable({ accountBlocks }) {
     if (!accountBlocks || accountBlocks === null || accountBlocks.length === 0) {
         return (
-            <div> No transactions/account blocks for this address</div>
+            <div> No account blocks found!</div>
         )
     } else {
         return (

@@ -1,0 +1,101 @@
+.main {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: clamp(150px, 85vw, 1000px);
+
+    .titleline {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .cardTitle {
+        align-self: flex-start;
+        font-family: 'Roboto-Regular';
+        font-size: clamp(1rem, 2vw ,1.25rem);
+        font-weight: 400;
+        overflow-wrap: break-word;
+        word-break: break-all;
+
+    }
+
+    .cardbody {
+        margin: .25rem;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 15px;
+
+        .cardleft {
+            justify-self: start;
+        }
+    
+        .cardright {
+            justify-self: start;
+            overflow-wrap: break-word;
+            word-break: break-all;
+        }
+    }
+}
+
+.truncate {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 171px;
+}
+
+.tableTitle {
+    font-family: 'Roboto-Regular';
+    font-size: clamp(1rem, 2vw ,1.25rem);
+    font-weight: 400;
+}
+
+.seeMore {
+    text-align: end;
+    font-size: clamp(1rem, 5vw, 2.5rem);
+}
+
+.tablescroll {
+    display: inline-block;
+    overflow-x: auto;
+    width: 100%;
+
+    .table {
+        margin:auto;
+        border-spacing: .5rem;
+
+        .abheader {
+            display: table-header-group;
+        }
+        
+        .abrow {
+            display: table-cell;
+            text-align: center;
+        }
+    }
+}
+
+
+.pageNumbers {
+    display: flex;
+    flex-direction: row;
+    margin: .5rem;
+    flex-wrap: wrap;
+}
+
+.pageLink {
+    margin: 0.5rem;
+    text-align: center;
+    vertical-align: middle;
+}

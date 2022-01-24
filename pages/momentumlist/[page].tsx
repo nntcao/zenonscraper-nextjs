@@ -1,7 +1,7 @@
 import * as db from '../../services/db'
 import Layout from '../../components/Layout'
-import styles from './AccountBlockList.module.scss'
-import AccountBlockTable from '../../components/AccountBlockTable'
+import styles from './MomentumList.module.scss'
+import MomentumTable from '../../components/MomentumTable'
 import SearchBar from '../../components/Searchbar'
 import Link from 'next/link'
 
@@ -15,45 +15,46 @@ export async function getServerSideProps(context) {
 
     const page: number = Number(context.params.page)
     
-    const accountBlockQuery = await db.query(`
-        SELECT accountblock.hash, momentum.height as momentumheight, momentum.timestamp, accountblock.address, accountblock.toaddress, 
-            accountblock.amount, token.symbol, token.decimals, accountblock.usedplasma
-            FROM accountblock
+    const momentumBlockQuery = await db.query(`
+        SELECT momentum.height, momentum.hash, momentum.timestamp, momentum.producer, a.countblocks 
+            FROM (SELECT m.hash, COUNT(accountblock.hash) AS countblocks FROM
+                (SELECT momentum.hash
+                FROM momentum
+                ORDER BY height DESC
+                OFFSET $2
+                LIMIT $1
+                ) AS m
+            LEFT OUTER JOIN accountblock
+                ON m.hash = accountblock.momentumhash
+                GROUP BY m.hash) as a
             INNER JOIN momentum 
-            ON accountblock.momentumhash = momentum.hash
-            INNER JOIN token
-            ON accountblock.tokenstandard = token.tokenstandard
-            ORDER BY momentum.timestamp DESC, accountblock.hash
-        OFFSET $2
-        LIMIT $1
+                ON a.hash = momentum.hash
+                ORDER BY momentum.height DESC
     `, [numPerPage, (page - 1) * numPerPage])
 
-    const accountBlockCountQuery = await db.query(`
-        SELECT COUNT(accountblock.hash) as countblocks 
-            FROM accountblock
-            INNER JOIN momentum
-            ON accountblock.momentumhash = momentum.hash
+    const momentumCountQuery = await db.query(`
+        SELECT COUNT(hash) as countmomentum FROM momentum
     `)
     
     return { 
         props: {
-            accountBlocks: accountBlockQuery?.rows ?? null,
+            momentums: momentumBlockQuery?.rows ?? null,
             page: page ?? null,
-            accountBlockCount: accountBlockCountQuery?.rows[0]?.countblocks ?? null
+            momentumCount: momentumCountQuery?.rows[0]?.countmomentum ?? null
         }
     }
 }
 
 
-export default function AccountBlockList({ accountBlocks, page, accountBlockCount }) {
+export default function MomentumList({ momentums, page, momentumCount }) {
     return (
         <Layout>
             <div className={styles.main}>
                 <SearchBar />
-                <h2 className={styles.tableTitle}>Confirmed Account Blocks</h2>
+                <h2 className={styles.tableTitle}>Momentums</h2>
                 <h2 className={styles.tableTitle}>Page {page}</h2>
-                <AccountBlockTable accountBlocks={accountBlocks}/>
-                <Choices currentPage={page} count={accountBlockCount}/>
+                <MomentumTable momentums={momentums}/>
+                <Choices currentPage={page} count={momentumCount}/>
             </div>
         </Layout>
     )
@@ -87,7 +88,7 @@ function Choices({ currentPage, count }) {
                     )
                 } else {
                     return (
-                        <Link key={page} href={{pathname: '/accountblocklist/[page]', query: { page: page }}}>
+                        <Link key={page} href={{pathname: '/momentumlist/[page]', query: { page: page }}}>
                             <a className={styles.pageLink}>{page}</a>
                         </Link>
                     )

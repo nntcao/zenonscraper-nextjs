@@ -17,7 +17,9 @@ export default function Header() {
                         <Link href='/'>
                             <a className={styles.optionsText}>Home</a>
                         </Link>
-                        {/* <span className={styles.optionsText}>Blockchain</span> */}
+                        <Link href='/momentumlist/1'>
+                            <a className={styles.optionsText}>Momentums</a>
+                        </Link>
                         <Link href='/accountblocklist/1'>
                             <a className={styles.optionsText}>Account Blocks</a>
                         </Link>
