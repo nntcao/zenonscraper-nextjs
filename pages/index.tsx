@@ -46,7 +46,6 @@ export async function getServerSideProps({ req, res}) {
 }
 
 function Home(props: any) {
-
   return (
     <Layout>
       <div className={styles.main}>

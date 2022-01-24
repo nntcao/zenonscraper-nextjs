@@ -5,6 +5,7 @@ import styles from './token.module.scss'
 import Layout from '../../components/Layout'
 import Link from 'next/link'
 import HoldersTable from '../../components/HoldersTable'
+import AccountBlockTable from '../../components/AccountBlockTable'
 
 export async function getServerSideProps(context) {
     context.res.setHeader(
@@ -37,17 +38,34 @@ export async function getServerSideProps(context) {
         WHERE tokenstandard = $1
     `, [tokenQuery?.rows[0]?.tokenstandard])
 
+    const accountBlockQuery = await db.query(`
+        SELECT accountblock.hash, momentum.height as momentumheight, momentum.timestamp, accountblock.address, accountblock.toaddress, 
+        accountblock.amount, token.symbol, token.decimals, accountblock.usedplasma
+        FROM 
+            (
+                SELECT * FROM accountblock
+                WHERE accountblock.tokenstandard = $1
+            ) AS accountblock
+        INNER JOIN momentum
+        ON accountblock.momentumhash = momentum.hash
+        INNER JOIN token
+        ON accountblock.tokenstandard = token.tokenstandard
+        ORDER BY momentum.timestamp DESC, accountblock.hash
+        LIMIT 10
+    `, [tokenQuery?.rows[0]?.tokenstandard])
+
     return { 
         props: {
             tokenInformation: tokenQuery?.rows[0] ?? null,
             holdersInformation: holdersQuery?.rows ?? null,
-            countHolders: countHoldersQuery?.rows[0]?.countholders ?? null
+            countHolders: countHoldersQuery?.rows[0]?.countholders ?? null,
+            accountBlocks: accountBlockQuery?.rows ?? null
         }
 
     }
 }
 
-function Token({ tokenInformation, holdersInformation, countHolders }) {
+function Token({ tokenInformation, holdersInformation, countHolders, accountBlocks }) {
     if (!tokenInformation) {
         return (
             <ErrorPage />
@@ -61,6 +79,12 @@ function Token({ tokenInformation, holdersInformation, countHolders }) {
                 <h2 className={styles.tableTitle}>Top 25 Holders</h2>
                 <HoldersTable holders={holdersInformation} token={tokenInformation} startRank={1}/>
                 <Link href={{pathname: '/token/[token]/[page]', query: { token: tokenInformation.tokenstandard, page: 1 }}}>
+                    <a className={styles.seeMore}>See more</a>
+                </Link>
+
+                <h2 className={styles.tableTitle}>Recent Account Block/Transcations for {tokenInformation.symbol}</h2>
+                <AccountBlockTable accountBlocks={accountBlocks}/>
+                <Link href={{pathname: '/token/txs/[token]/[page]', query: { token: tokenInformation.tokenstandard, page: 1 }}}>
                     <a className={styles.seeMore}>See more</a>
                 </Link>
             </div>
