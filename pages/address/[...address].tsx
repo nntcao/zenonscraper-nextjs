@@ -34,7 +34,7 @@ export async function getServerSideProps(context) {
                 ) AS a
             INNER JOIN momentum
             ON momentum.hash = a.momentumhash
-            ORDER BY timestamp DESC, a.hash
+            ORDER BY momentum.height DESC, a.hash
             OFFSET $3
             LIMIT $2
         ) AS b
