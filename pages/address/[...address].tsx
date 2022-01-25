@@ -40,6 +40,7 @@ export async function getServerSideProps(context) {
         ) AS b
         INNER JOIN token
         ON b.tokenstandard = token.tokenstandard
+        ORDER BY b.momentumheight DESC
     `, [address, numPerPage, (page - 1) * numPerPage])
 
     const countBlocksQuery = await db.query(`

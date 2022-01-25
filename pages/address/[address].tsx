@@ -34,6 +34,7 @@ export async function getServerSideProps(context) {
         ) AS b
         INNER JOIN token
         ON b.tokenstandard = token.tokenstandard
+        ORDER BY b.momentumheight DESC
     `, [searchString])
     const balanceQuery = await db.query(`
         SELECT *
