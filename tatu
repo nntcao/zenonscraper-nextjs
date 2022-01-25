@@ -1,0 +1,83 @@
+[33mcommit aa0e7c45a1ba6910b7668958f1a3b403540cf494[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Mon Jan 24 13:19:36 2022 -0600
+
+    added searchbar to 404 page
+
+[33mcommit 2f2221c62599e14589cfa122922b4ae7e783dc59[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Mon Jan 24 13:06:54 2022 -0600
+
+    added token specific accountblock viewing
+
+[33mcommit 6545122bea8cdfe5361194fa3a2342a9aed54e5f[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Mon Jan 24 12:09:18 2022 -0600
+
+    added see more to home page
+
+[33mcommit 5853e6eace9565fe492ec44da74a16f49bebed23[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Mon Jan 24 12:06:15 2022 -0600
+
+    added momentumlist, added it to navbar, and fixed pagination on 'list' pages
+
+[33mcommit 39ffbce4c57d6cf3915ef159da719317022d49b2[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Mon Jan 24 11:20:43 2022 -0600
+
+    added accountblocklist and added it to navbar
+
+[33mcommit c36cd1d4f99a2ebf82bd70769af1204f14a1642e[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Mon Jan 24 10:48:53 2022 -0600
+
+    organized tokenlist by holder count descending
+
+[33mcommit 6201c6412ecbb8213afd077e17ce5886aabb7726[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Mon Jan 24 10:47:00 2022 -0600
+
+    added tokenlist to the navbar
+
+[33mcommit daf7ce3771b73f3ca83abae9ba4143da02fe8556[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Mon Jan 24 10:45:12 2022 -0600
+
+    added tokenlist page
+
+[33mcommit 166f5ae31cc57ef2ffb5c040736262015965f68e[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Sun Jan 23 00:03:51 2022 -0600
+
+    added next linter
+
+[33mcommit 3f7bf544b0bcab5f62cb841ab260c4573d23d544[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Sun Jan 23 00:01:42 2022 -0600
+
+    modified index.ts tables for consistency
+
+[33mcommit b3532131bd8b10770188fd2e79eca1fe53e24a66[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Sat Jan 22 23:32:27 2022 -0600
+
+    added pagination to address account blocks
+
+[33mcommit f867e29c66c86949bfc6f56e176841df7aceae69[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Sat Jan 22 23:32:09 2022 -0600
+
+    updated responsive css and switched html location
+
+[33mcommit 00cc5110d0891326cdf4892d171163f12c14aa44[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Sat Jan 22 23:31:27 2022 -0600
+
+    updated pagination for [...token].tsx
+
+[33mcommit db20837022f58d5975bf55a1e487fdf545176d1a[m
+Author: vovi-z <81784608+vovi-z@users.noreply.github.com>
+Date:   Sat Jan 22 22:42:11 2022 -0600
+
+    added pagination for token holders
