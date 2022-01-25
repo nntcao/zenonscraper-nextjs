@@ -6,7 +6,6 @@ import Layout from '../../components/Layout'
 import Link from 'next/link'
 import HoldersTable from '../../components/HoldersTable'
 import AccountBlockTable from '../../components/AccountBlockTable'
-import Searchbar from '../../components/Searchbar'
 
 export async function getServerSideProps(context) {
     context.res.setHeader(
@@ -76,7 +75,6 @@ function Token({ tokenInformation, holdersInformation, countHolders, accountBloc
     return (
         <Layout>
             <div className={styles.main}>
-                <Searchbar />
                 <TokenCard token={tokenInformation} countHolders={countHolders}/>
                 <h2 className={styles.tableTitle}>Top 25 Holders</h2>
                 <HoldersTable holders={holdersInformation} token={tokenInformation} startRank={1}/>
