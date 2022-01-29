@@ -4,6 +4,8 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  font-size: 1rem;
+  background-color: #F7F7F7;
 }
 
 a {
@@ -28,10 +30,6 @@ a:hover {
   padding-block-start:0; padding-block-end:0; padding-inline-start:0; padding-inline-end:0;
   font-size: 1rem;
   font-family: 'Roboto-Light';
-}
-
-span {
-  color: #19232d;
 }
 
 *::selection {

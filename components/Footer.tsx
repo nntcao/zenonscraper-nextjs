@@ -4,7 +4,6 @@ export default function Footer() {
     return (
         <nav className={styles.footer}>
             <div className={styles.footerleft}>
-                <div className={styles.text}>Contact: </div>
                 <span className={styles.text}><a className={styles.link} href='https://github.com/vovi-z'>Github</a></span>
                 <span className={styles.text}><a className={styles.link} href='https://twitter.com/vovi__z'>Twitter</a></span>
                 <span className={styles.text}><a className={styles.link} href='https://discordapp.com/users/173981751427858433'>Discord</a></span>

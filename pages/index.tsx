@@ -50,10 +50,11 @@ function Home(props: any) {
     <Layout>
       <div className={styles.main}>
         <div className={styles.titlebox}>
-          <h1 className={styles.title}>ZENON SCRAPER</h1>
-          <h2 className={styles.subtitle}>Community explorer for the <a href='https://www.zenon.network' className={styles.emphasis}>Network of Momentum</a></h2>
+          <h2 className={styles.subtitle}>Zenon Scraper - community blockchain explorer</h2>
         </div>
-        <Searchbar />
+        <div className={styles.searchBarWrapper}>
+          <Searchbar /> 
+        </div>
         <div className={styles.cards}>
           <div className={styles.card}>
             <h2 className={styles.cardTitle}>Latest Momentums</h2>
@@ -78,6 +79,11 @@ function Home(props: any) {
               <a className={styles.seeMore}>See more...</a>
             </Link>
           </div>
+          <div className={styles.card}>
+            <div className={styles.cardTitle}>
+              Tokens
+            </div>
+          </div>
         </div>
       </div>
     </Layout>
@@ -87,22 +93,12 @@ function Home(props: any) {
 function MomentumComponent({ momentum }) {
   return (
     <div>
-     <hr/>
-     <div className={styles.row} >
+     <div className={styles.rowMomentum} >
        <div className={styles.leftrow}>
-          <div>
-            <span>Height: </span>
-            <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height }}}>
-              <a>{momentum.height}</a>
-            </Link>
-          </div>
-          <span className={styles.time}>{time.timeConverter(momentum.timestamp).toString()}</span>
-       </div>
-       <div className={styles.middlerow}>
-          <span className={styles.producer}>Producer:&ensp;</span>
-          <Link href={{pathname: '/address/[address]', query: { address: momentum.producer }}}>
-            <a className={styles.truncate}> {momentum.producer}</a>
+          <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height }}}>
+            <a>{momentum.height}</a>
           </Link>
+          <span>{time.timeConverter(momentum.timestamp).toString()}</span>
        </div>
        <div className={styles.rightrow}>
         <MomentumTransactionsComponent momentum={momentum}/>
@@ -130,11 +126,9 @@ function MomentumTransactionsComponent({momentum}) {
 function AccountBlockComponent({ accountblock }) {
   return (
     <div>
-      <hr/>
       <div className={styles.row}>
         <div className={styles.leftrow}>
           <span className={styles.truncate}>
-            <span>Hash: </span>
             <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: accountblock.hash }}}>
               <a>{accountblock.hash}</a>
             </Link>

@@ -1,28 +1,25 @@
 .header {
-    background: black;
-    color: white;
+    background: #222222;
+    color: #F7F7F7;
     width: 100%;
 
     .container {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        width: clamp(70%, 85%, 100%);
+        max-width: 1400px;
         margin: auto;
         align-items: center;
         justify-content: space-between;
     }
     
     a {
-        color: white
+        color: #F7F7F7;
     }
 }
 
-.titlelogo {
-    margin: 1rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.titleLogo {
+    margin-left: 1rem;
 }
 
 .options {
@@ -38,11 +35,11 @@
     margin-bottom: 1rem;
     margin-top: 1rem;
     font-weight: 600;
-    font-size: clamp(0.25rem, 4vw, 1.2rem);
-    color: white;
+    color: #F7F7F7;
 }
 
 .optionsText:hover {
     color: #6fff61;
     font-weight: 700;
+    text-decoration: underline;
 }

@@ -1,4 +1,4 @@
-import styles from "./AccountBlockTable.module.scss"
+import styles from "./MomentumTable.module.scss"
 import Link from "next/link"
 import { timeConverter } from "../utils/time"
 
