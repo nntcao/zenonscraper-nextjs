@@ -6,6 +6,8 @@ import * as time from '../utils/time'
 import Layout from '../components/Layout'
 import Searchbar from '../components/Searchbar'
 import AvgPlasmaPerDayChart from '../components/AvgPlasmaPerDay'
+import TransactionsPerDayChart from '../components/TransactionsPerDay'
+import Spacer from '../components/spacer'
 
 export async function getServerSideProps({ req, res}) {
   res.setHeader(
@@ -56,13 +58,22 @@ export async function getServerSideProps({ req, res}) {
     ORDER BY time 
   `)
 
+  const transactionCountQuery = await db.query(`
+    SELECT * FROM 
+      (SELECT * FROM transactionday
+      ORDER BY time DESC
+      LIMIT 30) as b
+    ORDER BY time 
+  `)
+
 
   return {
     props: {
       momentumList: momentumQueryResult?.rows ?? null,
       accountBlockList: accountBlockQueryResult?.rows ?? null,
       tokenList: tokenQuery?.rows ?? null,
-      plasmaData: plasmaQuery?.rows ?? null
+      plasmaData: plasmaQuery?.rows ?? null,
+      transactionData: transactionCountQuery?.rows ?? null
     }
   }
 }
@@ -70,18 +81,24 @@ export async function getServerSideProps({ req, res}) {
 function Home(props: any) {
   return (
     <Layout>
-      <div className={styles.main}>
+      <section className={styles.main}>
         <div className={styles.searchBarWrapper}>
           <div className={styles.titlebox}>
             <h1 className={styles.title}>The Zenon Scraper Blockchain Explorer</h1>
           </div>
           <Searchbar /> 
         </div>
+        <div className={`${styles.cards} ${styles.cardsChart}`}>
+          <div className={`${styles.card} ${styles.cardChart}`}>
+              <h2 className={styles.cardTitle}>Number of Transactions - Last 30 Days</h2>
+              <TransactionsPerDayChart data={props.transactionData} />
+            </div>
+            <div className={`${styles.card} ${styles.cardChart}`}>
+              <h2 className={styles.cardTitle}>Average Plasma Usage - Last 30 Days</h2>
+              <AvgPlasmaPerDayChart data={props.plasmaData} />
+            </div>
+        </div>
         <div className={styles.cards}>
-          <div className={styles.card}>
-            <h2 className={styles.cardTitle}>Plasma Average Last 30 Days</h2>
-            <AvgPlasmaPerDayChart data={props.plasmaData} />
-          </div>
           <div className={styles.card}>
             <h2 className={styles.cardTitle}>Latest Momentums</h2>
             {
@@ -117,7 +134,8 @@ function Home(props: any) {
             </Link>
           </div>
         </div>
-      </div>
+        <Spacer />
+      </section>
     </Layout>
   )
 }
