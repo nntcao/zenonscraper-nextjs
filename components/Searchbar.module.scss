@@ -9,16 +9,23 @@
     justify-content: space-between;
     align-items: center;
     background-color: #F7F7F7;
+    border-color: #d4d4d4;
+    box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.5);
+
+}
+
+.search:hover {
+    box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.9);
+
 }
 
 .searchbar {
-    min-width: 350px;    
     border-style: none;
     margin-left: 0.5rem;
     height: 100%;
     font-size: 1rem;    
     background-color: #F7F7F7;
-
+    width: 100%;
 }
 
 .searchbar:focus {

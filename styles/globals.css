@@ -4,8 +4,9 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  font-size: 1rem;
+  font-size: .875rem;
   background-color: #F7F7F7;
+  color: #222222;
 }
 
 a {
@@ -28,8 +29,9 @@ a:hover {
   padding:0; 
   margin-block-start:0; margin-block-end:0; margin-inline-start:0; margin-inline-end:0;
   padding-block-start:0; padding-block-end:0; padding-inline-start:0; padding-inline-end:0;
-  font-size: 1rem;
+  font-size: .875rem;
   font-family: 'Roboto-Light';
+  color: #222222;
 }
 
 *::selection {

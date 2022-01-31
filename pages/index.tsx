@@ -37,10 +37,21 @@ export async function getServerSideProps({ req, res}) {
     LIMIT 10
   `)
 
+  const tokenQuery = await db.query(`
+    SELECT * FROM
+        (SELECT token.name, token.symbol, token.tokenstandard, token.totalsupply, token.decimals, COUNT(address) as countholders FROM balance
+            INNER JOIN token
+            ON token.tokenstandard = balance.tokenstandard
+            GROUP BY token.symbol, token.tokenstandard, token.totalsupply, token.decimals) AS b
+          ORDER BY b.countholders DESC
+          LIMIT 15
+  `)
+
   return {
     props: {
       momentumList: momentumQueryResult?.rows ?? null,
-      accountBlockList: accountBlockQueryResult?.rows ?? null
+      accountBlockList: accountBlockQueryResult?.rows ?? null,
+      tokenList: tokenQuery?.rows ?? null
     }
   }
 }
@@ -49,10 +60,10 @@ function Home(props: any) {
   return (
     <Layout>
       <div className={styles.main}>
-        <div className={styles.titlebox}>
-          <h2 className={styles.subtitle}>Zenon Scraper - community blockchain explorer</h2>
-        </div>
         <div className={styles.searchBarWrapper}>
+          <div className={styles.titlebox}>
+            <h1 className={styles.title}>The Zenon Scraper Blockchain Explorer</h1>
+          </div>
           <Searchbar /> 
         </div>
         <div className={styles.cards}>
@@ -80,13 +91,35 @@ function Home(props: any) {
             </Link>
           </div>
           <div className={styles.card}>
-            <div className={styles.cardTitle}>
-              Tokens
-            </div>
+            <h2 className={styles.cardTitle}>Tokens</h2>
+            {
+              props.tokenList.map((token: any) => {
+                return <TokenComponent token={token} key={token.symbol} />
+              })
+            }
+            <Link href="/tokenlist">
+              <a className={styles.seeMore}>See more...</a>
+            </Link>
+
           </div>
         </div>
       </div>
     </Layout>
+  )
+}
+
+function TokenComponent({ token }) {
+  return (
+    <div className={styles.rowMomentum}>
+      <div className={styles.leftrow}>
+        <Link href={{pathname: '/token/[token]', query: { token: token.symbol }}}>
+          <a>{token.symbol}</a>
+        </Link>
+      </div>
+      <div className={styles.rightrow}>
+        {token.countholders} Holders
+      </div>
+    </div>
   )
 }
 

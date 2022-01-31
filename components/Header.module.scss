@@ -18,10 +18,6 @@
     }
 }
 
-.titleLogo {
-    margin-left: 1rem;
-}
-
 .options {
     display: flex;
     flex-direction: row;
@@ -31,15 +27,33 @@
 }
 
 .optionsText {
-    margin-right: clamp(1rem, 2vw, 2.5rem);
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
     font-weight: 600;
     color: #F7F7F7;
+    border-radius: 15px;
+    transition: background-color 50ms;
 }
 
 .optionsText:hover {
     color: #6fff61;
     font-weight: 700;
-    text-decoration: underline;
+    // text-decoration: underline;
+    background-color: #5c5c5c;
+}
+
+@media screen and (max-width: 1450px) {
+    .container {
+        max-width: 100%;
+    }
+
+    .titlelogo {
+        margin-left: 1rem;
+    }
 }
