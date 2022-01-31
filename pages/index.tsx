@@ -5,6 +5,7 @@ import styles from './Home.module.scss'
 import * as time from '../utils/time'
 import Layout from '../components/Layout'
 import Searchbar from '../components/Searchbar'
+import AvgPlasmaPerDayChart from '../components/AvgPlasmaPerDay'
 
 export async function getServerSideProps({ req, res}) {
   res.setHeader(
@@ -47,11 +48,21 @@ export async function getServerSideProps({ req, res}) {
           LIMIT 15
   `)
 
+  const plasmaQuery = await db.query(`
+    SELECT * FROM 
+      (SELECT * FROM plasmaday
+      ORDER BY time DESC
+      LIMIT 30) as b
+    ORDER BY time 
+  `)
+
+
   return {
     props: {
       momentumList: momentumQueryResult?.rows ?? null,
       accountBlockList: accountBlockQueryResult?.rows ?? null,
-      tokenList: tokenQuery?.rows ?? null
+      tokenList: tokenQuery?.rows ?? null,
+      plasmaData: plasmaQuery?.rows ?? null
     }
   }
 }
@@ -67,6 +78,10 @@ function Home(props: any) {
           <Searchbar /> 
         </div>
         <div className={styles.cards}>
+          <div className={styles.card}>
+            <h2 className={styles.cardTitle}>Plasma Average Last 30 Days</h2>
+            <AvgPlasmaPerDayChart data={props.plasmaData} />
+          </div>
           <div className={styles.card}>
             <h2 className={styles.cardTitle}>Latest Momentums</h2>
             {
@@ -100,7 +115,6 @@ function Home(props: any) {
             <Link href="/tokenlist">
               <a className={styles.seeMore}>See more...</a>
             </Link>
-
           </div>
         </div>
       </div>
