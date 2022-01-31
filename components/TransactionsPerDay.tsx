@@ -46,13 +46,13 @@ const config = {
     },
 };
 
-export default function AvgPlasmaPerDayChart(props) {
+export default function TransactionsPerDayChart(props) {
 
     const formatData = (data) => {
         return data.map((el) => {
             return {
                 x: time.timeConvertorDayOnly(el.time),
-                y: el.plasmaaverage
+                y: el.transactioncount
             }
         })
     }
@@ -61,7 +61,7 @@ export default function AvgPlasmaPerDayChart(props) {
         datasets: [
             {
                 // label for our chart
-                label: 'Average Plasma',
+                label: 'Transactions',
                 fill: true,
                 data: formatData(props.data),
         
