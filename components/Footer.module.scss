@@ -1,51 +1,116 @@
 .footer {
     background-color: #222222;
-    color: white;
+    background-image: url("../public/black-twill.png");
+    color: #F7F7F7;
     width: 100%;
     position: relative;
 }
 
 .footerWrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     max-width: 1400px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+
 }
 
-.footerleft {
+.columns {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     flex-wrap: wrap;
+
 }
 
+.linkColumns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width: 65%;
+}
 
-.text {
-    color: white;
-    margin: 1rem;
-    margin-right: 0.75rem;
+.column {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+    align-items: flex-start;
+}
+
+.columnContact {
+    flex-direction: row;
+}
+
+.imageColumn {
+    max-width: 25%;
+}
+
+.header {
+    font-size: 1.25rem;
+    color: #F7F7F7;
+    margin-bottom: 0.25rem;
+}
+
+.copyright {
+    color: #F7F7F7;
+    font-size: 1rem;
+    align-self: flex-end;
+}
+
+.about {
+    color: #F7F7F7;
+    font-size: 1rem;
+}
+
+.svgLink {
+    padding-right: .5rem;
+    filter: invert(100%) sepia(3%) saturate(109%) hue-rotate(256deg) brightness(113%) contrast(94%);
+    transform-origin: 50% 50%;
+    transition: all 50ms;
+}
+
+.svgLink:hover {
+    filter: invert(65%) sepia(47%) saturate(6724%) hue-rotate(87deg) brightness(121%) contrast(116%);
 }
 
 .link {
-    color: #6fff61;
-}
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+    padding-bottom: 0.2rem;
+    padding-top: 0.2rem;
+    color: #F7F7F7;
+    transition: all 50ms;
 
-.link:hover {
-    text-decoration: underline;
 }
 
 .link:visited {
-    color: #6fff61;
+    color: #F7F7F7;
 }
 
-.emphasis {
+.link:hover {
     color: #6fff61;
+    font-weight: 600;
 }
+
 
 @media screen and (max-width: 1450px) {
     
     .footerWrapper {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    
+    .imageColumn {
+        max-width: none;
+    }
+
+    .linkColumns {
+        flex-grow: 1;
     }
 }
