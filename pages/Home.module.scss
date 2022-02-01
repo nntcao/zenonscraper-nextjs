@@ -53,7 +53,7 @@
         margin: 1rem;
         margin-left: 0rem;
         box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.5);
-
+        transition: all 100ms;
     }
     
 
@@ -75,8 +75,7 @@
 }
 
 .card:hover {
-    box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.9);
-
+    box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.8);
 }
 
 .noBreak {
