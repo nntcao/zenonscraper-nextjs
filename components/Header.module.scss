@@ -2,6 +2,7 @@
     background: #222222;
     color: #F7F7F7;
     width: 100%;
+    background-image: url("../public/black-twill.png");
 
     .container {
         display: flex;
@@ -38,7 +39,7 @@
     font-weight: 600;
     color: #F7F7F7;
     border-radius: 15px;
-    transition: background-color 50ms;
+    transition: all 50ms;
 }
 
 .optionsText:hover {
