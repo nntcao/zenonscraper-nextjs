@@ -13,7 +13,7 @@ export default function Footer() {
                         <div className={styles.imageWrapper}>
                             <Image src="/banner.png" width="120" height="55" alt="Zenon Scraper Logo" />
                         </div>
-                        <p className={styles.about}>Zenon Scraper is an explorer dedicated to the Network of Momentum. Search the blockchain with ease.</p>
+                        <p className={styles.about}>Zenon Scraper is an explorer dedicated to the Zenon Network blockchain. Search the transactions with ease.</p>
                     </div>
                     <div className={styles.linkColumns}>
                         <div className={styles.column}>
