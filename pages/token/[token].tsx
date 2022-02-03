@@ -12,7 +12,7 @@ export async function getServerSideProps(context) {
     context.res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'
-      )
+    )
 
     const searchString: string = String(context.params.token)
     if (searchString.length > 7 && searchString.substring(0, 3).toLowerCase() == 'zts') {
@@ -31,7 +31,7 @@ export async function getServerSideProps(context) {
         SELECT * FROM balance 
         WHERE tokenstandard = $1
         ORDER BY balance DESC
-        LIMIT 25
+        LIMIT 10
     `, [tokenQuery?.rows[0]?.tokenstandard])
 
     const countHoldersQuery = await db.query(`
@@ -55,7 +55,7 @@ export async function getServerSideProps(context) {
         LIMIT 10
     `, [tokenQuery?.rows[0]?.tokenstandard])
 
-    return { 
+    return {
         props: {
             tokenInformation: tokenQuery?.rows[0] ?? null,
             holdersInformation: holdersQuery?.rows ?? null,
@@ -76,19 +76,33 @@ function Token({ tokenInformation, holdersInformation, countHolders, accountBloc
     return (
         <Layout>
             <div className={styles.main}>
-                <Searchbar />
-                <TokenCard token={tokenInformation} countHolders={countHolders}/>
-                <h2 className={styles.tableTitle}>Top 25 Holders</h2>
-                <HoldersTable holders={holdersInformation} token={tokenInformation} startRank={1}/>
-                <Link href={{pathname: '/token/[token]/[page]', query: { token: tokenInformation.tokenstandard, page: 1 }}}>
-                    <a className={styles.seeMore}>See more</a>
-                </Link>
+                <div className={styles.searchBarWrapper}>
+                    <Searchbar />
+                </div>
+                <TokenCard token={tokenInformation} countHolders={countHolders} />
+                <div className={styles.card}>
+                    <div className={styles.cardContent}>
+                        <div className={styles.cardHeader}>
+                            <h2 className={styles.cardTitle}>Top 10 Holders</h2>
+                        </div>
+                        <HoldersTable holders={holdersInformation} token={tokenInformation} startRank={1} />
+                        <Link href={{ pathname: '/token/[token]/[page]', query: { token: tokenInformation.tokenstandard, page: 1 } }}>
+                            <a className={styles.seeMore}>See more</a>
+                        </Link>
 
-                <h2 className={styles.tableTitle}>Recent Account Block/Transcations for {tokenInformation.symbol}</h2>
-                <AccountBlockTable accountBlocks={accountBlocks}/>
-                <Link href={{pathname: '/token/txs/[token]/[page]', query: { token: tokenInformation.tokenstandard, page: 1 }}}>
-                    <a className={styles.seeMore}>See more</a>
-                </Link>
+                    </div>
+                </div>
+                <div className={styles.card}>
+                    <div className={styles.cardContent}>
+                        <div className={styles.cardHeader}>
+                            <h2 className={styles.cardTitle}>Recent Account Blocks for {tokenInformation.symbol}</h2>
+                        </div>
+                        <AccountBlockTable accountBlocks={accountBlocks} />
+                        <Link href={{ pathname: '/token/txs/[token]/[page]', query: { token: tokenInformation.tokenstandard, page: 1 } }}>
+                            <a className={styles.seeMore}>See more</a>
+                        </Link>
+                    </div>
+                </div>
             </div>
         </Layout>
     )
@@ -97,35 +111,35 @@ function Token({ tokenInformation, holdersInformation, countHolders, accountBloc
 function TokenCard({ token, countHolders }) {
     return (
         <div className={styles.card}>
-            <div className={styles.titleline}>
+            <div className={styles.cardHeader}>
                 <h2 className={styles.cardTitle}>Token {token.symbol} ({token.tokenstandard})</h2>
             </div>
-            <hr />
-
             <div className={styles.cardbody}>
                 <div className={styles.cardleft}>Name: </div>
                 <div className={styles.cardright}>{token.name ?? 'N/A'}</div>
                 <div className={styles.cardleft}>Symbol: </div>
                 <div className={styles.cardright}>{token.symbol ?? 'N/A'}</div>
+                <div className={`${styles.cardleft}`}>Description: </div>
+                <div className={`${styles.cardright} ${styles.description}`}>{token.description ?? ''}</div>
                 <div className={styles.cardleft}>Token Standard:</div>
                 <div className={styles.cardright}>
-                    <Link href={{pathname: '/token/[token]', query: { token: token.tokenstandard }}}>
-                        <a>{token.tokenstandard ?? 'N/A'}</a>
+                    <Link href={{ pathname: '/token/[token]', query: { token: token.tokenstandard } }}>
+                        <a className={styles.cardright}>{token.tokenstandard ?? 'N/A'}</a>
                     </Link>
                 </div>
                 <div className={styles.cardleft}>Number of Holders:</div>
                 <div className={styles.cardright}>{countHolders ?? 'N/A'}</div>
                 <div className={styles.cardleft}>Domain: </div>
                 <div className={styles.cardright}>
-                    <a href={`${formatExternalLink(token.domain)}`}
-                    rel="noopener noreferrer">
+                    <a className={styles.cardright} href={`${formatExternalLink(token.domain)}`}
+                        rel="noopener noreferrer">
                         {token.domain ?? 'N/A'}
                     </a>
                 </div>
                 <div className={styles.cardleft}>Owner: </div>
                 <div className={styles.cardright}>
-                    <Link href={{pathname: '/address/[address]', query: { address: token.owner }}}>
-                        <a>{token.owner ?? 'N/A'}</a>
+                    <Link href={{ pathname: '/address/[address]', query: { address: token.owner } }}>
+                        <a className={styles.cardright}>{token.owner ?? 'N/A'}</a>
                     </Link>
                 </div>
                 <div className={styles.cardleft}>Total Supply:</div>

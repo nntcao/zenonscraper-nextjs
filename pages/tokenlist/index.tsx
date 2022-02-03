@@ -3,6 +3,8 @@ import Layout from '../../components/Layout'
 import styles from './TokenList.module.scss'
 import TokenTable from '../../components/TokenTable'
 import SearchBar from '../../components/Searchbar'
+import Link from 'next/link'
+import Image from 'next/image'
 
 export async function getServerSideProps(context) {
     context.res.setHeader(
@@ -12,7 +14,7 @@ export async function getServerSideProps(context) {
     
     const tokenQuery = await db.query(`
     SELECT * FROM
-        (SELECT token.symbol, token.tokenstandard, token.totalsupply, token.decimals, COUNT(address) as countholders FROM balance
+        (SELECT token.symbol, token.tokenstandard, token.totalsupply, token.decimals, token.description, COUNT(address) as countholders FROM balance
             INNER JOIN token
             ON token.tokenstandard = balance.tokenstandard
             GROUP BY token.symbol, token.tokenstandard, token.totalsupply, token.decimals) AS b
@@ -31,10 +33,22 @@ export default function TokenList({ tokens }) {
     return (
         <Layout>
             <div className={styles.main}>
-                <SearchBar />
-                <h2 className={styles.tableTitle}>Token List</h2>
-                <TokenTable tokens={tokens}/>
+                <div className={styles.searchBarWrapper}>
+                    <SearchBar />
+                </div>
+                <div className={styles.card}>
+                    <div className={styles.cardContent}>
+                        <div className={styles.cardHeader}>
+                            <div className={styles.cardHeaderLeft}>
+                                <h2 className={styles.cardTitle}>Token List</h2>
+                                <h2 className={styles.cardSubtitle}>Displaying All Tokens</h2>
+                            </div>
+                        </div>
+                        <TokenTable tokens={tokens}/>
+                    </div>
+                </div>
             </div>
         </Layout>
+    
     )
 }

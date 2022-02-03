@@ -1,73 +1,12 @@
+// new css
 .main {
-    margin: 1rem;
+    margin: auto;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    max-width: 1400px;
 }
-
-.card {
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-    width: clamp(150px, 85vw, 1000px);
-
-    .titleline {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-    }
-
-    .cardTitle {
-        align-self: flex-start;
-        font-family: 'Roboto-Regular';
-        font-size: clamp(1rem, 2vw ,1.25rem);
-        font-weight: 400;
-        overflow-wrap: break-word;
-        word-break: break-all;
-    }
-
-    .cardbody {
-        margin: .25rem;
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 15px;
-
-        .cardleft {
-            justify-self: start;
-        }
-    
-        .cardright {
-            justify-self: start;
-        }
-
-        .cardbalance {
-            overflow-x: auto;
-            justify-self: start;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            max-height: 20vh;
-            gap: 3px clamp(4px, 10vh, 30px);
-            min-width: 90%;
-        }
-    }
-}
-
-.truncate {
-    display: inline-block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 171px;
-}
-
-.prevnext {
-    margin-left: clamp(0.4rem, 2vw, 1rem);
-    font-size: clamp(0.95rem, 2vw, 1rem);
-}
-
 
 .tableTitle {
     font-family: 'Roboto-Regular';
@@ -75,15 +14,164 @@
     font-weight: 400;
 }
 
+.seeMore {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.tablescroll {
+    display: inline-block;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.cardHeader {
+    margin-bottom: .25rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cardTitle {
+    font-family: 'Roboto-Regular';
+    font-size: 1.65rem;
+    font-weight: 500;
+    align-self: flex-start;
+}
+
+.cardSubtitle {
+    font-family: 'Roboto-Regular';
+    font-size: 1.15rem;
+    font-weight: 500;
+    align-self: flex-start;
+}
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #d4d4d4;
+    padding: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.5);
+    transition: box-shadow 100ms;
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.8);
+}
+
+.cardContent {
+    margin: auto;
+    width: 100%;
+}
+
+.cardbody {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 15px;
+
+    .cardbalance {
+        overflow-x: auto;
+        justify-self: start;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        max-height: 20vh;
+        gap: 3px clamp(4px, 10vh, 30px);
+        min-width: 90%;
+
+    }
+}
+
+.cardleft {
+    font-size: 1rem;
+}
+
+.cardright {
+    font-size: 1rem;
+}
+
+
+.searchBarWrapper {
+    width: 50vw;
+    max-width: 800px;
+    align-self: flex-start;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.paginationWrapper {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .pageNumbers {
     display: flex;
     flex-direction: row;
-    margin: .5rem;
-    flex-wrap: wrap;
+    padding-bottom: 3px;
+    justify-content: center;
+}
+
+.pageText {
+    margin: 0.15rem;
+    font-size: 1.25rem;
+    padding: 0.35rem;
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
 }
 
 .pageLink {
-    margin: 0.5rem;
-    text-align: center;
-    vertical-align: middle;
+    border-radius: 100px;
 }
+
+.pageLink:hover {
+    background-color: #ececec;
+
+}
+
+.imageSpacer {
+    width: 24px;
+    height: 24px;
+}
+
+.strongText {
+    font-weight: 600;
+}
+
+.imageFilterToBlack {
+    filter: invert(0%) sepia(44%) saturate(24%) hue-rotate(317deg) brightness(77%) contrast(73%);
+}
+
+@media screen and (max-width: 1450px) {
+
+    .searchBarWrapper {
+        align-self: center;
+        width: clamp(50vw, 900px, 90vw);
+        max-width: none;
+    }
+    
+    .card {
+        align-self: center;
+        width: clamp(50vw, 900px, 90vw);
+    }
+
+    .pageText {
+        font-size: 1rem;
+        padding-left: 0.35rem;
+        padding-right: 0.35rem;    
+    }
+
+
+}
+

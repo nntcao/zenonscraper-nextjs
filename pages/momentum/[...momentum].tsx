@@ -1,10 +1,11 @@
 import ErrorPage from "../404"
 import Layout from "../../components/Layout"
 import Searchbar from "../../components/Searchbar"
-import styles from './momentum.module.scss'
+import styles from './momentumAccountBlocks.module.scss'
 import * as db from "../../services/db"
 import AccountBlockTable from "../../components/AccountBlockTable"
 import Link from "next/link"
+import Image from "next/image"
 
 const numPerPage = 25
 
@@ -13,12 +14,12 @@ export async function getServerSideProps(context) {
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'
     )
-    
+
     const searchString: Array<string> = context.params.momentum
     var momentumIdentifier: string = searchString[0]
     const page: number = Number(searchString[1])
 
-    if (Number(momentumIdentifier)) {    
+    if (Number(momentumIdentifier)) {
         var momentumHeight: number = Number(momentumIdentifier)
         momentumIdentifier = String((await db.query(`
             SELECT hash from momentum
@@ -58,7 +59,7 @@ export async function getServerSideProps(context) {
         WHERE momentumhash = $1
     `, [momentumIdentifier])
 
-    return { 
+    return {
         props: {
             momentumHeight: momentumHeight ?? null,
             accountBlocks: accountBlockQuery?.rows ?? null,
@@ -69,7 +70,7 @@ export async function getServerSideProps(context) {
 }
 
 
-function Momentum({ accountBlocks, momentumHeight, page, countBlocks }) {
+export default function Momentum({ accountBlocks, momentumHeight, page, countBlocks }) {
     if (!accountBlocks || accountBlocks === null || accountBlocks.length === 0) {
         return (
             <ErrorPage />
@@ -79,41 +80,103 @@ function Momentum({ accountBlocks, momentumHeight, page, countBlocks }) {
     return (
         <Layout>
             <div className={styles.main}>
-                <Searchbar />
-                <h2 className={styles.tableTitle}>Momentum {momentumHeight} Account Blocks/Transactions</h2>
-                <h2 className={styles.tableTitle}>Page {page}</h2>
-                <AccountBlockTable accountBlocks={accountBlocks} />
-                <Choices count={countBlocks} currentPage={page} height={momentumHeight}/>
+                <div className={styles.searchBarWrapper}>
+                    <Searchbar />
+                </div>
+                <div className={styles.card}>
+                    <div className={styles.cardContent}>
+                        <div className={styles.cardHeader}>
+                            <div className={styles.cardHeaderLeft}>
+                                <h2 className={styles.cardTitle}> Account Blocks for 
+                                   <Link key={page} href={{ pathname: '/momentum/[height]', query: { height: momentumHeight } }} scroll={false}>
+                                        <a className={styles.cardTitle}> Momentum {momentumHeight}</a>
+                                    </Link>
+                                </h2>
+                                <h2 className={styles.cardSubtitle}>Displaying {1 + (page - 1) * numPerPage} - {page * numPerPage}</h2>
+                            </div>
+                            <div className={styles.cardHeaderRight}>
+                                <Pagination currentPage={page} count={countBlocks} height={momentumHeight}/>
+                            </div>
+                        </div>
+                        <AccountBlockTable accountBlocks={accountBlocks} />
+                    </div>
+                    <div className={styles.paginationWrapper}>
+                        <Pagination currentPage={page} count={countBlocks} height={momentumHeight}/>
+                    </div>
+                </div>
             </div>
         </Layout>
     )
 }
 
-function Choices({ currentPage, count, height }) {
-    if (count <= 0) {
-        return <></>
+function Pagination({ currentPage, count, height }) {
+
+    var pages: number[] = []
+    const maxPage = Math.ceil(count / numPerPage)
+    if (currentPage == 1 || currentPage == 2) {
+        for (let i = 1; i <6; i++) {
+            pages.push(i)
+        }
+    } else {
+        for (let i = -2; i < 3; i++) {
+            if (!pages.includes(currentPage + i) && currentPage + i > 0) {
+                pages.push(currentPage + i)
+            }
+        }
     }
-    const pages = Array.from({length: Number(Math.ceil(count / numPerPage))}, (_, i) => i + 1)
+    for (let i = pages.length - 1; i >= 0; i--) {
+        if (pages[i] > maxPage) {
+            pages.splice(i, 1)
+        }
+    }
+
     return (
-        <div className={styles.pageNumbers}>
-            {pages.map(page => {
-                if (Number(page) === Number(currentPage)) {
-                    return (
-                        <div key={page} className={styles.pageLink}>
-                            {page}
-                        </div>
-                    )
-                } else {
-                    return (
-                        <Link key={page} href={{pathname: '/momentum/[momentum]/[page]', query: { momentum: height, page: page }}}>
-                            <a className={styles.pageLink}>{page}</a>
-                        </Link>
-                    )
-                }
-            })}
+        <div className={styles.pagination}>
+            <BackArrow currentPage={currentPage} maxPage={maxPage} height={height}/>
+            <div className={styles.pageNumbers}>
+                {pages.map(page => {
+                    if (Number(page) === Number(currentPage)) {
+                        return (
+                            <div key={page} className={`${styles.pageText} ${styles.strongText}`}>
+                                {page}
+                            </div>
+                        )
+                    } else {
+                        return (
+                            <Link key={page} href={{ pathname: '/momentum/[height]/[page]', query: { height: height, page: page } }} scroll={false}>
+                                <a className={`${styles.pageLink} ${styles.pageText}`}>{page}</a>
+                            </Link>
+                        )
+                    }
+                })}
+            </div>
+            <ForwardArrow currentPage={currentPage} maxPage={maxPage} height={height}/>
         </div>
     )
 }
 
+function ForwardArrow({ height, currentPage, maxPage }) {
+    if (currentPage + 1 <= 0 || currentPage + 1 > maxPage) {
+        return <div className={styles.imageSpacer}></div>
+    }
+    return (
+        <Link href={{ pathname: '/momentum/[height]/[page]', query: { height: height, page: currentPage + 1 } }} scroll={false}>
+            <a className={`${styles.pageLink} ${styles.imageFilterToBlack}`}>
+                <Image src="/keyboard_arrow_right_black_24dp.svg" alt="go forward one page" width={24} height={24} />
+            </a>
+        </Link>
+    )
+}
 
-export default Momentum
+function BackArrow({ height, currentPage, maxPage }) {
+    if (currentPage - 1 <= 0 || currentPage - 1 > maxPage) {
+        return <div className={styles.imageSpacer}></div>
+    }
+    return (
+        <Link href={{ pathname: '/momentum/[height]/[page]', query: { height: height, page: currentPage - 1 } }} scroll={false}>
+            <a className={`${styles.pageLink} ${styles.imageFilterToBlack}`}>
+                <Image src="/keyboard_arrow_left_black_24dp.svg" alt="go back one page" width={24} height={24} />
+            </a>
+        </Link>
+    )
+}

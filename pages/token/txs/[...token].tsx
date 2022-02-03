@@ -3,9 +3,9 @@ import Layout from "../../../components/Layout"
 import Searchbar from "../../../components/Searchbar"
 import styles from './token.module.scss'
 import * as db from "../../../services/db"
-import HoldersTable from "../../../components/HoldersTable"
 import Link from "next/link"
 import AccountBlockTable from "../../../components/AccountBlockTable"
+import Image from "next/image"
 
 const numPerPage = 25
 
@@ -74,50 +74,104 @@ export function AccountBlockTokenList({ page, token, countBlocks, accountBlocks 
     return (
         <Layout>
             <div className={styles.main}>
-                <Searchbar />
-                <h2 className={styles.tableTitle}>Recent Account Blocks for Token {token.symbol}</h2>
-                <h2 className={styles.tableTitle}>Page {page}</h2>
-                <AccountBlockTable accountBlocks={accountBlocks}/>
-                <Choices count={countBlocks} currentPage={page} symbol={token.symbol}/>
+                <div className={styles.searchBarWrapper}>
+                    <Searchbar />
+                </div>
+                <div className={styles.card}>
+                    <div className={styles.cardContent}>
+                        <div className={styles.cardHeader}>
+                            <div className={styles.cardHeaderLeft}>
+                                 <h2 className={styles.cardTitle}>Account Blocks for  
+                                    <Link href={{ pathname: '/token/[symbol]', query: { symbol: token.symbol } }}>
+                                        <a className={styles.cardTitle}> Token {token.symbol}</a>
+                                    </Link>
+                                </h2>
+                                <h2 className={styles.cardSubtitle}>Displaying {1 + (page - 1) * numPerPage} - {page * numPerPage}</h2>
+                            </div>
+                            <div className={styles.cardHeaderRight}>
+                                <Pagination currentPage={page} count={countBlocks} symbol={token.symbol} />
+                            </div>
+                        </div>
+                    <AccountBlockTable accountBlocks={accountBlocks}/>
+                    <div className={styles.paginationWrapper}>
+                        <Pagination currentPage={page} count={countBlocks} symbol={token.symbol} />
+                    </div>
+                    </div>
+                </div>
             </div>
         </Layout>
     )
 }
 
-function Choices({ currentPage, count, symbol }) {
-    if (count <= 0) {
-        return <></>
-    }
+function Pagination({ currentPage, count, symbol }) {
 
-    var pages: number[] = [1]
-    const maxPage: number = Math.ceil(count / numPerPage)
-    for (let i = -2; i < 3; i++) {
-        if (!pages.includes(currentPage + i) && currentPage + i > 0 && currentPage + i <= maxPage) {
-            pages.push(currentPage + i)
+    var pages: number[] = []
+    const maxPage = Math.ceil(count / numPerPage)
+    if (currentPage == 1 || currentPage == 2) {
+        for (let i = 1; i < 6; i++) {
+            pages.push(i)
+        }
+    } else {
+        for (let i = -2; i < 3; i++) {
+            if (!pages.includes(currentPage + i) && currentPage + i > 0) {
+                pages.push(currentPage + i)
+            }
         }
     }
-    if (!pages.includes(maxPage) && maxPage > 0) {
-        pages.push(maxPage)
+    for (let i = pages.length - 1; i >= 0; i--) {
+        if (pages[i] > maxPage) {
+            pages.splice(i, 1)
+        }
     }
-    
+
     return (
-        <div className={styles.pageNumbers}>
-            {pages.map(page => {
-                if (Number(page) === Number(currentPage)) {
-                    return (
-                        <div key={page} className={styles.pageLink}>
-                            {page}
-                        </div>
-                    )
-                } else {
-                    return (
-                        <Link key={page} href={{pathname: '/token/txs/[token]/[page]', query: { token: symbol, page: page }}}>
-                            <a className={styles.pageLink}>{page}</a>
-                        </Link>
-                    )
-                }
-            })}
+        <div className={styles.pagination}>
+            <BackArrow currentPage={currentPage} maxPage={maxPage} symbol={symbol} />
+            <div className={styles.pageNumbers}>
+                {pages.map(page => {
+                    if (Number(page) === Number(currentPage)) {
+                        return (
+                            <div key={page} className={`${styles.pageText} ${styles.strongText}`}>
+                                {page}
+                            </div>
+                        )
+                    } else {
+                        return (
+                            <Link key={page} href={{ pathname: '/token/txs/[symbol]/[page]', query: { symbol: symbol, page: page } }} scroll={false}>
+                                <a className={`${styles.pageLink} ${styles.pageText}`}>{page}</a>
+                            </Link>
+                        )
+                    }
+                })}
+            </div>
+            <ForwardArrow currentPage={currentPage} maxPage={maxPage} symbol={symbol} />
         </div>
+    )
+}
+
+function ForwardArrow({ symbol, currentPage, maxPage }) {
+    if (currentPage + 1 <= 0 || currentPage + 1 > maxPage) {
+        return <div className={styles.imageSpacer}></div>
+    }
+    return (
+        <Link href={{ pathname: '/token/txs/[symbol]/[page]', query: { symbol: symbol, page: currentPage + 1 } }} scroll={false}>
+            <a className={`${styles.pageLink} ${styles.imageFilterToBlack}`}>
+                <Image src="/keyboard_arrow_right_black_24dp.svg" alt="go forward one page" width={24} height={24} />
+            </a>
+        </Link>
+    )
+}
+
+function BackArrow({ symbol, currentPage, maxPage }) {
+    if (currentPage - 1 <= 0 || currentPage - 1 > maxPage) {
+        return <div className={styles.imageSpacer}></div>
+    }
+    return (
+        <Link href={{ pathname: '/token/txs/[symbol]/[page]', query: { symbol: symbol, page: currentPage - 1 } }} scroll={false}>
+            <a className={`${styles.pageLink} ${styles.imageFilterToBlack}`}>
+                <Image src="/keyboard_arrow_left_black_24dp.svg" alt="go back one page" width={24} height={24} />
+            </a>
+        </Link>
     )
 }
 

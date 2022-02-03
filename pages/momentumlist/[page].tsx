@@ -4,6 +4,7 @@ import styles from './MomentumList.module.scss'
 import MomentumTable from '../../components/MomentumTable'
 import SearchBar from '../../components/Searchbar'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const numPerPage = 25
 
@@ -14,7 +15,7 @@ export async function getServerSideProps(context) {
     )
 
     const page: number = Number(context.params.page)
-    
+
     const momentumBlockQuery = await db.query(`
         SELECT momentum.height, momentum.hash, momentum.timestamp, momentum.producer, a.countblocks 
             FROM (SELECT m.hash, COUNT(accountblock.hash) AS countblocks FROM
@@ -32,68 +33,107 @@ export async function getServerSideProps(context) {
                 ORDER BY momentum.height DESC
     `, [numPerPage, (page - 1) * numPerPage])
 
-    const momentumCountQuery = await db.query(`
-        SELECT COUNT(hash) as countmomentum FROM momentum
-    `)
-    
-    return { 
+
+    return {
         props: {
             momentums: momentumBlockQuery?.rows ?? null,
             page: page ?? null,
-            momentumCount: momentumCountQuery?.rows[0]?.countmomentum ?? null
         }
     }
 }
 
 
-export default function MomentumList({ momentums, page, momentumCount }) {
+export default function MomentumList({ momentums, page }) {
     return (
         <Layout>
             <div className={styles.main}>
-                <SearchBar />
-                <h2 className={styles.tableTitle}>Momentums</h2>
-                <h2 className={styles.tableTitle}>Page {page}</h2>
-                <MomentumTable momentums={momentums}/>
-                <Choices currentPage={page} count={momentumCount}/>
+                <div className={styles.searchBarWrapper}>
+                    <SearchBar />
+                </div>
+                <div className={styles.card}>
+                    <div className={styles.cardContent}>
+                        <div className={styles.cardHeader}>
+                            <div className={styles.cardHeaderLeft}>
+                                <h2 className={styles.cardTitle}>Latest Momentums</h2>
+                                <h2 className={styles.cardSubtitle}>Displaying {1 + (page - 1) * numPerPage} - {page * numPerPage}</h2>
+                            </div>
+                            <div className={styles.cardHeaderRight}>
+                                <Pagination currentPage={page} />
+                            </div>
+                        </div>
+                        <MomentumTable momentums={momentums} />
+                    </div>
+                    <div className={styles.paginationWrapper}>
+                        <Pagination currentPage={page} />
+                    </div>
+                </div>
             </div>
         </Layout>
     )
 }
 
 
-function Choices({ currentPage, count }) {
-    if (count <= 0) {
-        return <></>
-    }
-
-    var pages: number[] = [1]
-    const maxPage: number = Math.ceil(count / numPerPage)
-    for (let i = -2; i < 3; i++) {
-        if (!pages.includes(currentPage + i) && currentPage + i > 0 && currentPage + i <= maxPage) {
-            pages.push(currentPage + i)
+function Pagination({ currentPage }) {
+    var pages: number[] = []
+    if (currentPage == 1 || currentPage == 2) {
+        for (let i = 1; i <6; i++) {
+            pages.push(i)
         }
-    }
-    if (!pages.includes(maxPage) && maxPage > 0) {
-        pages.push(maxPage)
+    } else {
+        for (let i = -2; i < 3; i++) {
+            if (!pages.includes(currentPage + i) && currentPage + i > 0) {
+                pages.push(currentPage + i)
+            }
+        }
     }
 
     return (
-        <div className={styles.pageNumbers}>
-            {pages.map(page => {
-                if (Number(page) === Number(currentPage)) {
-                    return (
-                        <div key={page} className={styles.pageLink}>
-                            {page}
-                        </div>
-                    )
-                } else {
-                    return (
-                        <Link key={page} href={{pathname: '/momentumlist/[page]', query: { page: page }}}>
-                            <a className={styles.pageLink}>{page}</a>
-                        </Link>
-                    )
-                }
-            })}
+        <div className={styles.pagination}>
+            <BackArrow currentPage={currentPage} />
+            <div className={styles.pageNumbers}>
+                {pages.map(page => {
+                    if (Number(page) === Number(currentPage)) {
+                        return (
+                            <div key={page} className={`${styles.pageText} ${styles.strongText}`}>
+                                {page}
+                            </div>
+                        )
+                    } else {
+                        return (
+                            <Link key={page} href={{ pathname: '/momentumlist/[page]', query: { page: page } }} scroll={false}>
+                                <a className={`${styles.pageLink} ${styles.pageText}`}>{page}</a>
+                            </Link>
+                        )
+                    }
+                })}
+            </div>
+            <ForwardArrow currentPage={currentPage} />
         </div>
+    )
+}
+
+function ForwardArrow({ currentPage }) {
+    if (currentPage + 1 <= 0) {
+        return <div className={styles.imageSpacer}></div>
+    }
+    return (
+        <Link href={{ pathname: '/momentumlist/[page]', query: { page: currentPage + 1 } }} scroll={false}>
+            <a className={`${styles.pageLink} ${styles.imageFilterToBlack}`}>
+                <Image src="/keyboard_arrow_right_black_24dp.svg" alt="go forward one page" width={24} height={24} />
+            </a>
+        </Link>
+    )
+}
+
+function BackArrow({ currentPage }) {
+    if (currentPage - 1 <= 0) {
+        return <div className={styles.imageSpacer}></div>
+    }
+    return (
+        <Link href={{ pathname: '/momentumlist/[page]', query: { page: currentPage - 1 } }} scroll={false}>
+            <a className={`${styles.pageLink} ${styles.imageFilterToBlack}`}>
+                <Image src="/keyboard_arrow_left_black_24dp.svg" alt="go back one page" width={24} height={24} />
+            </a>
+        </Link>
     )
 }

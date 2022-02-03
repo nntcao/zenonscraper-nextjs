@@ -11,7 +11,7 @@ export async function getServerSideProps(context) {
     context.res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'
-      )
+    )
 
     const searchString: string = context.params.address
     const addressQuery = await db.query(`
@@ -44,7 +44,7 @@ export async function getServerSideProps(context) {
             INNER JOIN token
             ON token.tokenstandard = b.tokenstandard
     `, [searchString])
-    return { 
+    return {
         props: {
             address: addressQuery.rows[0] ?? null,
             accountBlocks: accountBlockQuery?.rows ?? null,
@@ -53,47 +53,57 @@ export async function getServerSideProps(context) {
     }
 }
 
-function Address({ address, accountBlocks, balances}) {
+function Address({ address, accountBlocks, balances }) {
     if (!address) {
         return (
             <ErrorPage />
         )
     }
-    
+
     return (
         <Layout>
             <div className={styles.main}>
-                <Searchbar />
+                <div className={styles.searchBarWrapper}>
+                    <Searchbar />
+                </div>
                 <div className={styles.card}>
-                    <div className={styles.titleline}>
-                        <h2 className={styles.cardTitle}>Address {address.address}</h2>
-                    </div>
-                    <hr />
-                    <div className={styles.cardbody}>
-                        <Balance balances={balances}/>
-                        <div className={styles.cardleft}>Value:</div>
-                        <div className={styles.cardright}></div>
+                    <div className={styles.cardContent}>
+                        <div className={styles.cardHeader}>
+                            <div className={styles.cardHeaderLeft}>
+                                <h2 className={styles.cardTitle}>Address {address.address}</h2>
+                            </div>
+                        </div>
+                        <div className={styles.cardbody}>
+                            <Balance balances={balances} />
+                            <div className={styles.cardleft}>Value:</div>
+                            <div className={styles.cardright}></div>
+                        </div>
                     </div>
                 </div>
-                <h2 className={styles.tableTitle}>Recent Account Blocks/Transactions</h2>
-                <hr/>
-                <AccountBlockTable accountBlocks={accountBlocks} />
-                <Link href={{pathname: '/address/[address]/[page]', query: { address: address.address, page: 1 }}}>
-                    <a className={styles.seeMore}>See more</a>
-                </Link>
+                <div className={styles.card}>
+                    <div className={styles.cardHeader}>
+                        <div className={styles.cardHeaderLeft}>
+                            <h2 className={styles.cardTitle}>Recent Account Blocks/Transactions</h2>
+                            <h2 className={styles.cardSubtitle}>Displaying 1-10</h2>
+                        </div>
+                    </div>
+                    <AccountBlockTable accountBlocks={accountBlocks} />
+                    {accountBlocks[0] && <Link href={{ pathname: '/address/[address]/[page]', query: { address: address.address, page: 1 } }}>
+                        <a className={styles.seeMore}>See more</a>
+                    </Link>}
+                </div>
             </div>
         </Layout>
     )
 }
 
-function Balance( { balances } ) {
+function Balance({ balances }) {
     if (!balances || balances === null || balances.length === 0) {
         return (
             <>
                 <div className={styles.cardleft}>Balance:</div>
                 <div className={styles.cardright}>None</div>
             </>
-
         )
     }
 
@@ -103,17 +113,17 @@ function Balance( { balances } ) {
             <div className={styles.cardbalance}>
                 {balances.map(balance => {
                     return (
-                        <div key={`${balance.tokenstandard} ${balance.amount}`}> 
-                            {Number(balance.balance) / (10 ** balance.decimals)} 
-                            <Link href={{pathname: '/token/[token]', query: { token: balance.tokenstandard }}}>
-                                <a> {balance.symbol}</a>
+                        <div className={styles.cardright} key={`${balance.tokenstandard} ${balance.amount}`}>
+                            {Number(balance.balance) / (10 ** balance.decimals)}
+                            <Link href={{ pathname: '/token/[token]', query: { token: balance.tokenstandard } }}>
+                                <a className={styles.cardright}> {balance.symbol}</a>
                             </Link>
-                        </div>   
+                        </div>
                     )
                 })}
             </div>
         </>
-        
+
     )
 }
 

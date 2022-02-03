@@ -5,13 +5,14 @@ import styles from './accountblock.module.scss'
 import Layout from '../../components/Layout'
 import Link from 'next/link'
 import Searchbar from '../../components/Searchbar'
+import Image from 'next/image'
 
 export async function getServerSideProps(context) {
     context.res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'
-      )
-    
+    )
+
     const searchString: string = context.params.accountblock
     const accountBlockQuery = await db.query(`
         SELECT a.height, a.hash, a.address, a.toaddress, a.amount, a.tokenstandard,
@@ -58,47 +59,48 @@ function AccountBlock({ accountBlockInformation, descendantBlockInformation, pre
     return (
         <Layout>
             <div className={styles.main}>
-                <Searchbar />
+                <div className={styles.searchBarWrapper}>
+                    <Searchbar />
+                </div>
                 <div className={styles.card}>
-                    <div className={styles.titleline}>
+                    <div className={styles.cardHeader}>
                         <h2 className={styles.cardTitle}>Account Block {accountBlockInformation.hash}</h2>
-                        <Choices prevHash={prevAccountBlockHash} nextHash={nextAccountBlockHash}/>
+                        <Choices prevHash={prevAccountBlockHash} nextHash={nextAccountBlockHash} />
                     </div>
-                    <hr />
                     <div className={styles.cardbody}>
                         <div className={styles.cardleft}>Height:</div>
                         <div className={styles.cardright}>
-                            <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlockInformation.hash }}}>
-                                <a>{accountBlockInformation.height}</a>
+                            <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlockInformation.hash } }}>
+                                <a className={styles.cardright}>{accountBlockInformation.height}</a>
                             </Link>
                         </div>
                         <div className={styles.cardleft}>Hash:</div>
                         <div className={styles.cardright}>
-                            <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlockInformation.hash }}}>
-                                <a>{accountBlockInformation.hash}</a>
+                            <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlockInformation.hash } }}>
+                                <a className={styles.cardright}>{accountBlockInformation.hash}</a>
                             </Link>
                         </div>
                         <div className={styles.cardleft}>From Address:</div>
                         <div className={styles.cardright}>
-                            <Link href={{pathname: '/address/[address]', query: { address: accountBlockInformation.address }}}>
-                                <a>{accountBlockInformation.address}</a>
+                            <Link href={{ pathname: '/address/[address]', query: { address: accountBlockInformation.address } }}>
+                                <a className={styles.cardright}>{accountBlockInformation.address}</a>
                             </Link>
                         </div>
                         <div className={styles.cardleft}>To Address:</div>
                         <div className={styles.cardright}>
-                            <Link href={{pathname: '/address/[address]', query: { address: accountBlockInformation.toaddress }}}>
-                                <a>{accountBlockInformation.toaddress}</a>
+                            <Link href={{ pathname: '/address/[address]', query: { address: accountBlockInformation.toaddress } }}>
+                                <a className={styles.cardright}>{accountBlockInformation.toaddress}</a>
                             </Link>
                         </div>
                         <div className={styles.cardleft}>Amount:</div>
                         <div className={styles.cardright}>
-                            {Math.round(accountBlockInformation.amount / (10 ** accountBlockInformation.decimals) * 100) / 100} 
+                            {Math.round(accountBlockInformation.amount / (10 ** accountBlockInformation.decimals) * 100) / 100}
                             <Symbol symbol={String(accountBlockInformation.symbol)} />
                         </div>
                         <div className={styles.cardleft}>Token Standard:</div>
                         <div className={styles.cardright}>
-                            <Link href={{pathname: '/token/[token]', query: { token: accountBlockInformation.tokenstandard }}}>
-                                <a>{accountBlockInformation.tokenstandard}</a>
+                            <Link href={{ pathname: '/token/[token]', query: { token: accountBlockInformation.tokenstandard } }}>
+                                <a className={styles.cardright}>{accountBlockInformation.tokenstandard}</a>
                             </Link>
                         </div>
                         <div className={styles.cardleft}>Data:</div>
@@ -113,26 +115,26 @@ function AccountBlock({ accountBlockInformation, descendantBlockInformation, pre
                         <div className={styles.cardright}>{accountBlockInformation.difficulty}</div>
                         <div className={styles.cardleft}>Previous Account Block Hash:</div>
                         <div className={styles.cardright}>
-                            <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlockInformation.previoushash }}}>
-                                <a>{accountBlockInformation.previoushash}</a>
+                            <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlockInformation.previoushash } }}>
+                                <a className={styles.cardright}>{accountBlockInformation.previoushash}</a>
                             </Link>
                         </div>
                         <div className={styles.cardleft}>Momentum Hash:</div>
                         <div className={styles.cardright}>
-                            <Link href={{pathname: '/momentum/[momentum]', query: { momentum: accountBlockInformation.momentumhash }}}>
-                                <a>{accountBlockInformation.momentumhash}</a>
+                            <Link href={{ pathname: '/momentum/[momentum]', query: { momentum: accountBlockInformation.momentumhash } }}>
+                                <a className={styles.cardright}>{accountBlockInformation.momentumhash}</a>
                             </Link>
                         </div>
                         <div className={styles.cardleft}>Momentum Acknowledged:</div>
                         <div className={styles.cardright}>
-                            <Link href={{pathname: '/momentum/[momentum]', query: { momentum: accountBlockInformation.momentumacknowledgedhash }}}>
-                                <a>{accountBlockInformation.momentumacknowledgedhash}</a>
+                            <Link href={{ pathname: '/momentum/[momentum]', query: { momentum: accountBlockInformation.momentumacknowledgedhash } }}>
+                                <a className={styles.cardright}>{accountBlockInformation.momentumacknowledgedhash}</a>
                             </Link>
                         </div>
                         <div className={styles.cardleft}>Paired Account Block Hash:</div>
                         <div className={styles.cardright}>
-                            <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlockInformation.pairedhash }}}>
-                                <a>{accountBlockInformation.pairedhash}</a>
+                            <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlockInformation.pairedhash } }}>
+                                <a className={styles.cardright}>{accountBlockInformation.pairedhash}</a>
                             </Link>
                         </div>
                         <div className={styles.cardleft}>Descendant Blocks:</div>
@@ -140,8 +142,8 @@ function AccountBlock({ accountBlockInformation, descendantBlockInformation, pre
                             if (descendantBlock.hash === accountBlockInformation.hash) {
                                 return (
                                     <div key={`${descendantBlock.hash} ${descendantBlock.descendanthash}`}>
-                                        <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: descendantBlock.descendanthash }}}>
-                                            <a>{descendantBlock.descendanthash}</a>
+                                        <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: descendantBlock.descendanthash } }}>
+                                            <a className={styles.cardright}>{descendantBlock.descendanthash}</a>
                                         </Link>
                                     </div>
                                 )
@@ -155,8 +157,8 @@ function AccountBlock({ accountBlockInformation, descendantBlockInformation, pre
                             if (descendantBlock.descendanthash === accountBlockInformation.hash) {
                                 return (
                                     <div key={`${descendantBlock.hash} ${descendantBlock.descendanthash}`}>
-                                        <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: descendantBlock.hash }}}>
-                                            <a>{descendantBlock.hash}</a>
+                                        <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: descendantBlock.hash } }}>
+                                            <a className={styles.cardright}>{descendantBlock.hash}</a>
                                         </Link>
                                     </div>
                                 )
@@ -191,7 +193,9 @@ function AccountBlock({ accountBlockInformation, descendantBlockInformation, pre
 function Symbol({ symbol }) {
     if (symbol !== 'null') {
         return (
-            <span> {symbol}</span>
+            <Link href={{ pathname: '/token/[token]', query: { token: symbol } }}>
+                <a className={styles.cardright}> {symbol}</a>
+            </Link>
         )
     } else {
         return <></>
@@ -202,27 +206,37 @@ function Choices({ prevHash, nextHash }) {
     if (prevHash && nextHash) {
         return (
             <div className={styles.choices}>
-                <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: prevHash }}}>
-                    <a className={styles.prevnext}>Previous</a>
+                <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: prevHash } }}>
+                    <a className={styles.imageFilterToBlack}>
+                        <Image src="/keyboard_arrow_left_black_24dp.svg" width={24} height={24} />
+                    </a>
                 </Link>
-                <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: nextHash }}}>
-                    <a className={styles.prevnext}>Next</a>
+                <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: nextHash } }}>
+                    <a className={styles.imageFilterToBlack}>
+                        <Image src="/keyboard_arrow_right_black_24dp.svg" width={24} height={24} />
+                    </a>
                 </Link>
             </div>
         )
     } else if (prevHash) {
         return (
             <div className={styles.choices}>
-                <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: prevHash }}}>
-                    <a className={styles.prevnext}>Previous</a>
+                <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: prevHash } }}>
+                    <a className={styles.imageFilterToBlack}>
+                        <Image src="/keyboard_arrow_left_black_24dp.svg" width={24} height={24} />
+                    </a>
                 </Link>
+                <div className={styles.imageSpacer}></div>
             </div>
         )
     } else if (nextHash) {
         return (
             <div className={styles.choices}>
-                <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: nextHash }}}>
-                    <a className={styles.prevnext}>Next</a>
+                <div className={styles.imageSpacer}></div>
+                <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: nextHash } }}>
+                    <a className={styles.imageFilterToBlack}>
+                        <Image src="/keyboard_arrow_right_black_24dp.svg" width={24} height={24} />
+                    </a>
                 </Link>
             </div>
         )
