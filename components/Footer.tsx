@@ -4,6 +4,8 @@ import styles from './Footer.module.scss'
 
 export default function Footer() {
     const iconSize = "36"
+    const currentDate = new Date()
+    const currentYear = currentDate.getFullYear()
 
     return (
         <nav className={styles.footer}>
@@ -51,7 +53,6 @@ export default function Footer() {
                                 </a>
                                 <a className={styles.svgLink} href='https://discordapp.com/users/173981751427858433'>
                                     <Image src="/iconmonstr-discord-4.svg" alt="Telegram Icon" width={iconSize} height={iconSize}/>
-                                    
                                 </a>
                                 <a className={styles.svgLink} href='https://t.me/vovi_z'>
                                     <Image src="/iconmonstr-telegram-4.svg" alt="Telegram Icon" width={iconSize} height={iconSize}/>
@@ -63,7 +64,7 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-                <span className={styles.copyright}>© 2022 vovi__z</span>
+                <span className={styles.copyright}>© {currentYear} vovi__z</span>
             </section>
         </nav>
     )
