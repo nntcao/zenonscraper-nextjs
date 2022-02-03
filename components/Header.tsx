@@ -25,13 +25,13 @@ export default function Header() {
                 <div className={styles.container}>
                     <Link href='/'>
                         <a className={styles.logoWrapper}>
-                            <Image src="/banner.png" width="63" height="29" alt="Zenon Scraper Logo"/>
+                            <Image src="/banner.png" width="63" height="29" alt="Zenon Scraper Logo" />
                         </a>
                     </Link>
                     <NavigationBar isDesktop={isDesktop} />
                 </div>
             </div>
-       </nav>
+        </nav>
     )
 }
 
@@ -69,11 +69,42 @@ function DesktopNavigationBar() {
 }
 
 function MobileNavigationBar() {
+    const [showNavigation, setShowNavigation] = useState(false)
+
+    if (showNavigation) {
+        return (
+            <div className={`${styles.wholeScreen}`}>
+                <div className={`${styles.sideMenu}`}>
+                    <button className={styles.imageExit} onClick={() => setShowNavigation(false)}>
+                        <Image src="/close_black_24dp.svg" width={36} height={36} />
+                    </button>
+                    <Link href='/'>
+                        <a className={styles.optionsText}>Home</a>
+                    </Link>
+                    <Link href='/momentumlist/1'>
+                        <a className={styles.optionsText}>Momentums</a>
+                    </Link>
+                    <Link href='/accountblocklist/1'>
+                        <a className={styles.optionsText}>Account Blocks</a>
+                    </Link>
+                    <Link href='/tokenlist'>
+                        <a className={styles.optionsText}>Tokens</a>
+                    </Link>
+                    <Link href='/resources'>
+                        <a className={styles.optionsText}>Resources</a>
+                    </Link>
+                    <Link href='/donate'>
+                        <a className={styles.optionsText}>Donate</a>
+                    </Link>
+                </div>
+            </div>
+        )
+    }
     return (
         <div className={styles.mobileNavigation}>
-            <a className={styles.hamburgerMenuWrapper}>
+            <button className={styles.hamburgerMenuWrapper} onClick={() => setShowNavigation(!showNavigation)}>
                 <Image src="/menu_black_48dp.svg" width="35" height="35" />
-            </a>
+            </button>
         </div>
     )
 }

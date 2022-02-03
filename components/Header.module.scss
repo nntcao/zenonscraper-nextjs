@@ -52,6 +52,7 @@
 .logoWrapper {
     padding-top: 0.5rem;
     padding-bottom: 0.25rem;
+    align-self: flex-start;
 }
 
 .hamburgerMenuWrapper {
@@ -59,7 +60,22 @@
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     filter: invert(84%) sepia(99%) saturate(401%) hue-rotate(46deg) brightness(101%) contrast(101%);
+}
 
+.wholeScreen {
+    float: right;
+    width: auto;
+    height: auto;
+}
+
+.sideMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.imageExit {
+    filter: invert(84%) sepia(99%) saturate(401%) hue-rotate(46deg) brightness(101%) contrast(101%);
 }
 
 @media screen and (max-width: 1450px) {
