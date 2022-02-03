@@ -74,7 +74,6 @@
     margin-top: 1rem;
     box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.5);
     transition: box-shadow 100ms;
-
 }
 
 .card:hover {
@@ -145,6 +144,10 @@
 
 @media screen and (max-width: 1450px) {
 
+    .title {
+        margin-left: 1rem;
+    }
+
     .searchBarWrapper {
         align-self: center;
         width: clamp(50vw, 900px, 90vw);
@@ -154,6 +157,8 @@
     .card {
         align-self: center;
         width: clamp(50vw, 900px, 90vw);
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 
     .pageText {
