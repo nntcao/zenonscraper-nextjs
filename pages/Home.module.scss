@@ -53,7 +53,7 @@
         margin: 1rem;
         margin-left: 0rem;
         box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.5);
-        transition: all 100ms;
+        transition: box-shadow 100ms;
     }
     
 
@@ -87,6 +87,7 @@
 
 .row:hover {
     background-color: #e0f7e079;
+    box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.4);
 }
 
 .row {
@@ -99,6 +100,7 @@
 
 .rowMomentum:hover {
     background-color: #e0f7e079;
+    box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.4);
 }
 
 
@@ -152,9 +154,6 @@
 }
 
 @media screen and (max-width: 1450px) {
-
-    .titlebox {
-    }
 
     .searchBarWrapper {
         align-self: center;
