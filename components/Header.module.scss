@@ -49,12 +49,25 @@
     background-color: #5c5c5c;
 }
 
+.logoWrapper {
+    padding-top: 0.5rem;
+    padding-bottom: 0.25rem;
+}
+
+.hamburgerMenuWrapper {
+    align-self: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    filter: invert(84%) sepia(99%) saturate(401%) hue-rotate(46deg) brightness(101%) contrast(101%);
+
+}
+
 @media screen and (max-width: 1450px) {
     .container {
         max-width: 100%;
     }
 
-    .titlelogo {
+    .logoWrapper {
         margin-left: 1rem;
     }
 }

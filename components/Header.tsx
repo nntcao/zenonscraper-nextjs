@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 
 export default function Header() {
 
-    const [isDesktop, setIsDesktop] = useState(false)
+    const [isDesktop, setIsDesktop] = useState(true)
 
     useEffect(() => {
         setIsDesktop(window.innerWidth > 1450)
@@ -17,14 +17,14 @@ export default function Header() {
 
         window.addEventListener('resize', updateMedia)
         return () => window.removeEventListener('resize', updateMedia)
-    })
+    }, [])
 
     return (
         <nav>
             <div className={styles.header}>
                 <div className={styles.container}>
                     <Link href='/'>
-                        <a className={styles.titlelogo}>
+                        <a className={styles.logoWrapper}>
                             <Image src="/banner.png" width="63" height="29" alt="Zenon Scraper Logo"/>
                         </a>
                     </Link>
@@ -71,7 +71,9 @@ function DesktopNavigationBar() {
 function MobileNavigationBar() {
     return (
         <div className={styles.mobileNavigation}>
-            
+            <a className={styles.hamburgerMenuWrapper}>
+                <Image src="/menu_black_48dp.svg" width="35" height="35" />
+            </a>
         </div>
     )
 }
