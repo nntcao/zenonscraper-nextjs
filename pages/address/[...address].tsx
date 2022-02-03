@@ -81,7 +81,11 @@ export function AddressAccountBlockList({ accountBlocks, page, countBlocks, addr
                     <div className={styles.cardContent}>
                         <div className={styles.cardHeader}>
                             <div className={styles.cardHeaderLeft}>
-                                <h2 className={styles.cardTitle}>Account Blocks for Address {address}</h2>
+                                <h2 className={styles.cardTitle}>Account Blocks for 
+                                    <Link href={{ pathname: '/address/[address]', query: { address: address } }}>
+                                        <a className={styles.cardTitle}> Address {address}</a>
+                                    </Link>
+                                </h2>
                                 <h2 className={styles.cardSubtitle}>Displaying {1 + (page - 1) * numPerPage} - {page * numPerPage}</h2>
                             </div>
                             <div className={styles.cardHeaderRight}>
