@@ -1,8 +1,12 @@
 import styles from "./AccountBlockTable.module.scss"
 import Link from "next/link"
-import { timeConverter } from "../utils/time"
+import * as time from "../utils/time"
+import { useState } from "react"
 
 export default function AccountBlockTable({ accountBlocks }) {
+
+    const [isRelativeTimestamp, setRelativeTimestamp] = useState(true)
+
     if (!accountBlocks || accountBlocks === null || accountBlocks.length === 0) {
         return (
             <div> No account blocks found!</div>
@@ -13,14 +17,18 @@ export default function AccountBlockTable({ accountBlocks }) {
                 <table className={styles.table}>
                     <thead className={styles.abheader}>
                         <tr>
-                            <th scope="col" className="abrow">Momentum Height</th>
-                            <th scope="col" className="abrow">Timestamp</th>
-                            <th scope="col" className="abrow">Hash</th>
-                            <th scope="col" className="abrow">From</th>
-                            <th scope="col" className="abrow">To</th>
-                            <th scope="col" className="abrow">Amount</th>
-                            <th scope="col" className="abrow">Token</th>
-                            <th scope="col" className="abrow">Plasma</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Momentum Height</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>
+                                <button className={styles.button} onClick={() => setRelativeTimestamp(!isRelativeTimestamp)}>
+                                    {isRelativeTimestamp && `Age`}{!isRelativeTimestamp && 'Timestamp'}
+                                </button>
+                            </th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Hash</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>From</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>To</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Amount</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Token</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Plasma</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,25 +37,25 @@ export default function AccountBlockTable({ accountBlocks }) {
                                 <tr className={styles.abrows} key = {accountBlock.hash}>
                                     <td className={styles.abrow}>
                                         <Link href={{pathname: '/momentum/[momentum]', query: { momentum: accountBlock.momentumheight }}}>
-                                                <a>{accountBlock.momentumheight}</a>
+                                                <a className={styles.tableLink}>{accountBlock.momentumheight}</a>
                                         </Link>
                                     </td>
                                     <td className={styles.abrow}>
-                                        {timeConverter(accountBlock.timestamp)}
+                                        <TimestampComponent timestamp={accountBlock.timestamp} isRelativeTimestamp={isRelativeTimestamp}/>
                                     </td>
                                     <td className={`${styles.abrow} ${styles.truncate}`}>
                                         <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlock.hash }}}>
-                                                <a>{accountBlock.hash}</a>
+                                                <a className={styles.tableLink}>{accountBlock.hash}</a>
                                         </Link>
                                     </td>
                                     <td className={`${styles.abrow} ${styles.truncate}`}>
                                         <Link href={{pathname: '/address/[address]', query: { address: accountBlock.address }}}>
-                                                <a>{accountBlock.address}</a>
+                                                <a className={styles.tableLink}>{accountBlock.address}</a>
                                         </Link>
                                     </td>
                                     <td className={`${styles.abrow} ${styles.truncate}`}>
                                         <Link href={{pathname: '/address/[address]', query: { address: accountBlock.toaddress }}}>
-                                                <a>{accountBlock.toaddress}</a>
+                                                <a className={styles.tableLink}>{accountBlock.toaddress}</a>
                                         </Link>
                                     </td>
                                     <td className={styles.abrow}>
@@ -55,7 +63,7 @@ export default function AccountBlockTable({ accountBlocks }) {
                                     </td>
                                     <td className={styles.abrow}>
                                         <Link href={{pathname: '/token/[token]', query: { token: accountBlock.tokenstandard }}}>
-                                                <a>{accountBlock.symbol ?? accountBlock.tokenstandard}</a>
+                                            <a className={styles.tableLink}>{accountBlock.symbol ?? accountBlock.tokenstandard}</a>
                                         </Link>
                                     </td>
                                     <td className={styles.abrow}>{accountBlock.usedplasma}</td>
@@ -65,6 +73,23 @@ export default function AccountBlockTable({ accountBlocks }) {
                     </tbody>
                 </table>
             </div>
+        )
+    }
+}
+
+
+function TimestampComponent({ timestamp, isRelativeTimestamp }) {
+    if (isRelativeTimestamp) {
+        return (
+            <>
+                {`${time.msToFormattedTime(Date.now() - timestamp * 1000)} ago`}
+            </>
+        )
+    } else {
+        return (
+            <>
+                {time.timeConverter(timestamp)}
+            </>
         )
     }
 }
