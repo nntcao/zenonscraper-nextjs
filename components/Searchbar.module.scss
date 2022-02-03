@@ -11,12 +11,11 @@
     background-color: #F7F7F7;
     border-color: #d4d4d4;
     box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.5);
-
+    transition: box-shadow 100ms;
 }
 
 .search:hover {
     box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.9);
-
 }
 
 .searchbar {
