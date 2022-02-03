@@ -2,6 +2,7 @@
 .main {
     margin: auto;
     max-width: 1000px;
+    padding: 0rem 1rem;
 }
 
 .header {
@@ -44,4 +45,8 @@
 .listElement {
     margin-top: 0.25rem;
     margin-left: 1rem;
+}
+
+.link {
+    word-break: break-all;
 }
