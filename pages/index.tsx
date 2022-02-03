@@ -7,7 +7,6 @@ import Layout from '../components/Layout'
 import Searchbar from '../components/Searchbar'
 import AvgPlasmaPerDayChart from '../components/AvgPlasmaPerDay'
 import TransactionsPerDayChart from '../components/TransactionsPerDay'
-import Spacer from '../components/spacer'
 
 export async function getServerSideProps({ req, res}) {
   res.setHeader(
@@ -134,7 +133,6 @@ function Home(props: any) {
             </Link>
           </div>
         </div>
-        <Spacer />
       </section>
     </Layout>
   )
@@ -163,7 +161,7 @@ function MomentumComponent({ momentum }) {
           <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height }}}>
             <a>{momentum.height}</a>
           </Link>
-          <span>{time.timeConverter(momentum.timestamp).toString()}</span>
+          <span>{`${time.msToFormattedTime(Date.now() - momentum.timestamp * 1000)} ago`}</span>
        </div>
        <div className={styles.rightrow}>
         <MomentumTransactionsComponent momentum={momentum}/>
@@ -198,7 +196,7 @@ function AccountBlockComponent({ accountblock }) {
               <a>{accountblock.hash}</a>
             </Link>
           </span>
-          <span className={styles.time}>{time.timeConverter(accountblock.timestamp)}</span>
+          <span>{`${time.msToFormattedTime(Date.now() - accountblock.timestamp * 1000)} ago`}</span>
         </div>
         <div className={styles.middlerow}>
           From:&ensp;
