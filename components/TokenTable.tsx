@@ -12,24 +12,24 @@ export default function TokenTable({ tokens }) {
                 <table className={styles.table}>
                     <thead className={styles.abheader}>
                         <tr>
-                            <th scope="col" className="abrow">Token</th>
-                            <th scope="col" className="abrow">Description</th>
-                            <th scope="col" className="abrow">Holders</th>
-                            <th scope="col" className="abrow">Total Supply</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Token</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Description</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Holders</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Total Supply</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            tokens.map(token => {    
+                            tokens.map(token => {
                                 return (
                                     <tr className={styles.abrows} key = {token.tokenstandard}>
                                         <td className={styles.abrow}>
                                             <Link href={{pathname: '/token/[token]', query: { token: token.symbol }}}>
-                                                <a>{token.symbol}</a>
+                                                <a className={styles.abrow}>{token.symbol}</a>
                                             </Link>
                                         </td>
-                                        <td className={`${styles.abrow} ${styles.truncate}`}>
-                                            
+                                        <td className={`${styles.abrow} ${styles.description}`}>
+                                            {token.description}
                                         </td>
                                         <td className={styles.abrow}>
                                             {Number(token.countholders).toLocaleString()}

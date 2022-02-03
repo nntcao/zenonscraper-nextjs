@@ -14,10 +14,11 @@ export default function HoldersTable({ holders, token, startRank }) {
                 <table className={styles.table}>
                     <thead className={styles.abheader}>
                         <tr>
-                            <th scope="col" className="abrow">Rank</th>
-                            <th scope="col" className="abrow">Address</th>
-                            <th scope="col" className="abrow">Amount</th>
-                            <th scope="col" className="abrow">Percentage</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Rank</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Address</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Amount</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Percentage</th>
+                            <th scope="col" className={`${styles.abrow} ${styles.abrowheader}`}>Notes</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,14 +31,16 @@ export default function HoldersTable({ holders, token, startRank }) {
                                     </td>
                                     <td className={styles.abrow}>
                                         <Link href={{pathname: '/address/[address]', query: { address: holder.address }}}>
-                                            <a>{holder.address}</a>
+                                            <a className={styles.abrow}>{holder.address}</a>
                                         </Link>
                                     </td>
-                                    <td className={`${styles.abrow} ${styles.truncate}`}>
+                                    <td className={`${styles.abrow}`}>
                                         {(Number(holder.balance) / (10 ** token.decimals)).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})}
                                     </td>
-                                    <td className={`${styles.abrow} ${styles.truncate}`}>
+                                    <td className={`${styles.abrow}`}>
                                         {(Number(holder.balance) / Number(token.totalsupply) * 100).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})}%
+                                    </td>
+                                    <td className={`${styles.abrow}`}>
                                     </td>
                                 </tr>
                             )
