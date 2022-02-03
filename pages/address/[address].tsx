@@ -44,9 +44,16 @@ export async function getServerSideProps(context) {
             INNER JOIN token
             ON token.tokenstandard = b.tokenstandard
     `, [searchString])
+
+    let addressAlternative = null
+    if (searchString.substring(0, 3).toLowerCase() === 'z1q' && searchString.length === 40) {
+        addressAlternative = {
+            address: searchString
+        }
+    }
     return {
         props: {
-            address: addressQuery.rows[0] ?? null,
+            address: addressQuery.rows[0] ?? addressAlternative,
             accountBlocks: accountBlockQuery?.rows ?? null,
             balances: balanceQuery?.rows ?? null
         }
