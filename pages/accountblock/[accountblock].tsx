@@ -70,15 +70,11 @@ function AccountBlock({ accountBlockInformation, descendantBlockInformation, pre
                     <div className={styles.cardbody}>
                         <div className={styles.cardleft}>Height:</div>
                         <div className={styles.cardright}>
-                            <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlockInformation.hash } }}>
-                                <a className={styles.cardright}>{accountBlockInformation.height}</a>
-                            </Link>
+                            {accountBlockInformation.height}
                         </div>
                         <div className={styles.cardleft}>Hash:</div>
                         <div className={styles.cardright}>
-                            <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlockInformation.hash } }}>
-                                <a className={styles.cardright}>{accountBlockInformation.hash}</a>
-                            </Link>
+                            {accountBlockInformation.hash}
                         </div>
                         <div className={styles.cardleft}>From Address:</div>
                         <div className={styles.cardright}>
