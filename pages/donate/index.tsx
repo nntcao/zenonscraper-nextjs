@@ -5,11 +5,10 @@ function Donate() {
     return (
         <Layout>
             <div className={styles.main}>
-                <h1 className={styles.title}>Donate</h1>
                 <div className={styles.card}>
                     <div className={styles.cardContent}>
                         <div className={styles.cardHeader}>
-                            <h2 className={styles.cardTitle}>How to Donate</h2>
+                            <h2 className={styles.cardTitle}>Donate</h2>
                         </div>
                         <p className={styles.pageText}>Thank you for your interest in donating! Donations help cover development costs.</p>
                         <p className={styles.pageText}>To donate, please send cryptocurrency to any of the respective addresses below.</p>
