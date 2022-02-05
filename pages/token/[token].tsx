@@ -2,11 +2,11 @@ import * as db from '../../services/db'
 import * as time from '../../utils/time'
 import ErrorPage from '../404'
 import styles from './token.module.scss'
-import Layout from '../../components/Layout'
+import Layout from '../../components/Layout/Layout'
 import Link from 'next/link'
-import HoldersTable from '../../components/HoldersTable'
-import AccountBlockTable from '../../components/AccountBlockTable'
-import Searchbar from '../../components/Searchbar'
+import HoldersTable from '../../components/HoldersTable/HoldersTable'
+import AccountBlockTable from '../../components/AccountBlockTable/AccountBlockTable'
+import Searchbar from '../../components/Searchbar/Searchbar'
 
 export async function getServerSideProps(context) {
     context.res.setHeader(

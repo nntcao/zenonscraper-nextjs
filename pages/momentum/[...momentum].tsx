@@ -1,9 +1,9 @@
 import ErrorPage from "../404"
-import Layout from "../../components/Layout"
-import Searchbar from "../../components/Searchbar"
+import Layout from "../../components/Layout/Layout"
+import Searchbar from "../../components/Searchbar/Searchbar"
 import styles from './momentumAccountBlocks.module.scss'
 import * as db from "../../services/db"
-import AccountBlockTable from "../../components/AccountBlockTable"
+import AccountBlockTable from "../../components/AccountBlockTable/AccountBlockTable"
 import Link from "next/link"
 import Image from "next/image"
 

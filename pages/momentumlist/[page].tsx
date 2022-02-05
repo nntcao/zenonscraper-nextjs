@@ -1,8 +1,8 @@
 import * as db from '../../services/db'
-import Layout from '../../components/Layout'
+import Layout from '../../components/Layout/Layout'
 import styles from './MomentumList.module.scss'
-import MomentumTable from '../../components/MomentumTable'
-import SearchBar from '../../components/Searchbar'
+import MomentumTable from '../../components/MomentumTable/MomentumTable'
+import SearchBar from '../../components/Searchbar/Searchbar'
 import Link from 'next/link'
 import Image from 'next/image'
 

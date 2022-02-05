@@ -1,4 +1,4 @@
-import Layout from '../../components/Layout'
+import Layout from '../../components/Layout/Layout'
 import styles from './Resources.module.scss'
 
 function Resources() {

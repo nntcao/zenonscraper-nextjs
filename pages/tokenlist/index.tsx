@@ -1,10 +1,8 @@
+import Layout from '../../components/Layout/Layout'
+import SearchBar from '../../components/Searchbar/Searchbar'
+import TokenTable from '../../components/TokenTable/TokenTable'
 import * as db from '../../services/db'
-import Layout from '../../components/Layout'
 import styles from './TokenList.module.scss'
-import TokenTable from '../../components/TokenTable'
-import SearchBar from '../../components/Searchbar'
-import Link from 'next/link'
-import Image from 'next/image'
 
 export async function getServerSideProps(context) {
     context.res.setHeader(

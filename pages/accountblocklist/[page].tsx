@@ -1,8 +1,8 @@
 import * as db from '../../services/db'
-import Layout from '../../components/Layout'
+import Layout from '../../components/Layout/Layout'
 import styles from './AccountBlockList.module.scss'
-import AccountBlockTable from '../../components/AccountBlockTable'
-import SearchBar from '../../components/Searchbar'
+import AccountBlockTable from '../../components/AccountBlockTable/AccountBlockTable'
+import SearchBar from '../../components/Searchbar/Searchbar'
 import Link from 'next/link'
 import Image from 'next/image'
 

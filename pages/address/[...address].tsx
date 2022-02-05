@@ -1,10 +1,10 @@
 import ErrorPage from "../404"
-import Layout from "../../components/Layout"
-import Searchbar from "../../components/Searchbar"
+import Layout from "../../components/Layout/Layout"
+import Searchbar from "../../components/Searchbar/Searchbar"
 import styles from './addressAccountBlocks.module.scss'
 import * as db from "../../services/db"
 import Link from "next/link"
-import AccountBlockTable from "../../components/AccountBlockTable"
+import AccountBlockTable from "../../components/AccountBlockTable/AccountBlockTable"
 import Image from "next/image"
 
 const numPerPage = 25

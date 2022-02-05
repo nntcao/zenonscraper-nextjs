@@ -3,10 +3,10 @@ import Link from 'next/link'
 import * as db from '../services/db'
 import styles from './Home.module.scss'
 import * as time from '../utils/time'
-import Layout from '../components/Layout'
-import Searchbar from '../components/Searchbar'
-import AvgPlasmaPerDayChart from '../components/AvgPlasmaPerDay'
-import TransactionsPerDayChart from '../components/TransactionsPerDay'
+import Layout from '../components/Layout/Layout'
+import Searchbar from '../components/Searchbar/Searchbar'
+import AvgPlasmaPerDayChart from '../components/AveragePlasmaChart/AvgPlasmaPerDay'
+import TransactionsPerDayChart from '../components/AccountBlockTable/TransactionsChart/TransactionsPerDay'
 
 export async function getServerSideProps({ req, res}) {
   res.setHeader(

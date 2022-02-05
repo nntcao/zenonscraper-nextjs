@@ -2,10 +2,10 @@ import * as db from '../../services/db'
 import * as time from '../../utils/time'
 import ErrorPage from '../404'
 import styles from './momentum.module.scss'
-import Layout from '../../components/Layout'
+import Layout from '../../components/Layout/Layout'
 import Link from 'next/link'
-import Searchbar from '../../components/Searchbar'
-import AccountBlockTable from '../../components/AccountBlockTable'
+import Searchbar from '../../components/Searchbar/Searchbar'
+import AccountBlockTable from '../../components/AccountBlockTable/AccountBlockTable'
 import Image from 'next/image'
 
 export async function getServerSideProps(context) {

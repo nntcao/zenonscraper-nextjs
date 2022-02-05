@@ -1,4 +1,4 @@
-import Layout from "../../components/Layout"
+import Layout from "../../components/Layout/Layout"
 import styles from './legal.module.scss'
 
 export default function TermsAndConditions() {

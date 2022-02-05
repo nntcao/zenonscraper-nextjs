@@ -1,9 +1,9 @@
 import ErrorPage from "../404"
-import Layout from "../../components/Layout"
-import Searchbar from "../../components/Searchbar"
+import Layout from "../../components/Layout/Layout"
+import Searchbar from "../../components/Searchbar/Searchbar"
 import styles from './token.module.scss'
 import * as db from "../../services/db"
-import HoldersTable from "../../components/HoldersTable"
+import HoldersTable from "../../components/HoldersTable/HoldersTable"
 import Link from "next/link"
 import Image from "next/image"
 
