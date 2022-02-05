@@ -90,7 +90,7 @@ function Address({ address, accountBlocks, balances }) {
                 <div className={styles.card}>
                     <div className={styles.cardHeader}>
                         <div className={styles.cardHeaderLeft}>
-                            <h2 className={styles.cardTitle}>Recent Account Blocks/Transactions</h2>
+                            <h2 className={styles.cardTitle}>Recent Transactions</h2>
                             <h2 className={styles.cardSubtitle}>Displaying 1-10</h2>
                         </div>
                     </div>

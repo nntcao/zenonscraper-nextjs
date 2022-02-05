@@ -95,7 +95,7 @@ function Token({ tokenInformation, holdersInformation, countHolders, accountBloc
                 <div className={styles.card}>
                     <div className={styles.cardContent}>
                         <div className={styles.cardHeader}>
-                            <h2 className={styles.cardTitle}>Recent Account Blocks for {tokenInformation.symbol}</h2>
+                            <h2 className={styles.cardTitle}>Recent Transactions for {tokenInformation.symbol}</h2>
                         </div>
                         <AccountBlockTable accountBlocks={accountBlocks} />
                         <Link href={{ pathname: '/token/txs/[token]/[page]', query: { token: tokenInformation.tokenstandard, page: 1 } }}>

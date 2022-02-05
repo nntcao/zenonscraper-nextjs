@@ -109,7 +109,7 @@ function AccountBlock({ accountBlockInformation, descendantBlockInformation, pre
                         <div className={styles.cardright}>{accountBlockInformation.usedplasma}</div>
                         <div className={styles.cardleft}>Difficulty</div>
                         <div className={styles.cardright}>{accountBlockInformation.difficulty}</div>
-                        <div className={styles.cardleft}>Previous Account Block Hash:</div>
+                        <div className={styles.cardleft}>Previous Txn Hash:</div>
                         <div className={styles.cardright}>
                             <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlockInformation.previoushash } }}>
                                 <a className={styles.cardright}>{accountBlockInformation.previoushash}</a>
@@ -127,7 +127,7 @@ function AccountBlock({ accountBlockInformation, descendantBlockInformation, pre
                                 <a className={styles.cardright}>{accountBlockInformation.momentumacknowledgedhash}</a>
                             </Link>
                         </div>
-                        <div className={styles.cardleft}>Paired Account Block Hash:</div>
+                        <div className={styles.cardleft}>Paired Transaction Hash:</div>
                         <div className={styles.cardright}>
                             <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: accountBlockInformation.pairedhash } }}>
                                 <a className={styles.cardright}>{accountBlockInformation.pairedhash}</a>

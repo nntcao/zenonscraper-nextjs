@@ -87,21 +87,22 @@ export default function Momentum({ accountBlocks, momentumHeight, page, countBlo
                     <div className={styles.cardContent}>
                         <div className={styles.cardHeader}>
                             <div className={styles.cardHeaderLeft}>
-                                <h2 className={styles.cardTitle}> Account Blocks for 
-                                   <Link key={page} href={{ pathname: '/momentum/[height]', query: { height: momentumHeight } }} scroll={false}>
+                                <h2 className={styles.cardTitle}>
+                                    Transactions for
+                                    <Link key={page} href={{ pathname: '/momentum/[height]', query: { height: momentumHeight } }} scroll={false}>
                                         <a className={styles.cardTitle}> Momentum {momentumHeight}</a>
                                     </Link>
                                 </h2>
                                 <h2 className={styles.cardSubtitle}>Displaying {1 + (page - 1) * numPerPage} - {page * numPerPage}</h2>
                             </div>
                             <div className={styles.cardHeaderRight}>
-                                <Pagination currentPage={page} count={countBlocks} height={momentumHeight}/>
+                                <Pagination currentPage={page} count={countBlocks} height={momentumHeight} />
                             </div>
                         </div>
                         <AccountBlockTable accountBlocks={accountBlocks} />
                     </div>
                     <div className={styles.paginationWrapper}>
-                        <Pagination currentPage={page} count={countBlocks} height={momentumHeight}/>
+                        <Pagination currentPage={page} count={countBlocks} height={momentumHeight} />
                     </div>
                 </div>
             </div>
@@ -114,7 +115,7 @@ function Pagination({ currentPage, count, height }) {
     var pages: number[] = []
     const maxPage = Math.ceil(count / numPerPage)
     if (currentPage == 1 || currentPage == 2) {
-        for (let i = 1; i <6; i++) {
+        for (let i = 1; i < 6; i++) {
             pages.push(i)
         }
     } else {
@@ -132,7 +133,7 @@ function Pagination({ currentPage, count, height }) {
 
     return (
         <div className={styles.pagination}>
-            <BackArrow currentPage={currentPage} maxPage={maxPage} height={height}/>
+            <BackArrow currentPage={currentPage} maxPage={maxPage} height={height} />
             <div className={styles.pageNumbers}>
                 {pages.map(page => {
                     if (Number(page) === Number(currentPage)) {
@@ -150,7 +151,7 @@ function Pagination({ currentPage, count, height }) {
                     }
                 })}
             </div>
-            <ForwardArrow currentPage={currentPage} maxPage={maxPage} height={height}/>
+            <ForwardArrow currentPage={currentPage} maxPage={maxPage} height={height} />
         </div>
     )
 }

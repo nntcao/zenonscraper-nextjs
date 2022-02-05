@@ -110,7 +110,7 @@ function Home(props: any) {
             </Link>
           </div>
           <div className={styles.card}>
-            <h2 className={styles.cardTitle}>Latest Account Blocks/Transactions</h2>
+            <h2 className={styles.cardTitle}>Latest Transactions</h2>
             {
               props.accountBlockList.map((accountblock: any) => {
                 return <AccountBlockComponent accountblock={accountblock} key={accountblock.hash}/>

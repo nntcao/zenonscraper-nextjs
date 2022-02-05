@@ -49,7 +49,7 @@ export default function AccountBlockList({ accountBlocks, page }) {
                     <div className={styles.cardContent}>
                         <div className={styles.cardHeader}>
                             <div className={styles.cardHeaderLeft}>
-                                <h2 className={styles.cardTitle}>Confirmed Account Blocks</h2>
+                                <h2 className={styles.cardTitle}>Confirmed Transactions</h2>
                                 <h2 className={styles.cardSubtitle}>Displaying {1 + (page - 1) * numPerPage} - {page * numPerPage}</h2>
                             </div>
                             <div className={styles.cardHeaderRight}>

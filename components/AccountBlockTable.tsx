@@ -9,7 +9,7 @@ export default function AccountBlockTable({ accountBlocks }) {
 
     if (!accountBlocks || accountBlocks === null || accountBlocks.length === 0) {
         return (
-            <div> No account blocks found!</div>
+            <div> No transactions found!</div>
         )
     } else {
         return (

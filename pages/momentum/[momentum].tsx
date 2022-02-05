@@ -139,7 +139,7 @@ function Momentum(props: any) {
                     <div className={styles.cardContent}>
                         <div className={styles.cardHeader}>
                             <div className={styles.cardHeaderLeft}>
-                                <h2 className={styles.cardTitle}>Account Blocks for Momentum {momentum.height}</h2>
+                                <h2 className={styles.cardTitle}>Transactions for Momentum {momentum.height}</h2>
                                 <h2 className={styles.cardSubtitle}>Displaying 1-10</h2>
                             </div>
                             <div className={styles.cardHeaderRight}>
