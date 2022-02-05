@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 export default function Header() {
 
     const [isDesktop, setIsDesktop] = useState(true)
+    const [showNavigation, setShowNavigation] = useState(false)
 
     useEffect(() => {
         setIsDesktop(window.innerWidth > 1450)
@@ -24,22 +25,26 @@ export default function Header() {
             <div className={styles.header}>
                 <div className={styles.container}>
                     <Link href='/'>
-                        <a className={styles.logoWrapper}>
-                            <Image src="/banner.png" width="63" height="29" alt="Zenon Scraper Logo" />
+                        <a className={`${styles.logoWrapper} ${showNavigation && styles.logoWrapperHamburgerMenu}`}>
+                            {/* <Image src="/banner.png" width="63" height="29" alt="Zenon Scraper Logo" /> */}
+                            <div className={styles.logoImage}>
+                                <Image src="/banner.png" width="63" height="29" alt="Zenon Scraper Logo" />
+                            </div>
+                            <span className={styles.headerTitle}>Zenon Scraper</span>
                         </a>
                     </Link>
-                    <NavigationBar isDesktop={isDesktop} />
+                    <NavigationBar isDesktop={isDesktop} showNavigation={showNavigation} setShowNavigation={setShowNavigation} />
                 </div>
             </div>
         </nav>
     )
 }
 
-function NavigationBar({ isDesktop }) {
+function NavigationBar({ isDesktop, showNavigation, setShowNavigation }) {
     if (isDesktop) {
         return <DesktopNavigationBar />
     } else {
-        return <MobileNavigationBar />
+        return <MobileNavigationBar showNavigation={showNavigation} setShowNavigation={setShowNavigation}/>
     }
 }
 
@@ -47,13 +52,13 @@ function DesktopNavigationBar() {
     return (
         <div className={styles.options}>
             <Link href='/'>
-                <a className={styles.optionsText}>Home</a>
+                <a className={styles.optionsText}>Statistics</a>
             </Link>
             <Link href='/momentumlist/1'>
                 <a className={styles.optionsText}>Momentums</a>
             </Link>
             <Link href='/accountblocklist/1'>
-                <a className={styles.optionsText}>Account Blocks</a>
+                <a className={styles.optionsText}>Transactions</a>
             </Link>
             <Link href='/tokenlist'>
                 <a className={styles.optionsText}>Tokens</a>
@@ -68,8 +73,7 @@ function DesktopNavigationBar() {
     )
 }
 
-function MobileNavigationBar() {
-    const [showNavigation, setShowNavigation] = useState(false)
+function MobileNavigationBar({showNavigation, setShowNavigation}) {
 
     if (showNavigation) {
         return (
@@ -79,13 +83,13 @@ function MobileNavigationBar() {
                         <Image src="/close_black_24dp.svg" width={36} height={36} />
                     </button>
                     <Link href='/'>
-                        <a className={styles.optionsText}>Home</a>
+                        <a className={styles.optionsText}>Statistics</a>
                     </Link>
                     <Link href='/momentumlist/1'>
                         <a className={styles.optionsText}>Momentums</a>
                     </Link>
                     <Link href='/accountblocklist/1'>
-                        <a className={styles.optionsText}>Account Blocks</a>
+                        <a className={styles.optionsText}>Transactions</a>
                     </Link>
                     <Link href='/tokenlist'>
                         <a className={styles.optionsText}>Tokens</a>
