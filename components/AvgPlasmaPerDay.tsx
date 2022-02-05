@@ -66,15 +66,15 @@ export default function AvgPlasmaPerDayChart(props) {
                 data: formatData(props.data),
         
                 // color of the line chart
-                borderColor: '#3B82F6',
+                borderColor: '#00C800',
                 // partially transparent part below our line graph
-                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                backgroundColor: '#00C800',
                 borderWidth: 3,
                 pointRadius: props.pointRadius,
                 pointHoverRadius: 5,
                 borderCapStyle: 'butt',
-                pointHoverBackgroundColor: 'rgba(59, 130, 246, 1)',
-                pointHoverBorderColor: 'rgba(59, 130, 246, 1)',
+                pointHoverBackgroundColor: '#00C800',
+                pointHoverBorderColor: '#00C800',
                 pointHoverBorderWidth: 2
             }
         ]
