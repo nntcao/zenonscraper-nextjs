@@ -132,6 +132,10 @@ function Home(props: any) {
               <a className={styles.seeMore}>See more...</a>
             </Link>
           </div>
+          <div>
+            What is Zenon Network?
+          </div>
+
         </div>
       </section>
     </Layout>
@@ -146,9 +150,9 @@ function TokenComponent({ token }) {
           <a>{token.symbol}</a>
         </Link>
       </div>
-      <div className={styles.rightrow}>
+      <span className={`${styles.rightrow} ${styles.rowSubtext}`}>
         {token.countholders} Holders
-      </div>
+      </span>
     </div>
   )
 }
@@ -161,7 +165,7 @@ function MomentumComponent({ momentum }) {
           <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height }}}>
             <a>{momentum.height}</a>
           </Link>
-          <span>{`${time.msToFormattedTime(Date.now() - momentum.timestamp * 1000)} ago`}</span>
+          <span className={styles.rowSubtext}>{`${time.msToFormattedTime(Date.now() - momentum.timestamp * 1000)} ago`}</span>
        </div>
        <div className={styles.rightrow}>
         <MomentumTransactionsComponent momentum={momentum}/>
@@ -175,14 +179,14 @@ function MomentumTransactionsComponent({momentum}) {
   if (momentum.countblocks > 0) {
     return (
       <Link href={{pathname: '/momentum/[momentum]/[page]', query: { momentum: momentum.height, page: 1 }}}>
-        <a>{momentum.countblocks} Txs</a>
+        <a className={styles.rowSubtext}>{momentum.countblocks} Txs</a>
       </Link>
     )
   }
   return (
-    <>
+    <span className={styles.rowSubtext}>
       {momentum.countblocks} Txs
-    </>
+    </span>
   )
 }
 
@@ -196,9 +200,9 @@ function AccountBlockComponent({ accountblock }) {
               <a>{accountblock.hash}</a>
             </Link>
           </span>
-          <span>{`${time.msToFormattedTime(Date.now() - accountblock.timestamp * 1000)} ago`}</span>
+          <span className={styles.rowSubtext}>{`${time.msToFormattedTime(Date.now() - accountblock.timestamp * 1000)} ago`}</span>
         </div>
-        <div className={styles.middlerow}>
+        <div className={`${styles.middlerow} ${styles.rowSubtext}`}>
           From:&ensp;
           <Link href={{pathname: '/address/[address]', query: { address: accountblock.address }}}>
             <a className={styles.truncate}>{accountblock.address}&ensp;</a>
@@ -209,7 +213,7 @@ function AccountBlockComponent({ accountblock }) {
           </Link>
         </div>
         <div className={styles.rightrow}>
-          <span className={styles.amount}>{accountblock?.symbol ? (Math.round(accountblock.amount / (10 ** accountblock.decimals) * 100) / 100) : 'N/A'}</span> 
+          <span className={`${styles.amount} ${styles.rowSubtext}`}>{accountblock?.symbol ? (Math.round(accountblock.amount / (10 ** accountblock.decimals) * 100) / 100) : 'N/A'}</span> 
           <Link href={{pathname: '/token/[token]', query: { token: accountblock.symbol }}}>
             <a> {accountblock.symbol}</a>
           </Link>

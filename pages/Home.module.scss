@@ -45,14 +45,14 @@
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        border-width: 1px;
-        border-style: solid;
+        // border-width: 1px;
+        // border-style: solid;
         border-radius: 10px;
-        border-color: #d4d4d4;
+        // border-color: #d4d4d4;
         padding: 1rem;
         margin: 1rem;
         margin-left: 0rem;
-        box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.5);
+        box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 1.0);
         transition: box-shadow 100ms;
     }
     
@@ -75,7 +75,7 @@
 }
 
 .card:hover {
-    box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.8);
+    box-shadow: 0 0.5rem 0.6rem rgba(171, 179, 190, 0.8);
 }
 
 .noBreak {
@@ -86,8 +86,8 @@
 }
 
 .row:hover {
-    background-color: #e0f7e079;
-    box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.4);
+    // background-color: #f0f3f0c2;
+    background-color: #ebebeb;
 }
 
 .row {
@@ -99,8 +99,7 @@
 }
 
 .rowMomentum:hover {
-    background-color: #e0f7e079;
-    box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.4);
+    background-color: #ebebeb;
 }
 
 
@@ -110,7 +109,10 @@
     align-items: center;
     margin-bottom: .55rem;
     margin-top: .25rem;
+}
 
+.rowSubtext {
+    color: #3f3f3f;
 }
 
 .leftrow {
@@ -141,7 +143,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: clamp(3vw, 15vw, 50vw);
     text-align: center;
     vertical-align: middle;
 }
