@@ -9,7 +9,7 @@ import {
     Tooltip,
     Legend,
   } from 'chart.js';
-import * as time from '../utils/time'
+import * as time from '../../utils/time'
 
 ChartJS.register(
     CategoryScale,

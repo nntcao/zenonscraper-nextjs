@@ -52,7 +52,7 @@ function DesktopNavigationBar() {
     return (
         <div className={styles.options}>
             <Link href='/'>
-                <a className={styles.optionsText}>Statistics</a>
+                <a className={styles.optionsText}>Home</a>
             </Link>
             <Link href='/momentumlist/1'>
                 <a className={styles.optionsText}>Momentums</a>
@@ -83,7 +83,7 @@ function MobileNavigationBar({showNavigation, setShowNavigation}) {
                         <Image src="/close_black_24dp.svg" width={36} height={36} />
                     </button>
                     <Link href='/'>
-                        <a className={styles.optionsText}>Statistics</a>
+                        <a className={styles.optionsText}>Home</a>
                     </Link>
                     <Link href='/momentumlist/1'>
                         <a className={styles.optionsText}>Momentums</a>

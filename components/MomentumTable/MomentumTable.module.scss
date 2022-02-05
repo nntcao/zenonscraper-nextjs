@@ -1,3 +1,4 @@
+
 .tablescroll {
     display: inline-block;
     overflow-x: auto;
@@ -35,13 +36,14 @@
     font-size: 1rem;
 }
 
+
 .abrows:hover {
     // background-color: #e0f7e079;
     background-color: #ebebeb;
-
 }
 
 .truncate {
+    display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

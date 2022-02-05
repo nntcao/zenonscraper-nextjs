@@ -1,6 +1,6 @@
 import styles from "./MomentumTable.module.scss"
 import Link from "next/link"
-import * as time from "../utils/time"
+import * as time from "../../utils/time"
 import { useState } from "react"
 
 export default function MomentumTable({ momentums }) {
