@@ -10,10 +10,6 @@
     }
 }
 
-.button {
-  color: #0066cc;
-}
-
 .abheader {
     display: table-header-group;
     text-align: left;
@@ -42,8 +38,9 @@
 
 
 .abrows:hover {
-    background-color: #e0f7e079;
-    box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 0.4);
+    // background-color: #e0f7e079;
+    background-color: #ebebeb;
+
 
 }
 
