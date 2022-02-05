@@ -1,7 +1,7 @@
-import Layout from '../components/Layout'
+import Layout from '../components/Layout/Layout'
 import styles from './404.module.scss'
 import Link from 'next/link'
-import Searchbar from '../components/Searchbar'
+import Searchbar from '../components/Searchbar/Searchbar'
 
 export default function ErrorPage() {
     return (
