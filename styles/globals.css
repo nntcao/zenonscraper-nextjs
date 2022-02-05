@@ -17,20 +17,34 @@ button {
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+  color: #007185;
+}
+
+button:hover {
+  color: #C7511F;
+  text-decoration: underline;
 }
 
 a {
   text-decoration: none;
-  color: #0066cc;
+  /* color: #0066cc; */
+  /* color: #233323; */
+  /* color: #053816; */
+  color: #007185;
+  /* color: #008529; */
 }
 
 a:visited {
-  color: #0066cc;
+  /* color: #0066cc; */
+  /* color: #00C800; */
+  color: #007185;
 }
 
 a:hover {
-  color: #00e100;
+  color: #C7511F;
+  /* color: #0066cc; */
   cursor: pointer;
+  text-decoration: underline;
 }
 
 * {
@@ -40,7 +54,7 @@ a:hover {
   margin-block-start:0; margin-block-end:0; margin-inline-start:0; margin-inline-end:0;
   padding-block-start:0; padding-block-end:0; padding-inline-start:0; padding-inline-end:0;
   font-size: .875rem;
-  font-family: 'Roboto-Light';
+  font-family: 'Roboto-Regular';
   color: #222222;
   line-height: 130%;
 }
@@ -69,3 +83,14 @@ a:hover {
   font-family: 'Roboto-Bold';
   src: url('/fonts/Roboto-Bold.ttf');
 }
+
+@font-face {
+  font-family: 'Space-Mono-Regular';
+  src: url('/fonts/Space-Mono/Space-Mono-Regular');
+}
+
+@font-face {
+  font-family: 'Space-Mono-Bold';
+  src: url('/fonts/Space-Mono/Space-Mono-Bold');
+}
+
