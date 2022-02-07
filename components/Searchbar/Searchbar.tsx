@@ -5,9 +5,6 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef, useState, createRef } from 'react'
 import { ThreeDots } from 'react-loader-spinner'
 
-// const searchApiURL = 'http://localhost:3000/api/search'
-// const searchApiURL = 'https://www.zenonscraper.com/api/search'
-
 export function Searchbar() {
 
     const router = useRouter()
@@ -27,29 +24,46 @@ export function Searchbar() {
             const cleanedQuery = query.trim()
             if (cleanedQuery === '') {
                 setDropDown(false)
+                setSuggestionsRef((suggestionsRef) => Array([].length + 1).fill(createRef()).map((_, i) => suggestionsRef[i] ?? createRef()))
                 setSuggestions([])
             } else {
                 const res = await fetch(`${window.location.origin}/api/search?query=${cleanedQuery}`)
                 const json = await res.json()
+                setSuggestionsRef((suggestionsRef) => Array([...json].length + 1).fill(createRef()).map((_, i) => suggestionsRef[i] ?? createRef()))
                 setSuggestions([...json])
             }
-            setSuggestionsRef((suggestionsRef) => Array(suggestions.length + 1).fill(createRef()).map((_, i) => suggestionsRef[i] ?? createRef()))
             setIsLoading(false)
         }
         fetchSearchSuggestions()
     }, [query])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         if (query !== '') {
-            if (suggestions.length > 0) {
-                router.push({
-                    pathname: suggestions[1].url
-                })
+            if (isLoading) {
+                const cleanedQuery = query.trim()
+                const res = await fetch(`${window.location.origin}/api/search?query=${cleanedQuery}`)
+                const tempSuggestions = await res.json()
+
+                if (tempSuggestions.length > 0) {
+                    router.push({
+                        pathname: tempSuggestions[1].url
+                    })
+                } else {
+                    router.push({
+                        pathname: '/404'
+                    })
+                }    
             } else {
-                router.push({
-                    pathname: '/404'
-                })
+                if (suggestions.length > 0) {
+                    router.push({
+                        pathname: suggestions[1].url
+                    })
+                } else {
+                    router.push({
+                        pathname: '/404'
+                    })
+                }    
             }
         }
     }
@@ -62,6 +76,10 @@ export function Searchbar() {
     const onClickFocusInput = () => {
         document.getElementById('searchbar').focus()
         return false
+    }
+    const closeDropDownMenu = () => {
+        setDropDown(false)
+        setQuery('')
     }
 
     if (isDropDown) {
@@ -89,7 +107,7 @@ export function Searchbar() {
                     </form>
                     <div id="dropdown" className={`${styles.dropDownMenu}`}>
                         <div className={styles.breakLine} />
-                        <DropDownSuggestions isLoading={isLoading} dropDownSuggestions={suggestions} suggestionsRef={suggestionsRef} />
+                        <DropDownMenu isLoading={isLoading} dropDownSuggestions={suggestions} suggestionsRef={suggestionsRef} closeDropDownMenu={closeDropDownMenu}/>
                     </div>
                 </div>
             </>
@@ -123,8 +141,19 @@ export function Searchbar() {
     }
 }
 
-function DropDownSuggestions({ isLoading, dropDownSuggestions, suggestionsRef }) {
+function DropDownMenu({ isLoading, dropDownSuggestions, suggestionsRef, closeDropDownMenu }) {
+    if (isLoading) {
+        return (
+            <ul className={styles.dropDownMenuList}>
+                <ThreeDots color='#00C800' wrapperClass={styles.threeDotsWrapper} width={60} height={60} />
+            </ul>
+        )
+    } else {
+        return <Suggestions dropDownSuggestions={dropDownSuggestions} suggestionsRef={suggestionsRef} closeDropDownMenu={closeDropDownMenu}/>
+    }
+}
 
+function Suggestions({ dropDownSuggestions, suggestionsRef, closeDropDownMenu }) {
     const [indexDropDown, setIndexDropDown] = useState(0)
 
     useEffect(() => {
@@ -159,7 +188,7 @@ function DropDownSuggestions({ isLoading, dropDownSuggestions, suggestionsRef })
         return () => document.removeEventListener("keydown", handleKeyDown)
     })
 
-    if (dropDownSuggestions.length == 0 && isLoading === false) {
+    if (dropDownSuggestions.length == 0) {
         return (
             <ul className={styles.dropDownMenuList}>
                 <li>
@@ -177,14 +206,14 @@ function DropDownSuggestions({ isLoading, dropDownSuggestions, suggestionsRef })
     } else {
         return (
             <ul className={styles.dropDownMenuList}>
-                <ThreeDots color='#00C800' visible={isLoading} wrapperClass={styles.threeDotsWrapper} width={60} height={60} />
-                {!isLoading && dropDownSuggestions?.map((suggestion, i) => {
+                {dropDownSuggestions?.map((suggestion, i) => {
                     return (
                         <li key={suggestion.val}>
                             <Link href={suggestion.url}>
                                 <a 
                                     className={styles.dropDownMenuElement}
                                     ref={suggestionsRef[i + 1]}
+                                    onClick={closeDropDownMenu}
                                 >
                                     <div className={`${styles.searchIcon} ${styles.dropDownIcon}`}>
                                         <Image src="/search_black_24dp.svg" width="25" height="25" alt="Search Bar Icon" />
@@ -198,6 +227,7 @@ function DropDownSuggestions({ isLoading, dropDownSuggestions, suggestionsRef })
             </ul>
         )
     }
+
 }
 
 function useOutsideAlerter(ref, handleClickOutside) {
