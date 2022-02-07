@@ -132,10 +132,6 @@ function Home(props: any) {
               <a className={styles.seeMore}>See more...</a>
             </Link>
           </div>
-          <div>
-            What is Zenon Network?
-          </div>
-
         </div>
       </section>
     </Layout>
