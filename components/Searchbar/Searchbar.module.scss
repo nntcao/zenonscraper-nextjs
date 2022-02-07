@@ -63,6 +63,10 @@
     padding-bottom: 0.35rem;
 }
 
+.threeDotsWrapper {
+    align-self: center;
+}
+
 .searchOnDropDown {
     box-shadow: none;
     border-radius: 10px 10px 0px 0px;
@@ -74,7 +78,7 @@
 }
 
 .breakLine {
-    border-top: 2px solid rgba(189, 197, 209, 0.5);
+    border-top: 3px solid rgba(189, 197, 209, 0.5);
     display: block;
     position: relative;
     width: 97%;
@@ -84,7 +88,8 @@
 
 .dropDownMenuList {
     list-style: none;
-
+    display: flex;
+    flex-direction: column;
 }
 
 .dropDownMenuElement {
@@ -99,15 +104,15 @@
     cursor: pointer;
 }
 
-.dropDownMenuElement:hover {
+.dropDownMenuElement:hover, .dropDownMenuElement:focus {
     text-decoration: none;
     background-color: #d4d4d4;    
 }
 
 .dropDownText {
     font-size: 1rem;
-    padding-left: 1rem;
     word-break: break-all;
+    padding-bottom: .25rem;
 }
 
 .hidden {
@@ -119,8 +124,16 @@
     font-weight: 600;
 }
 
+.italicsDropDownText {
+    font-family: 'Roboto-Italic';
+}
+
 .searchIcon {
     filter: invert(9%) sepia(3%) saturate(23%) hue-rotate(343deg) brightness(99%) contrast(90%);
     min-width: 25px;
     min-height: 25px;
 }  
+
+.dropDownIcon {
+    padding-right: 1rem;
+}
