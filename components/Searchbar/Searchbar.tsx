@@ -6,7 +6,7 @@ import { useEffect, useRef, useState, createRef } from 'react'
 import { ThreeDots } from 'react-loader-spinner'
 
 // const searchApiURL = 'http://localhost:3000/api/search'
-const searchApiURL = 'https://www.zenonscraper.com/api/search'
+// const searchApiURL = 'https://www.zenonscraper.com/api/search'
 
 export function Searchbar() {
 
@@ -29,7 +29,7 @@ export function Searchbar() {
                 setDropDown(false)
                 setSuggestions([])
             } else {
-                const res = await fetch(`${searchApiURL}?query=${cleanedQuery}`)
+                const res = await fetch(`${document.URL}?query=${cleanedQuery}`)
                 const json = await res.json()
                 setSuggestions([...json])
             }
