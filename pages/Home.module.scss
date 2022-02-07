@@ -43,6 +43,7 @@
         
     .card {
         display: flex;
+        position: relative;
         flex-direction: column;
         flex-grow: 1;
         // border-width: 1px;
@@ -52,7 +53,7 @@
         padding: 1rem;
         margin: 1rem;
         margin-left: 0rem;
-        box-shadow: 0 0.5rem 1.2rem rgba(189, 197, 209, 1.0);
+        box-shadow: 0 0.5rem 0.8rem rgba(189, 197, 209, 1.0);
         transition: box-shadow 100ms;
     }
     
@@ -75,7 +76,7 @@
 }
 
 .card:hover {
-    box-shadow: 0 0.5rem 0.6rem rgba(171, 179, 190, 0.8);
+    box-shadow: 0 0.5rem 0.8rem rgb(171, 178, 187);
 }
 
 .noBreak {
@@ -123,9 +124,13 @@
 
 .middlerow {
     vertical-align: middle;
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-template-columns: auto 1fr;
+    display: flex;
+    flex-direction: column;
+}
+
+.middlerowLine {
+    display: flex;
+    flex-direction: row;
 }
 
 .rightrow {
