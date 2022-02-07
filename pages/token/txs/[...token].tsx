@@ -81,9 +81,10 @@ export function AccountBlockTokenList({ page, token, countBlocks, accountBlocks 
                     <div className={styles.cardContent}>
                         <div className={styles.cardHeader}>
                             <div className={styles.cardHeaderLeft}>
-                                 <h2 className={styles.cardTitle}>Transactions for  
+                                 <h2 className={styles.cardTitle}>
+                                    Transactions for&nbsp;  
                                     <Link href={{ pathname: '/token/[symbol]', query: { symbol: token.symbol } }}>
-                                        <a className={styles.cardTitle}> Token {token.symbol}</a>
+                                        <a className={styles.cardTitle}>Token {token.symbol}</a>
                                     </Link>
                                 </h2>
                                 <h2 className={styles.cardSubtitle}>Displaying {1 + (page - 1) * numPerPage} - {page * numPerPage}</h2>

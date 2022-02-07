@@ -88,9 +88,9 @@ export default function Momentum({ accountBlocks, momentumHeight, page, countBlo
                         <div className={styles.cardHeader}>
                             <div className={styles.cardHeaderLeft}>
                                 <h2 className={styles.cardTitle}>
-                                    Transactions for
+                                    Transactions for&nbsp;
                                     <Link key={page} href={{ pathname: '/momentum/[height]', query: { height: momentumHeight } }} scroll={false}>
-                                        <a className={styles.cardTitle}> Momentum {momentumHeight}</a>
+                                        <a className={styles.cardTitle}>Momentum {momentumHeight}</a>
                                     </Link>
                                 </h2>
                                 <h2 className={styles.cardSubtitle}>Displaying {1 + (page - 1) * numPerPage} - {page * numPerPage}</h2>

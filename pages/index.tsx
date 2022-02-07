@@ -8,7 +8,7 @@ import Searchbar from '../components/Searchbar/Searchbar'
 import AvgPlasmaPerDayChart from '../components/AveragePlasmaChart/AvgPlasmaPerDay'
 import TransactionsPerDayChart from '../components/AccountBlockTable/TransactionsChart/TransactionsPerDay'
 
-export async function getServerSideProps({ req, res}) {
+export async function getServerSideProps({ req, res }) {
   res.setHeader(
     'Cache-Control',
     'public, s-maxage=10, stale-while-revalidate=59'
@@ -85,24 +85,24 @@ function Home(props: any) {
           <div className={styles.titlebox}>
             <h1 className={styles.title}>The Zenon Scraper Blockchain Explorer</h1>
           </div>
-          <Searchbar /> 
+          <Searchbar />
         </div>
         <div className={`${styles.cards} ${styles.cardsChart}`}>
           <div className={`${styles.card} ${styles.cardChart}`}>
-              <h2 className={styles.cardTitle}>Number of Transactions - Last 30 Days</h2>
-              <TransactionsPerDayChart data={props.transactionData} />
-            </div>
-            <div className={`${styles.card} ${styles.cardChart}`}>
-              <h2 className={styles.cardTitle}>Average Plasma Usage - Last 30 Days</h2>
-              <AvgPlasmaPerDayChart data={props.plasmaData} />
-            </div>
+            <h2 className={styles.cardTitle}>Number of Transactions - Last 30 Days</h2>
+            <TransactionsPerDayChart data={props.transactionData} />
+          </div>
+          <div className={`${styles.card} ${styles.cardChart}`}>
+            <h2 className={styles.cardTitle}>Average Plasma Usage - Last 30 Days</h2>
+            <AvgPlasmaPerDayChart data={props.plasmaData} />
+          </div>
         </div>
         <div className={styles.cards}>
           <div className={styles.card}>
             <h2 className={styles.cardTitle}>Latest Momentums</h2>
             {
               props.momentumList.map((momentum: any) => {
-                return <MomentumComponent momentum={momentum} key={momentum.hash}/>
+                return <MomentumComponent momentum={momentum} key={momentum.hash} />
               })
             }
             <Link href="/momentumlist/1">
@@ -113,8 +113,8 @@ function Home(props: any) {
             <h2 className={styles.cardTitle}>Latest Transactions</h2>
             {
               props.accountBlockList.map((accountblock: any) => {
-                return <AccountBlockComponent accountblock={accountblock} key={accountblock.hash}/>
-                }
+                return <AccountBlockComponent accountblock={accountblock} key={accountblock.hash} />
+              }
               )
             }
             <Link href="/accountblocklist/1">
@@ -146,7 +146,7 @@ function TokenComponent({ token }) {
   return (
     <div className={styles.rowMomentum}>
       <div className={styles.leftrow}>
-        <Link href={{pathname: '/token/[token]', query: { token: token.symbol }}}>
+        <Link href={{ pathname: '/token/[token]', query: { token: token.symbol } }}>
           <a>{token.symbol}</a>
         </Link>
       </div>
@@ -160,25 +160,27 @@ function TokenComponent({ token }) {
 function MomentumComponent({ momentum }) {
   return (
     <div>
-     <div className={styles.rowMomentum} >
-       <div className={styles.leftrow}>
-          <Link href={{pathname: '/momentum/[momentum]', query: { momentum: momentum.height }}}>
-            <a>{momentum.height}</a>
-          </Link>
+      <div className={styles.rowMomentum} >
+        <div className={styles.leftrow}>
+          <div>
+            <Link href={{ pathname: '/momentum/[momentum]', query: { momentum: momentum.height } }}>
+              <a>{momentum.height}</a>
+            </Link>
+          </div>
           <span className={styles.rowSubtext}>{`${time.msToFormattedTime(Date.now() - momentum.timestamp * 1000)} ago`}</span>
-       </div>
-       <div className={styles.rightrow}>
-        <MomentumTransactionsComponent momentum={momentum}/>
-       </div>
-     </div>
-   </div>
+        </div>
+        <div className={styles.rightrow}>
+          <MomentumTransactionsComponent momentum={momentum} />
+        </div>
+      </div>
+    </div>
   )
 }
 
-function MomentumTransactionsComponent({momentum}) {
+function MomentumTransactionsComponent({ momentum }) {
   if (momentum.countblocks > 0) {
     return (
-      <Link href={{pathname: '/momentum/[momentum]/[page]', query: { momentum: momentum.height, page: 1 }}}>
+      <Link href={{ pathname: '/momentum/[momentum]/[page]', query: { momentum: momentum.height, page: 1 } }}>
         <a className={styles.rowSubtext}>{momentum.countblocks} Txs</a>
       </Link>
     )
@@ -196,30 +198,34 @@ function AccountBlockComponent({ accountblock }) {
       <div className={styles.row}>
         <div className={styles.leftrow}>
           <span className={styles.truncate}>
-            <Link href={{pathname: '/accountblock/[accountblock]', query: { accountblock: accountblock.hash }}}>
+            <Link href={{ pathname: '/accountblock/[accountblock]', query: { accountblock: accountblock.hash } }}>
               <a>{accountblock.hash}</a>
             </Link>
           </span>
           <span className={styles.rowSubtext}>{`${time.msToFormattedTime(Date.now() - accountblock.timestamp * 1000)} ago`}</span>
         </div>
         <div className={`${styles.middlerow} ${styles.rowSubtext}`}>
-          From:&ensp;
-          <Link href={{pathname: '/address/[address]', query: { address: accountblock.address }}}>
-            <a className={styles.truncate}>{accountblock.address}&ensp;</a>
-          </Link>
-          To:&ensp;
-          <Link href={{pathname: '/address/[address]', query: { address: accountblock.toaddress }}}>
-            <a className={styles.truncate}>{accountblock.toaddress}</a> 
-          </Link>
+          <div className={styles.middlerowLine}>
+            <span>From:&ensp;</span>
+            <Link href={{ pathname: '/address/[address]', query: { address: accountblock.address } }}>
+              <a className={styles.truncate}>{accountblock.address}&ensp;</a>
+            </Link>
+          </div>
+          <div className={styles.middlerowLine}>
+            <span>To:&ensp;</span>
+            <Link href={{ pathname: '/address/[address]', query: { address: accountblock.toaddress } }}>
+              <a className={styles.truncate}>{accountblock.toaddress}</a>
+            </Link>
+          </div>
         </div>
         <div className={styles.rightrow}>
-          <span className={`${styles.amount} ${styles.rowSubtext}`}>{accountblock?.symbol ? (Math.round(accountblock.amount / (10 ** accountblock.decimals) * 100) / 100) : 'N/A'}</span> 
-          <Link href={{pathname: '/token/[token]', query: { token: accountblock.symbol }}}>
+          <span className={`${styles.amount} ${styles.rowSubtext}`}>{accountblock?.symbol ? (Math.round(accountblock.amount / (10 ** accountblock.decimals) * 100) / 100) : 'N/A'}</span>
+          <Link href={{ pathname: '/token/[token]', query: { token: accountblock.symbol } }}>
             <a> {accountblock.symbol}</a>
           </Link>
         </div>
       </div>
-   </div>
+    </div>
   )
 }
 
