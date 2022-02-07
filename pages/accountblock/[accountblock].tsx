@@ -64,7 +64,7 @@ function AccountBlock({ accountBlockInformation, descendantBlockInformation, pre
                 </div>
                 <div className={styles.card}>
                     <div className={styles.cardHeader}>
-                        <h2 className={styles.cardTitle}>Account Block {accountBlockInformation.hash}</h2>
+                        <h2 className={styles.cardTitle}>Transaction <span className={`${styles.cardTitle} ${styles.breakAll}`}>{accountBlockInformation.hash}</span></h2>
                         <Choices prevHash={prevAccountBlockHash} nextHash={nextAccountBlockHash} />
                     </div>
                     <div className={styles.cardbody}>

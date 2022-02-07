@@ -77,7 +77,7 @@ function Address({ address, accountBlocks, balances }) {
                     <div className={styles.cardContent}>
                         <div className={styles.cardHeader}>
                             <div className={styles.cardHeaderLeft}>
-                                <h2 className={styles.cardTitle}>Address {address.address}</h2>
+                                <h2 className={styles.cardTitle}>Address <span className={`${styles.cardTitle} ${styles.breakAll}`}>{address.address}</span></h2>
                             </div>
                         </div>
                         <div className={styles.cardbody}>
