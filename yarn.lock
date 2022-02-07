@@ -1361,7 +1361,7 @@
   "resolved" "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   "version" "1.4.0"
 
-"next@^12.0.8", "next@>=10.2.0":
+"next@^12.0.8", "next@>= 6.0.0 <=12.x.x", "next@>=10.2.0":
   "integrity" "sha512-omfYqoR/DvbdOIJ6SS1unKJ4mGIxUPs0RPa7wr/Mft22OCKgJhuG+aI9KFYi5ZJBwoFQk1vqaMKpWz5qr+dN0Q=="
   "resolved" "https://registry.npmjs.org/next/-/next-12.0.9.tgz"
   "version" "12.0.9"
@@ -1383,6 +1383,14 @@
     "@next/swc-win32-arm64-msvc" "12.0.9"
     "@next/swc-win32-ia32-msvc" "12.0.9"
     "@next/swc-win32-x64-msvc" "12.0.9"
+
+"nextjs-progressbar@^0.0.13":
+  "integrity" "sha512-vuE9/j1yaFyHhMVwdlPZbGbcwnvoZZMH8fXUG+HCa+w5uojRNOMO43EL+o9YZ53QwQHsjWdfUapz+J8D/u3jFw=="
+  "resolved" "https://registry.npmjs.org/nextjs-progressbar/-/nextjs-progressbar-0.0.13.tgz"
+  "version" "0.0.13"
+  dependencies:
+    "nprogress" "^0.2.0"
+    "prop-types" "^15.7.2"
 
 "node-abi@^3.3.0":
   "integrity" "sha512-LtHvNIBgOy5mO8mPEUtkCW/YCRWYEKshIvqhe1GHHyXEHEB5mgICyYnAcl4qan3uFeRROErKGzatFHPf6kDxWw=="
@@ -1410,6 +1418,11 @@
     "console-control-strings" "~1.1.0"
     "gauge" "~2.7.3"
     "set-blocking" "~2.0.0"
+
+"nprogress@^0.2.0":
+  "integrity" "sha1-y480xTIT2JVyP8urkH6UIq28r7E="
+  "resolved" "https://registry.npmjs.org/nprogress/-/nprogress-0.2.0.tgz"
+  "version" "0.2.0"
 
 "number-is-nan@^1.0.0":
   "integrity" "sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0="
@@ -1738,7 +1751,7 @@
   "resolved" "https://registry.npmjs.org/react-loader-spinner/-/react-loader-spinner-5.1.0.tgz"
   "version" "5.1.0"
 
-"react@^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^17.0.2", "react@^17.0.2 || ^18.0.0-0", "react@>= 16.8.0 || 17.x.x || 18.x.x", "react@17.0.2":
+"react@^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^17.0.2", "react@^17.0.2 || ^18.0.0-0", "react@>= 16.0.0 <= 17.x.x", "react@>= 16.8.0 || 17.x.x || 18.x.x", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
