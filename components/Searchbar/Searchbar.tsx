@@ -40,33 +40,16 @@ export function Searchbar() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (query.length > 7) {
-            if (query.substring(0, 3).toLowerCase() === 'z1q') {
+        if (query !== '') {
+            if (suggestions.length > 0) {
                 router.push({
-                    pathname: '/address/[address]',
-                    query: { address: query }
-                })
-            } else if (query.substring(0, 3).toLowerCase() === 'zts') {
-                router.push({
-                    pathname: '/token/[token]',
-                    query: { address: query }
+                    pathname: suggestions[1].url
                 })
             } else {
                 router.push({
-                    pathname: '/accountblock/[accountblock]',
-                    query: { accountblock: query }
+                    pathname: '/404'
                 })
             }
-        } else if (!isNaN(Number(query))) {
-            router.push({
-                pathname: '/momentum/[momentum]',
-                query: { momentum: query }
-            })
-        } else {
-            router.push({
-                pathname: '/token/[token]',
-                query: { token: query }
-            })
         }
     }
     const handleParam = setValue => e => {
@@ -79,6 +62,7 @@ export function Searchbar() {
         document.getElementById('searchbar').focus()
         return false
     }
+
     if (isDropDown) {
         return (
             <>
@@ -151,8 +135,6 @@ function DropDownSuggestions({ isLoading, dropDownSuggestions, suggestionsRef })
             }
         }
         function handleArrowDown(event) {
-            console.log(suggestionsRef);
-            
             const indexElementToFocus = indexDropDown + 1 < suggestionsRef.length ? indexDropDown + 1 : 0
             if (suggestionsRef[indexElementToFocus]?.current) {
                 suggestionsRef[indexElementToFocus].current?.focus()
@@ -229,9 +211,6 @@ function useOutsideAlerter(ref, handleClickOutside) {
             document.removeEventListener("mousedown", checkClickLocation)
         }
     })
-}
-
-function useKeyPress(ref, index, setIndex) {
 }
 
 export default Searchbar
