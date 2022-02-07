@@ -30,13 +30,13 @@ export default function TermsAndConditions() {
                         <p className={styles.text}><strong className={`${styles.text} ${styles.strong}`}>Service</strong> refers to the Website.</p>
                     </li>
                     <li className={styles.listElement}>
-                        <p className={styles.text}><strong className={`${styles.text} ${styles.strong}`}>Terms and Conditions</strong> (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service. This Terms and Conditions agreement has been created with the help of the <a className={`${styles.link} ${styles.text}`} href="https://www.termsfeed.com/terms-conditions-generator/" target="_blank">Terms and Conditions Generator</a>.</p>
+                        <p className={styles.text}><strong className={`${styles.text} ${styles.strong}`}>Terms and Conditions</strong> (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service. This Terms and Conditions agreement has been created with the help of the <a className={`${styles.link} ${styles.text}`} href="https://www.termsfeed.com/terms-conditions-generator/">Terms and Conditions Generator</a>.</p>
                     </li>
                     <li className={styles.listElement}>
                         <p className={styles.text}><strong className={`${styles.text} ${styles.strong}`}>Third-party Social Media Service</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</p>
                     </li>
                     <li className={styles.listElement}>
-                        <p className={styles.text}><strong className={`${styles.text} ${styles.strong}`}>Website</strong> refers to Zenon Scraper, accessible from <a className={`${styles.link} ${styles.text}`} href="www.zenonscraper.com" rel="external nofollow noopener" target="_blank">www.zenonscraper.com</a></p>
+                        <p className={styles.text}><strong className={`${styles.text} ${styles.strong}`}>Website</strong> refers to Zenon Scraper, accessible from <a className={`${styles.link} ${styles.text}`} href="www.zenonscraper.com" rel="external nofollow noopener">www.zenonscraper.com</a></p>
                     </li>
                     <li className={styles.listElement}>
                         <p className={styles.text}><strong className={`${styles.text} ${styles.strong}`}>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
