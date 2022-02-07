@@ -5,7 +5,8 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef, useState, createRef } from 'react'
 import { ThreeDots } from 'react-loader-spinner'
 
-const searchApiURL = 'http://localhost:3000/api/search'
+// const searchApiURL = 'http://localhost:3000/api/search'
+const searchApiURL = 'https://www.zenonscraper.com/api/search'
 
 export function Searchbar() {
 
