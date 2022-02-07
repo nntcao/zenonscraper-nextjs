@@ -29,7 +29,7 @@ export function Searchbar() {
                 setDropDown(false)
                 setSuggestions([])
             } else {
-                const res = await fetch(`${document.URL}?query=${cleanedQuery}`)
+                const res = await fetch(`${window.location.origin}/api/search?query=${cleanedQuery}`)
                 const json = await res.json()
                 setSuggestions([...json])
             }
