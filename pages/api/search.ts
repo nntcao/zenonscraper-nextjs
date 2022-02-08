@@ -5,19 +5,13 @@ const baseURL = "localhost:3000"
 export default async function handler(req, res) {
     let suggestions = []
     const query: string = String(req.query.query).toLowerCase()
-    const queryNumber: number = isNaN(Number(query)) ? -1 : Number(query)
 
     if (query === '') {
         return res.status(200).json(suggestions)
     }
 
     try {
-        const possibleTokens = await getPossibleTokens(query)
-        const possibleAddresses = await getPossibleAddresses(query)
-        const possibleTxns = await getPossibleTxns(query)
-        const possibleMomentums = await getPossibleMomentums(query, queryNumber)
-
-        const possibilities = [possibleTokens, possibleAddresses, possibleTxns, possibleMomentums]
+        const possibilities = await Promise.all([getPossibleTokens(query), getPossibleAddresses(query), getPossibleTxns(query), getPossibleMomentums(query)])
         const possibilitiesIndex = [0, 0, 0, 0]
         for (let i = 0; i < 7; i++) {
             for (let j = 0; j < 4; j++) {
@@ -138,8 +132,9 @@ async function getPossibleTxns(query) {
     return possibleTxns
 }
 
-async function getPossibleMomentums(query, queryNumber) {
+async function getPossibleMomentums(query) {
     const possibleMomentums = []
+    const queryNumber: number = isNaN(Number(query)) ? -1 : Number(query)
     const momentumHeightQuery = await db.query(`
         SELECT height FROM momentum
         WHERE height = $1
