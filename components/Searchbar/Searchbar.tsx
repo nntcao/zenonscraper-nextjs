@@ -47,7 +47,7 @@ export function Searchbar() {
 
                 if (tempSuggestions.length > 0) {
                     router.push({
-                        pathname: tempSuggestions[1].url
+                        pathname: tempSuggestions[0].url
                     })
                 } else {
                     router.push({
@@ -57,7 +57,7 @@ export function Searchbar() {
             } else {
                 if (suggestions.length > 0) {
                     router.push({
-                        pathname: suggestions[1].url
+                        pathname: suggestions[0].url
                     })
                 } else {
                     router.push({

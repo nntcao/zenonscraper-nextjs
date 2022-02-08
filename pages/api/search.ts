@@ -78,14 +78,6 @@ async function getPossibleAddresses(query) {
         LIMIT 7
     `, [`${query}%`])
 
-    if (query.substring(0, 3) === 'z1q' && query.length === 40) {
-        possibleAddresses.push({
-            val: query,
-            type: "Address",
-            url: `/address/${query}`,
-        })
-    }
-
     possibleAddresses.push(...addressQuery?.rows.map(queryResult => {
         return {
             val: queryResult.address,
@@ -93,6 +85,16 @@ async function getPossibleAddresses(query) {
             url: `/address/${queryResult.address}`,
         }
     }))
+
+    if (possibleAddresses.length === 0) {
+        if (query.substring(0, 3) === 'z1q' && query.length === 40) {
+            possibleAddresses.push({
+                val: query,
+                type: "Address",
+                url: `/address/${query}`,
+            })
+        }    
+    }
 
     return possibleAddresses
 }
@@ -106,18 +108,21 @@ async function getPossibleTxns(query) {
     `, [`${query}%`])
 
     const splitQuery: string[] = query.split(' ')
-    if (splitQuery.length > 1) {
-        const txnQueryAddress = await db.query(`
-            SELECT address, height, hash FROM accountblock
-            WHERE height = $2 AND address = $1
-        `, [splitQuery[0], splitQuery[1]])
+      if (splitQuery.length > 1) {    
+        if (!isNaN(Number(splitQuery[1]))) {
+            const txnQueryAddress = await db.query(`
+                SELECT address, height, hash FROM accountblock
+                WHERE height = $2 AND address = $1
+            `, [splitQuery[0], Number(splitQuery[1])])
 
-        if (txnQueryAddress[0]) {
-            possibleTxns.push({
-                val: `${txnQueryAddress[0].address} ${txnQueryAddress[0].height}`,
-                type: "Transaction",
-                url: `/accountblock/${txnQueryAddress[0].hash}`
-            })    
+            if (txnQueryAddress?.rows[0]) {
+                possibleTxns.push({
+                    val: `${txnQueryAddress.rows[0]?.address} ${txnQueryAddress.rows[0]?.height}`,
+                    type: "Transaction",
+                    url: `/accountblock/${txnQueryAddress.rows[0]?.hash}`
+                })
+            }
+
         }
     }
 
