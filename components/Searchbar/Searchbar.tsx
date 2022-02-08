@@ -42,18 +42,42 @@ export function Searchbar() {
         if (query !== '') {
             if (isLoading) {
                 const cleanedQuery = query.trim()
-                const res = await fetch(`${window.location.origin}/api/search?query=${cleanedQuery}`)
-                const tempSuggestions = await res.json()
-
-                if (tempSuggestions.length > 0) {
+                if (cleanedQuery.length > 7) {
+                    if (cleanedQuery.substring(0, 3).toLowerCase() === 'z1q') {
+                        router.push({
+                            pathname: '/address/[address]',
+                            query: { address: cleanedQuery }
+                        })
+                    } else if (cleanedQuery.substring(0, 3).toLowerCase() === 'zts') {
+                        router.push({
+                            pathname: '/token/[token]',
+                            query: { token: cleanedQuery }
+                        })
+                    } else {
+                        router.push({
+                            pathname: '/accountblock/[accountblock]',
+                            query: { accountblock: cleanedQuery }
+                        })
+                    }
+                } else if (!isNaN(Number(cleanedQuery))) {
                     router.push({
-                        pathname: tempSuggestions[0].url
+                        pathname: '/momentum/[momentum]',
+                        query: { momentum: cleanedQuery }
                     })
                 } else {
-                    router.push({
-                        pathname: '/404'
-                    })
-                }    
+                    const res = await fetch(`${window.location.origin}/api/search?query=${cleanedQuery}`)
+                    const tempSuggestions = await res.json()
+    
+                    if (tempSuggestions.length > 0) {
+                        router.push({
+                            pathname: tempSuggestions[0].url
+                        })
+                    } else {
+                        router.push({
+                            pathname: '/404'
+                        })
+                    }    
+                    }
             } else {
                 if (suggestions.length > 0) {
                     router.push({
@@ -63,7 +87,7 @@ export function Searchbar() {
                     router.push({
                         pathname: '/404'
                     })
-                }    
+                }
             }
         }
     }
@@ -107,11 +131,11 @@ export function Searchbar() {
                     </form>
                     <div id="dropdown" className={`${styles.dropDownMenu}`}>
                         <div className={styles.breakLine} />
-                        <DropDownMenu isLoading={isLoading} dropDownSuggestions={suggestions} suggestionsRef={suggestionsRef} closeDropDownMenu={closeDropDownMenu}/>
+                        <DropDownMenu isLoading={isLoading} dropDownSuggestions={suggestions} suggestionsRef={suggestionsRef} closeDropDownMenu={closeDropDownMenu} />
                     </div>
                 </div>
             </>
-        )            
+        )
     } else {
         return (
             <>
@@ -137,7 +161,7 @@ export function Searchbar() {
                     </form>
                 </div>
             </>
-        )            
+        )
     }
 }
 
@@ -149,7 +173,7 @@ function DropDownMenu({ isLoading, dropDownSuggestions, suggestionsRef, closeDro
             </ul>
         )
     } else {
-        return <Suggestions dropDownSuggestions={dropDownSuggestions} suggestionsRef={suggestionsRef} closeDropDownMenu={closeDropDownMenu}/>
+        return <Suggestions dropDownSuggestions={dropDownSuggestions} suggestionsRef={suggestionsRef} closeDropDownMenu={closeDropDownMenu} />
     }
 }
 
@@ -193,7 +217,7 @@ function Suggestions({ dropDownSuggestions, suggestionsRef, closeDropDownMenu })
             <ul className={styles.dropDownMenuList}>
                 <li>
                     <div className={styles.dropDownMenuElement}>
-                        <span 
+                        <span
                             className={`${styles.dropDownText} ${styles.italicsDropDownText}`}
                             ref={suggestionsRef[1]}
                         >
@@ -210,7 +234,7 @@ function Suggestions({ dropDownSuggestions, suggestionsRef, closeDropDownMenu })
                     return (
                         <li key={suggestion.val}>
                             <Link href={suggestion.url}>
-                                <a 
+                                <a
                                     className={styles.dropDownMenuElement}
                                     ref={suggestionsRef[i + 1]}
                                     onClick={closeDropDownMenu}
