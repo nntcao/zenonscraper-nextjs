@@ -85,7 +85,7 @@ function Address({ address, accountBlocks, balances }) {
                             <div className={styles.cardleft}>Value:</div>
                             <div className={styles.cardright}></div>
                             <div className={styles.cardright}>
-                                <Link href={{ pathname: '/api/csv', query: { address: address.address }}}>CSV Export Txns (Amount &gt; 0)</Link>
+                                <Link href={{ pathname: '/api/csv', query: { address: address.address }}}>CSV Export Non-Zero Transactions</Link>
                             </div>
                         </div>
                     </div>
