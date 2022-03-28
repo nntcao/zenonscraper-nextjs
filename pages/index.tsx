@@ -215,7 +215,7 @@ function AccountBlockComponent({ accountblock }) {
           </div>
         </div>
         <div className={styles.rightrow}>
-          <span className={`${styles.amount} ${styles.rowSubtext}`}>{accountblock?.symbol ? (Math.round(accountblock.amount / (10 ** accountblock.decimals) * 100) / 100) : 'N/A'}</span>
+          <span className={`${styles.amount} ${styles.rowSubtext}`}>{accountblock?.symbol ? (Math.round(Number(accountblock.amount) / (10 ** Number(accountblock.decimals)) * 100) / 100) : 'N/A'}</span>
           <Link href={{ pathname: '/token/[token]', query: { token: accountblock.symbol } }}>
             <a> {accountblock.symbol}</a>
           </Link>

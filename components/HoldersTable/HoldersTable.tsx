@@ -35,7 +35,7 @@ export default function HoldersTable({ holders, token, startRank }) {
                                         </Link>
                                     </td>
                                     <td className={`${styles.abrow}`}>
-                                        {(Number(holder.balance) / (10 ** token.decimals)).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})}
+                                        {(Number(holder.balance) / (10 ** Number(token.decimals))).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})}
                                     </td>
                                     <td className={`${styles.abrow}`}>
                                         {(Number(holder.balance) / Number(token.totalsupply) * 100).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})}%

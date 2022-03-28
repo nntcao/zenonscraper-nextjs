@@ -124,7 +124,7 @@ function Balance({ balances }) {
                 {balances.map(balance => {
                     return (
                         <div className={styles.cardright} key={`${balance.tokenstandard} ${balance.amount}`}>
-                            {Number(balance.balance) / (10 ** balance.decimals)}
+                            {Number(balance.balance) / (10 ** Number(balance.decimals))}
                             <Link href={{ pathname: '/token/[token]', query: { token: balance.tokenstandard } }}>
                                 <a className={styles.cardright}> {balance.symbol}</a>
                             </Link>

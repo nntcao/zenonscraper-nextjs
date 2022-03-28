@@ -59,7 +59,7 @@ export default function AccountBlockTable({ accountBlocks }) {
                                         </Link>
                                     </td>
                                     <td className={styles.abrow}>
-                                        {Number(accountBlock.amount) / (10 ** accountBlock.decimals)}
+                                        {Number(accountBlock.amount) / (10 ** Number(accountBlock.decimals))}
                                     </td>
                                     <td className={styles.abrow}>
                                         <Link href={{pathname: '/token/[token]', query: { token: accountBlock.tokenstandard }}}>

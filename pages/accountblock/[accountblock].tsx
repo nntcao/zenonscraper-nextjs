@@ -90,7 +90,7 @@ function AccountBlock({ accountBlockInformation, descendantBlockInformation, pre
                         </div>
                         <div className={styles.cardleft}>Amount:</div>
                         <div className={styles.cardright}>
-                            {Math.round(accountBlockInformation.amount / (10 ** accountBlockInformation.decimals) * 100) / 100}
+                            {Math.round(Number(accountBlockInformation.amount) / (10 ** Number(accountBlockInformation.decimals)) * 100) / 100}
                             <Symbol symbol={String(accountBlockInformation.symbol)} />
                         </div>
                         <div className={styles.cardleft}>Token Standard:</div>

@@ -143,7 +143,7 @@ function TokenCard({ token, countHolders }) {
                     </Link>
                 </div>
                 <div className={styles.cardleft}>Total Supply:</div>
-                <div className={styles.cardright}>{Number(token.totalsupply / (10 ** token.decimals)).toLocaleString()}</div>
+                <div className={styles.cardright}>{Number(token.totalsupply / (10 ** Number(token.decimals))).toLocaleString()}</div>
                 <div className={styles.cardleft}>Decimals: </div>
                 <div className={styles.cardright}>{token.decimals ?? 'N/A'}</div>
                 <div className={styles.cardleft}>Is Burnable:</div>
