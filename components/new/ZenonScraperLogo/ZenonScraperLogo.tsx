@@ -1,4 +1,4 @@
-import styles from './Logo.module.scss'
+import styles from './ZenonScraperLogo.module.scss'
 
 const defaultProps = {
     hoverEnabled: false,
