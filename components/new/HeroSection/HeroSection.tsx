@@ -1,10 +1,10 @@
 import Header from '../Header/Header'
-import HeroBody from '../HeroBody/HeroBody'
+import HeroBody from './HeroBody/HeroBody'
 import styles from './HeroSection.module.scss'
 
 export default function HeroSection(props) {
     return (
-        <div className={styles.heroSection}>
+        <section className={styles.heroSection}>
             <div className={styles.container}>
                 <Header />
                 <HeroBody
@@ -12,7 +12,7 @@ export default function HeroSection(props) {
                     description={"Explore data stored on 19 blockchains"}
                 />
             </div>
-        </div>
+        </section>
     )
 }
 

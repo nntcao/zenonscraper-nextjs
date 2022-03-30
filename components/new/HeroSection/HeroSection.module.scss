@@ -1,13 +1,11 @@
-@import "../../../styles/colors.module.scss";
-
 .heroSection {
-    background-color: $color-black;
+    background-color: var(--color-background-1);
     background-image: url('../../../public/images/Hero2x.png');
     background-size: cover;
-    background-position: 62% 33%;
+    background-position: 62% 200%;
     
     min-height: 80vh;
-    width: 100vw;
+    width: 100%;
 
 }
 

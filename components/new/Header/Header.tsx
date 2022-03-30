@@ -1,5 +1,5 @@
-import HeaderLinks from '../HeaderLinks/HeaderLinks'
-import TitleLogo from '../TitleLogo/TitleLogo'
+import HeaderLinks from './HeaderLinks/HeaderLinks'
+import TitleLogo from './TitleLogo/TitleLogo'
 import styles from './Header.module.scss'
 
 export default function Header(props) {
