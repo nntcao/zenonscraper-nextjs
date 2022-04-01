@@ -6,8 +6,10 @@ export default class MyDocument extends Document {
       <Html>
         <title>Zenon Scraper</title>
         <Head>
-            <meta name="description" content="Explorer for Zenon Network DAG"/>
-            <link rel="icon" href="/favicon.png" />
+            <meta name="description" content="Explorer for Zenon Network DAG" />
+            <link rel="icon" href="/favicon-16x16.png" sizes="16x16" />
+            <link rel="icon" href="/favicon-32x32.png" sizes="32x32" />
+            <link rel="icon" href="/favicon-96x96.png" sizes="96x96" />
             {/* Global Site Tag (gtag.js) - Google Analytics */}
             <script
                 async
