@@ -1,11 +1,11 @@
 import HeaderLinks from './HeaderLinks/HeaderLinks'
-import TitleLogo from './TitleLogo/TitleLogo'
+import ZSTitle from '../Icons/ZSTitle/ZSTitle'
 import styles from './Header.module.scss'
 
 export default function Header(props) {
     return (
         <div className={styles.header}>
-            <TitleLogo />
+            <ZSTitle />
             <HeaderLinks />
         </div>
     )

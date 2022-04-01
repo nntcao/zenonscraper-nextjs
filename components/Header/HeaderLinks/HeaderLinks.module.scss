@@ -1,5 +1,20 @@
 .content {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+
+.textLinks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     gap: 12px;
+}
+
+.iconLinks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
 }
