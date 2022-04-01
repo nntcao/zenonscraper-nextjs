@@ -1,0 +1,20 @@
+.iconWrapper {
+    position: relative;
+}
+
+.image {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+}
+
+.top {
+    opacity: 0;
+    transition-property: all;
+    transition-duration: 300ms;
+    transition-timing-function: ease-out;
+}
+
+.iconWrapper:hover .top {
+    opacity: 1;
+}
