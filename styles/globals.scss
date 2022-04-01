@@ -9,7 +9,11 @@ body {
   --color-background-3: #0D0D0D;
   --color-background-4: #111111;
   --color-background-5: #111111;
+  --color-background-6: #1B1B1B;
   --color-hero-background: #010600;
+
+  --width-content: clamp(500px, 76%, 1280px);
+    
 }
 
 body[data-theme="light"] {
