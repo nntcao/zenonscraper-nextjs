@@ -9,7 +9,7 @@ export default function HeroSection(props) {
                 <Header />
                 <HeroBody
                     title={"Zenon Blockchain Explorer, web and API services."}
-                    description={"Explore data stored on 19 blockchains"}
+                    description={"Explore data stored the Zenon Network blockchain"}
                 />
             </div>
         </section>
