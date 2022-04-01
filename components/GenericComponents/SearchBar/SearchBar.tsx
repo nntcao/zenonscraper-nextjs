@@ -6,10 +6,13 @@ import styles from './SearchBar.module.scss'
 export default function SearchBar() {
     return (
         <div className={styles.box}>
-            <div className={styles.start}>
+            <form className={styles.start}>
                 <SearchIcon />
-                <SubtextMedium>Search for transactions, addresses, blocks and embedded text data...</SubtextMedium>
-            </div>
+                <input type="text" 
+                    placeholder='Search for transactions, addresses, blocks and embedded text data...'
+                    className={styles.inputBox}
+                />
+            </form>
             <CameraIcon />
         </div>
     )
