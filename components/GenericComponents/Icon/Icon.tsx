@@ -1,20 +1,20 @@
 import Image from 'next/image'
 import styles from './Icon.module.scss'
 
-export default function Icon(props) {
+export default function Icon({ src, srcHover=undefined, width, height, style={}, alt=''}) {
     return (
-        <div className={styles.iconWrapper} style={{ width: props.width, height: props.height}}>
+        <div className={styles.iconWrapper} style={{ width: width, height: height}}>
             <div className={`${styles.image}`}
-                    style={props.style}
+                    style={style}
             >
-                <Image src={props.src} width={props.width} height={props.height} alt={props.alt} />
+                <Image src={src} width={width} height={height} alt={alt} />
             </div>
             {
-                props.srcHover &&
+                srcHover &&
                 <div className={`${styles.image} ${styles.top}`}
-                    style={props.style}
+                    style={style}
                 >
-                    <Image src={props.srcHover} width={props.width} height={props.height} />
+                    <Image src={srcHover} width={width} height={height} />
                 </div>
             }
         </div>    
