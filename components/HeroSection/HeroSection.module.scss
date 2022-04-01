@@ -1,8 +1,9 @@
 .heroSection {
     background-color: var(--color-background-1);
     background-image: url('../../public/images/Hero2x.png');
-    background-size: cover;
-    background-position: 62% 200%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 21% 60%;
     
     min-height: 80vh;
     width: 100%;
