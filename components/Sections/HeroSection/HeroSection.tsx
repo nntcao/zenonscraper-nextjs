@@ -1,4 +1,4 @@
-import Header from '../Header/Header'
+import Header from './Header/Header'
 import HeroBody from './HeroBody/HeroBody'
 import styles from './HeroSection.module.scss'
 

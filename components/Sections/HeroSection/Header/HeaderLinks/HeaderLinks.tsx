@@ -1,9 +1,9 @@
-import LinkWrapper from '../../GenericComponents/LinkWrapper/LinkWrapper'
-import TextMedium from '../../GenericComponents/TextMedium/TextMedium'
-import FacebookIcon from '../../Icons/FacebookIcon/FacebookIcon'
-import InstagramIcon from '../../Icons/InstagramIcon/InstagramIcon'
-import LinkedinIcon from '../../Icons/LinkedinIcon/LinkedinIcon'
-import TwitterIcon from '../../Icons/TwitterIcon/TwitterIcon'
+import LinkWrapper from '../../../../GenericComponents/LinkWrapper/LinkWrapper'
+import TextMedium from '../../../../GenericComponents/TextMedium/TextMedium'
+import FacebookIcon from '../../../../Icons/FacebookIcon/FacebookIcon'
+import InstagramIcon from '../../../../Icons/InstagramIcon/InstagramIcon'
+import LinkedinIcon from '../../../../Icons/LinkedinIcon/LinkedinIcon'
+import TwitterIcon from '../../../../Icons/TwitterIcon/TwitterIcon'
 import styles from './HeaderLinks.module.scss'
 
 export default function HeaderLinks(props) {

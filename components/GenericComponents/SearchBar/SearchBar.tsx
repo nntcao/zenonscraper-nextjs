@@ -1,6 +1,6 @@
-import CameraIcon from '../Icons/CameraIcon/CameraIcon'
-import SearchIcon from '../Icons/SearchIcon/SearchIcon'
-import SubtextMedium from '../GenericComponents/SubtextMedium/SubtextMedium'
+import CameraIcon from '../../Icons/CameraIcon/CameraIcon'
+import SearchIcon from '../../Icons/SearchIcon/SearchIcon'
+import SubtextMedium from '../SubtextMedium/SubtextMedium'
 import styles from './SearchBar.module.scss'
 
 export default function SearchBar() {

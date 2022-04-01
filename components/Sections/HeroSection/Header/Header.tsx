@@ -1,5 +1,5 @@
 import HeaderLinks from './HeaderLinks/HeaderLinks'
-import ZSTitle from '../Icons/ZSTitle/ZSTitle'
+import ZSTitle from '../../../Icons/ZSTitle/ZSTitle'
 import styles from './Header.module.scss'
 
 export default function Header(props) {
