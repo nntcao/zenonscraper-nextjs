@@ -9,6 +9,11 @@ body {
   color: #222222;
 }
 
+a {
+  color: inherit; 
+  text-decoration: inherit;
+}
+
 button {
   background: none;
 	color: inherit;
@@ -22,28 +27,6 @@ button {
 
 button:hover {
   color: #C7511F;
-  text-decoration: underline;
-}
-
-a {
-  text-decoration: none;
-  /* color: #0066cc; */
-  /* color: #233323; */
-  /* color: #053816; */
-  color: #007185;
-  /* color: #008529; */
-}
-
-a:visited {
-  /* color: #0066cc; */
-  /* color: #00C800; */
-  color: #007185;
-}
-
-a:hover {
-  color: #C7511F;
-  /* color: #0066cc; */
-  cursor: pointer;
   text-decoration: underline;
 }
 
