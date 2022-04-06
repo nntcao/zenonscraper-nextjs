@@ -10,11 +10,14 @@ export default function Table({ title='', fields=[], data=[], children=undefined
     let tableRowAltStyle = false
 
     return (
-        <Card className={styles.card}>
+        <Card style={{
+            paddingLeft: "0px",
+            paddingRight: "0px",
+        }}>
+            {title &&
+                <Subtitle className={styles.title}>{title}</Subtitle>
+            }
             <table className={styles.table}>
-                {title &&
-                    <Subtitle>{title}</Subtitle>
-                }
                 {fields && header &&
                     <TableHeader>
                         <TableRow>

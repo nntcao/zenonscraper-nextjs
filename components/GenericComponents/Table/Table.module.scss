@@ -1,10 +1,6 @@
-.card {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
 .table {
     table-layout: fixed;
+    border-collapse: collapse;
 }
 
 .tableRow {
@@ -13,5 +9,8 @@
 
 .tableRowAlt {
     background-color: var(--color-background-4);
+}
 
+.title {
+    padding-left: 16px;
 }
