@@ -17,12 +17,16 @@ export async function getServerSideProps(context) {
     const searchString: string = String(context.params.token)
     if (searchString.length > 7 && searchString.substring(0, 3).toLowerCase() == 'zts') {
         var tokenQuery = await db.query(`
-            SELECT * FROM token
+            SELECT tokenstandard, name, symbol, domain, token.totalsupply / (10 ^ token.decimals) AS totalsupply, decimals, 
+                owner, token.maxsupply / (10 & token.decimals) AS maxsupply, isburnable, ismintable, isutility, description 
+            FROM token 
             WHERE tokenstandard = $1
         `, [searchString])
     } else {
         var tokenQuery = await db.query(`
-            SELECT * FROM token
+            SELECT tokenstandard, name, symbol, domain, token.totalsupply / (10 ^ token.decimals) AS totalsupply, decimals, 
+                owner, token.maxsupply / (10 & token.decimals) AS maxsupply, isburnable, ismintable, isutility, description 
+            FROM token 
             WHERE symbol = $1
         `, [searchString.toUpperCase()])
     }
@@ -143,7 +147,7 @@ function TokenCard({ token, countHolders }) {
                     </Link>
                 </div>
                 <div className={styles.cardleft}>Total Supply:</div>
-                <div className={styles.cardright}>{Number(token.totalsupply / (10 ** Number(token.decimals))).toLocaleString()}</div>
+                <div className={styles.cardright}>{Number(token.totalsupply).toLocaleString()}</div>
                 <div className={styles.cardleft}>Decimals: </div>
                 <div className={styles.cardright}>{token.decimals ?? 'N/A'}</div>
                 <div className={styles.cardleft}>Is Burnable:</div>
