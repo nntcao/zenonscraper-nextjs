@@ -30,7 +30,22 @@ export default function LatestBlocksTable(props) {
             height: 144358,
             miner: 'spaghetti',
             value: 2.345778,
-        }
+        },
+        {
+            height: 144358,
+            miner: 'spaghetti',
+            value: 2.345778,
+        },
+        {
+            height: 144358,
+            miner: 'spaghetti',
+            value: 2.345778,
+        },
+        {
+            height: 144358,
+            miner: 'spaghetti',
+            value: 2.345778,
+        },
     ]
 
     let formattedData = dummyData.map(data => {
@@ -40,6 +55,7 @@ export default function LatestBlocksTable(props) {
             col3: <ThirdColumn amount={data.value}/>,
         }
     })
+
     return (
         <Table title='Latest Blocks'
             fields={fields}

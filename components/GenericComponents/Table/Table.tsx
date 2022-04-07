@@ -8,6 +8,7 @@ import TableCell from './TableCell/TableCell'
 
 export default function Table({ title='', fields=[], data=[], children=undefined, header=true }) {
     let tableRowAltStyle = false
+    let counter = 0;
 
     return (
         <Card style={{
@@ -23,7 +24,7 @@ export default function Table({ title='', fields=[], data=[], children=undefined
                         <TableRow>
                             {fields.map(field => {
                                 return (
-                                    <TableCell>
+                                    <TableCell key={field.label}>
                                         {field.label}
                                     </TableCell>
                                 )
@@ -34,12 +35,13 @@ export default function Table({ title='', fields=[], data=[], children=undefined
                 {data &&
                     <TableBody>
                         {data.map(item => {
+                            counter += 1
                             return (
-                                <TableRow className={tableRowAltStyle ? styles.tableRowAlt : styles.tableRow}>
+                                <TableRow key={counter} className={tableRowAltStyle ? styles.tableRowAlt : styles.tableRow}>
                                     {fields.map(field => {
                                         tableRowAltStyle = !tableRowAltStyle
                                         return (
-                                            <TableCell>
+                                            <TableCell key={field.label}>
                                                 {item[field.value]}
                                             </TableCell>
                                         )
