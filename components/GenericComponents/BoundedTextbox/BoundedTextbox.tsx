@@ -1,10 +1,10 @@
 import TextMedium from '../TextMedium/TextMedium'
 import styles from './BoundedTextbox.module.scss'
 
-export default function BoundedTextbox({ amount }) {
+export default function BoundedTextbox({ children }) {
     return (  
         <div className={styles.box}>
-            <TextMedium>{ amount } ZNN</TextMedium>
+            <TextMedium>{ children }</TextMedium>
         </div>
     )
 }
