@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import styles from './LinkWrapper.module.scss'
 
-export default function LinkWrapper(props) {
+export default function LinkWrapper({ href, children }) {
     return (
-        <Link href={props.href}>
+        <Link href={href}>
             <a>
-                {props.children}
+                {children}
             </a>
         </Link>
     )

@@ -4,7 +4,7 @@ import styles from './TwitterIcon.module.scss'
 
 export default function TwitterIcon(props) {
     return (
-        <LinkWrapper href=''>
+        <LinkWrapper href='https://www.twitter.com'>
             <Icon src='/icons/twitter.svg' srcHover='/icons/twitter-hover.svg' width='24px' height='24px' />
         </LinkWrapper>
     )
