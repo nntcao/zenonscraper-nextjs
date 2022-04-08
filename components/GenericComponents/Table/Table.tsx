@@ -50,8 +50,8 @@ export default function Table({ title='', fields=[], data=[], children=undefined
                             )
                         })}
                     </TableBody>}
-                { children }
             </table>
+            { children }
         </Card>
     )
 }
