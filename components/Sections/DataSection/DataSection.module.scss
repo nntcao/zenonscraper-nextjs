@@ -1,16 +1,26 @@
 .section {
     background-color: var(--color-background-2);
-    height: 80vh;
+    height: 160vh;
     width: 100%;
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 24px;
     align-items: center;
     margin: auto;
     width: var(--width-content);
-    height: 85%;
     padding-top: 92px;
+}
+
+.tables {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+}
+
+.stretchWrapper {
+    flex-grow: 1;
 }
