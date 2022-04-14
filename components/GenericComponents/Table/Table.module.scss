@@ -1,7 +1,12 @@
+.tableWithChildren {
+    height: 100%;
+}
+
 .table {
     table-layout: fixed;
     border-collapse: collapse;
     width: 100%;
+    
 }
 
 .tableRow {

@@ -1,5 +1,4 @@
-import Table from '../../GenericComponents/Table/Table'
-import TableBody from '../../GenericComponents/Table/TableBody/TableBody'
+import Card from '../../GenericComponents/Card/Card'
 import LatestBlocksTable from '../../Tables/LatestBlocksTable/LatestBlocksTable'
 import LatestTransactionsTable from '../../Tables/LatestTransactionsTable/LatestTransactionsTable'
 import GeneralDashboard from '../GeneralDashboard/GeneralDashboard'
@@ -15,12 +14,20 @@ export default function DataSection(props) {
                     {/* <Chart /> */}
                 </div>
                 <div className={styles.tables}>
-                    <div className={styles.stretchWrapper}>
+                    <Card className={styles.stretchWrapper}
+                        style={{
+                            paddingLeft: "0px",
+                            paddingRight: "0px",
+                    }}>
                         <LatestBlocksTable />
-                    </div>
-                    <div className={styles.stretchWrapper}>
+                    </Card>
+                    <Card className={styles.stretchWrapper}
+                        style={{
+                            paddingLeft: "0px",
+                            paddingRight: "0px",
+                    }}>
                         <LatestTransactionsTable />
-                    </div>
+                    </Card>
                 </div>
             </div>
         </section>

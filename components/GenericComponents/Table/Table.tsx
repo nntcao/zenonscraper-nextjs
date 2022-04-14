@@ -11,10 +11,7 @@ export default function Table({ title='', fields=[], data=[], children=undefined
     let counter = 0;
 
     return (
-        <Card style={{
-            paddingLeft: "0px",
-            paddingRight: "0px",
-        }}>
+        <div className={styles.tableWithChildren}>
             {title &&
                 <Subtitle className={styles.title}>{title}</Subtitle>
             }
@@ -52,6 +49,6 @@ export default function Table({ title='', fields=[], data=[], children=undefined
                     </TableBody>}
             </table>
             { children }
-        </Card>
+        </div>
     )
 }

@@ -17,10 +17,13 @@
 .tables {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 16px;
     width: 100%;
 }
 
 .stretchWrapper {
     flex-grow: 1;
+    flex-basis: 49%;
+    min-width: 580px;
 }
