@@ -6,6 +6,7 @@ import TextGlow from '../../GenericComponents/TextGlow/TextGlow'
 import TextSemibold from '../../GenericComponents/TextSemibold/TextSemibold'
 import RoundedSquare from '../../Icons/RoundedSquare/RoundedSquare'
 import LinkWrapper from '../../GenericComponents/LinkWrapper/LinkWrapper'
+import TextTruncate from '../../GenericComponents/TextTruncate/TextTruncate'
 
 export default function LatestTransactionsTable(props) {
     const fields = [
@@ -25,44 +26,44 @@ export default function LatestTransactionsTable(props) {
 
     let dummyData = [
         {
-            height: 144357,
-            miner: 'Zygonz',
+            hash: "0x918273kjhwdkqhw",
+            from: '0x981kjewr1i2u39018e10w98e',
+            to: '0xoiaqweu7918723dqkl1111111111111111111111w091',
             value: 2.345778,
-            txnCount: 40,
-            time: "12s",
-            timestamp: "32s ago"
+            timestamp: "32s ago",
+            token: "ZNN",
         },
         {
-            height: 144357,
-            miner: 'Zygonz',
+            hash: "0x918273kjhwdkqhw",
+            from: '0x981kjewr1i2u39018e10w98e',
+            to: '0xoiaqweu7918723dqklw091',
             value: 2.345778,
-            txnCount: 40,
-            time: "12s",
-            timestamp: "32s ago"
+            timestamp: "32s ago",
+            token: "ZNN",
         },
         {
-            height: 144357,
-            miner: 'Zygonz',
+            hash: "0x918273kjhwdkqhw",
+            from: '0x981kjewr1i2u39018e10w98e',
+            to: '0xoiaqweu7918723dqklw091',
             value: 2.345778,
-            txnCount: 40,
-            time: "12s",
-            timestamp: "32s ago"
+            timestamp: "32s ago",
+            token: "ZNN",
         },
         {
-            height: 144357,
-            miner: 'Zygonz',
+            hash: "0x918273kjhwdkqhw",
+            from: '0x981kjewr1i2u39018e10w98e',
+            to: '0xoiaqweu7918723dqklw091',
             value: 2.345778,
-            txnCount: 40,
-            time: "12s",
-            timestamp: "32s ago"
+            timestamp: "32s ago",
+            token: "ZNN",
         },
         {
-            height: 144357,
-            miner: 'Zygonz',
+            hash: "0x918273kjhwdkqhw",
+            from: '0x981kjewr1i2u39018e10w98e',
+            to: '0xoiaqweu7918723dqklw091',
             value: 2.345778,
-            txnCount: 40,
-            time: "12s",
-            timestamp: "32s ago"
+            timestamp: "32s ago",
+            token: "ZNN",
         },
     ]
 
@@ -70,20 +71,26 @@ export default function LatestTransactionsTable(props) {
         return {
             col1:
                 <div className={styles.col1}>
-                    <RoundedSquare>Mn</RoundedSquare>
+                    <RoundedSquare>Tx</RoundedSquare>
                     <div className={styles.text}>
-                        <TextSemibold><TextGlow>{data.height}</TextGlow></TextSemibold>
+                        <TextSemibold>
+                            <TextGlow><TextTruncate style={{maxWidth: "121px"}}>{data.hash}</TextTruncate></TextGlow>
+                        </TextSemibold>
                         <SubtextSemibold>{data.timestamp}</SubtextSemibold>
                     </div>
                 </div>,
             col2:
                 <div className={styles.col2}>
-                    <TextSemibold>Producer <TextGlow>{data.miner}</TextGlow></TextSemibold>
-                    <SubtextSemibold> <TextGlow>{data.txnCount} txns</TextGlow> in {data.time}</SubtextSemibold>
+                    <TextSemibold style={{whiteSpace: "nowrap"}}>
+                        From <TextGlow><TextTruncate style={{maxWidth: "121px"}}>{data.from}</TextTruncate></TextGlow>
+                    </TextSemibold> 
+                    <TextSemibold style={{whiteSpace: "nowrap"}}>
+                        To <TextGlow><TextTruncate style={{maxWidth: "121px"}}>{data.to}</TextTruncate></TextGlow>
+                    </TextSemibold> 
                 </div>,
             col3: 
                 <div className={styles.col3}>
-                    <BoundedTextbox>{data.value} ZNN</BoundedTextbox>
+                    <BoundedTextbox>{data.value} {data.token}</BoundedTextbox>
                 </div>,
         }
     })
