@@ -6,7 +6,7 @@ export default function ZSTitle(props) {
     return (
         <LinkWrapper href="https://www.zenonscraper.com">
             {/* 205px 48px before */}
-            <Icon src='/icons/zenon-scraper-logo.svg' srcHover='/icons/zenon-scraper-logo-hover.svg' width='246px' height='58px'/>
+            <Icon src='/icons/zenon-scraper-logo.svg' srcHover='/icons/zenon-scraper-logo-hover.svg' width='205px' height='48px'/>
         </LinkWrapper>
     )
 }

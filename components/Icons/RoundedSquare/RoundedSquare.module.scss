@@ -1,9 +1,8 @@
 .block {
     background: linear-gradient(135deg, var(--color-gradient));
-    padding: 8px;
     border-radius: 4px;
-    width: 48px;
-    height: 42px;
+    min-width: 30px;
+    min-height: 30px;
     display: flex;
     flex-direction: row;
     align-items: center;
