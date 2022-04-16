@@ -1,9 +1,9 @@
 import Datablock from './Datablock/Datablock'
-import SubtextMedium from '../../GenericComponents/SubtextMedium/SubtextMedium'
+import SubtextMedium from '../../../GenericComponents/SubtextMedium/SubtextMedium'
 import styles from './GeneralDashboard.module.scss'
-import TextMedium from '../../GenericComponents/TextMedium/TextMedium'
-import Icon from '../../GenericComponents/Icon/Icon'
-import Card from '../../GenericComponents/Card/Card'
+import TextMedium from '../../../GenericComponents/TextMedium/TextMedium'
+import Icon from '../../../GenericComponents/Icon/Icon'
+import Card from '../../../GenericComponents/Card/Card'
 
 export default function GeneralDashboard(props) {
     return (
