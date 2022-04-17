@@ -36,10 +36,17 @@ export default function HoldersTable({ holders, token, startRank }) {
                                         </Link>
                                     </td>
                                     <td className={`${styles.abrow}`}>
-                                        {(new BigNumber(holder.balance) / (new BigNumber(10) ** new BigNumber(token.decimals))).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})}
+                                        
+                                        {
+                                            // @ts-ignore
+                                            (new BigNumber(holder.balance) / (new BigNumber(10) ** new BigNumber(token.decimals))).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})
+                                        }
                                     </td>
                                     <td className={`${styles.abrow}`}>
-                                        {(new BigNumber(holder.balance) / new BigNumber(token.totalsupply) * new BigNumber(100)).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})}%
+                                        {
+                                            // @ts-ignore
+                                            (new BigNumber(holder.balance) / new BigNumber(token.totalsupply) * new BigNumber(100)).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})
+                                        }%
                                     </td>
                                     <td className={`${styles.abrow}`}>
                                     </td>

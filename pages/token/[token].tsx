@@ -144,7 +144,12 @@ function TokenCard({ token, countHolders }) {
                     </Link>
                 </div>
                 <div className={styles.cardleft}>Total Supply:</div>
-                <div className={styles.cardright}>{new BigNumber(new BigNumber(token.totalsupply) / (new BigNumber(10) ** new BigNumber(token.decimals))).toLocaleString()}</div>
+                <div className={styles.cardright}>
+                    {
+                        // @ts-ignore
+                        new BigNumber(new BigNumber(token.totalsupply) / (new BigNumber(10) ** new BigNumber(token.decimals))).toLocaleString()
+                    }
+                </div>
                 <div className={styles.cardleft}>Decimals: </div>
                 <div className={styles.cardright}>{token.decimals ?? 'N/A'}</div>
                 <div className={styles.cardleft}>Is Burnable:</div>

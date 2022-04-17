@@ -125,7 +125,10 @@ function Balance({ balances }) {
                 {balances.map(balance => {
                     return (
                         <div className={styles.cardright} key={`${balance.tokenstandard} ${balance.amount}`}>
-                            {new BigNumber(balance.balance) / (new BigNumber(10) ** new BigNumber(balance.decimals))}
+                            {
+                                // @ts-ignore
+                                new BigNumber(balance.balance) / (new BigNumber(10) ** new BigNumber(balance.decimals))
+                            }
                             <Link href={{ pathname: '/token/[token]', query: { token: balance.tokenstandard } }}>
                                 <a className={styles.cardright}> {balance.symbol}</a>
                             </Link>

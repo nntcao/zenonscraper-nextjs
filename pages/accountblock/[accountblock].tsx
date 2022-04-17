@@ -91,7 +91,10 @@ function AccountBlock({ accountBlockInformation, descendantBlockInformation, pre
                         </div>
                         <div className={styles.cardleft}>Amount:</div>
                         <div className={styles.cardright}>
-                            {new BigNumber(Math.round(new BigNumber(accountBlockInformation.amount) / (new BigNumber(10) ** new BigNumber(accountBlockInformation.decimals)) * new BigNumber(100))) / new BigNumber(100)}
+                            {
+                                // @ts-ignore
+                                new BigNumber(Math.round(new BigNumber(accountBlockInformation.amount) / (new BigNumber(10) ** new BigNumber(accountBlockInformation.decimals)) * new BigNumber(100))) / new BigNumber(100)
+                            }
                             <Symbol symbol={String(accountBlockInformation.symbol)} />
                         </div>
                         <div className={styles.cardleft}>Token Standard:</div>
