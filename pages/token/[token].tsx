@@ -7,6 +7,7 @@ import Link from 'next/link'
 import HoldersTable from '../../components/HoldersTable/HoldersTable'
 import AccountBlockTable from '../../components/AccountBlockTable/AccountBlockTable'
 import Searchbar from '../../components/Searchbar/Searchbar'
+import BigNumber from "bignumber.js";
 
 export async function getServerSideProps(context) {
     context.res.setHeader(
@@ -143,7 +144,7 @@ function TokenCard({ token, countHolders }) {
                     </Link>
                 </div>
                 <div className={styles.cardleft}>Total Supply:</div>
-                <div className={styles.cardright}>{Number(token.totalsupply / (10 ** Number(token.decimals))).toLocaleString()}</div>
+                <div className={styles.cardright}>{new BigNumber(new BigNumber(token.totalsupply) / (new BigNumber(10) ** new BigNumber(token.decimals))).toLocaleString()}</div>
                 <div className={styles.cardleft}>Decimals: </div>
                 <div className={styles.cardright}>{token.decimals ?? 'N/A'}</div>
                 <div className={styles.cardleft}>Is Burnable:</div>

@@ -6,6 +6,7 @@ import Layout from '../../components/Layout/Layout'
 import Link from 'next/link'
 import Searchbar from '../../components/Searchbar/Searchbar'
 import Image from 'next/image'
+import BigNumber from "bignumber.js";
 
 export async function getServerSideProps(context) {
     context.res.setHeader(
@@ -90,7 +91,7 @@ function AccountBlock({ accountBlockInformation, descendantBlockInformation, pre
                         </div>
                         <div className={styles.cardleft}>Amount:</div>
                         <div className={styles.cardright}>
-                            {Math.round(Number(accountBlockInformation.amount) / (10 ** Number(accountBlockInformation.decimals)) * 100) / 100}
+                            {new BigNumber(Math.round(new BigNumber(accountBlockInformation.amount) / (new BigNumber(10) ** new BigNumber(accountBlockInformation.decimals)) * new BigNumber(100))) / new BigNumber(100)}
                             <Symbol symbol={String(accountBlockInformation.symbol)} />
                         </div>
                         <div className={styles.cardleft}>Token Standard:</div>

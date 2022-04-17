@@ -6,6 +6,7 @@ import Layout from '../../components/Layout/Layout'
 import Link from 'next/link'
 import Searchbar from '../../components/Searchbar/Searchbar'
 import AccountBlockTable from '../../components/AccountBlockTable/AccountBlockTable'
+import BigNumber from "bignumber.js";
 
 export async function getServerSideProps(context) {
     context.res.setHeader(
@@ -124,7 +125,7 @@ function Balance({ balances }) {
                 {balances.map(balance => {
                     return (
                         <div className={styles.cardright} key={`${balance.tokenstandard} ${balance.amount}`}>
-                            {Number(balance.balance) / (10 ** Number(balance.decimals))}
+                            {new BigNumber(balance.balance) / (new BigNumber(10) ** new BigNumber(balance.decimals))}
                             <Link href={{ pathname: '/token/[token]', query: { token: balance.tokenstandard } }}>
                                 <a className={styles.cardright}> {balance.symbol}</a>
                             </Link>
