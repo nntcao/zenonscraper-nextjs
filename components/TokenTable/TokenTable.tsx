@@ -1,5 +1,6 @@
 import styles from './TokenTable.module.scss'
 import Link from 'next/link'
+import BigNumber from "bignumber.js";
 
 export default function TokenTable({ tokens }) {
     if (!tokens || tokens === null || tokens.length === 0) {
@@ -32,10 +33,14 @@ export default function TokenTable({ tokens }) {
                                             {token.description}
                                         </td>
                                         <td className={styles.abrow}>
-                                            {Number(token.countholders).toLocaleString()}
+                                            {
+                                            (token.countholders).toLocaleString()}
                                         </td>
                                         <td className={`${styles.abrow}`}>
-                                            {Number(token.totalsupply).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})}
+                                            {
+                                                // @ts-ignore
+                                                (new BigNumber(token.totalsupply) / (new BigNumber(10) ** new BigNumber(token.decimals))).toString()
+                                            }
                                         </td>
                                     </tr>
                                 )
