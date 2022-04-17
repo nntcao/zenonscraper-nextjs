@@ -147,7 +147,7 @@ function TokenCard({ token, countHolders }) {
                 <div className={styles.cardright}>
                     {
                         // @ts-ignore
-                        new BigNumber(new BigNumber(token.totalsupply) / (new BigNumber(10) ** new BigNumber(token.decimals))).toLocaleString()
+                        (new BigNumber(new BigNumber(token.totalsupply) / (new BigNumber(10) ** new BigNumber(token.decimals)))).toString()
                     }
                 </div>
                 <div className={styles.cardleft}>Decimals: </div>

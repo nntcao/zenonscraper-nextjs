@@ -39,7 +39,7 @@ export default function HoldersTable({ holders, token, startRank }) {
                                         
                                         {
                                             // @ts-ignore
-                                            (new BigNumber(holder.balance) / (new BigNumber(10) ** new BigNumber(token.decimals))).toLocaleString(undefined, {'minimumFractionDigits':2,'maximumFractionDigits':2})
+                                            (new BigNumber(holder.balance) / (new BigNumber(10) ** new BigNumber(token.decimals))).toString()
                                         }
                                     </td>
                                     <td className={`${styles.abrow}`}>

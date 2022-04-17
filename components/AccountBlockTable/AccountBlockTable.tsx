@@ -62,7 +62,7 @@ export default function AccountBlockTable({ accountBlocks }) {
                                     <td className={styles.abrow}>
                                         { 
                                             // @ts-ignore
-                                            new BigNumber(accountBlock.amount) / (new BigNumber(10) ** new BigNumber(accountBlock.decimals)) === NaN ? new BigNumber(accountBlock.amount) / (new BigNumber(10) ** new BigNumber(accountBlock.decimals)) : 0 
+                                            new BigNumber(accountBlock.amount) / (new BigNumber(10) ** new BigNumber(accountBlock.decimals)) === NaN ? new BigNumber(accountBlock.amount) / (new BigNumber(10) ** new BigNumber(accountBlock.decimals)).toString() : 0 
                                         }
                                     </td>
                                     <td className={styles.abrow}>
