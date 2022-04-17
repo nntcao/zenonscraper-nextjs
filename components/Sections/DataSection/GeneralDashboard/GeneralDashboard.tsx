@@ -23,11 +23,10 @@ export default function GeneralDashboard(props) {
                     <hr className={styles.hr} />
                     <Datablock
                         icon={<Icon src='/icons/znn.svg' srcHover='/icons/znn-hover.svg' width={32} height={32} />}
-                        title={<SubtextMedium>ZNN</SubtextMedium>}
+                        title={<SubtextMedium>MARKET CAP</SubtextMedium>}
                         text={
                             <>
-                                <TextMedium>$5.08 &nbsp;</TextMedium>
-                                <SubtextMedium> @0.0743 BTC</SubtextMedium>
+                                <TextMedium>$45,975,497</TextMedium>
                             </>
                         }
                     />
@@ -55,7 +54,7 @@ export default function GeneralDashboard(props) {
                         }
                     />
                 </div>
-                <div className={styles.column}>
+                <div className={`${styles.column} ${styles.columnReverse}`}>
                     <Datablock
                         icon={<Icon src='/icons/znn.svg' srcHover='/icons/znn-hover.svg' width={32} height={32} />}
                         title={<SubtextMedium>ZNN</SubtextMedium>}
@@ -65,6 +64,7 @@ export default function GeneralDashboard(props) {
                                 <SubtextMedium> @0.0743 BTC</SubtextMedium>
                             </>
                         }
+                        reverse={true}
                     />
                     <hr className={styles.hr} />
                     <Datablock
@@ -76,31 +76,10 @@ export default function GeneralDashboard(props) {
                                 <SubtextMedium> @0.0743 BTC</SubtextMedium>
                             </>
                         }
+                        reverse={true}
                     />
                 </div>
-                <div className={styles.column}>
-                    <Datablock
-                        icon={<Icon src='/icons/znn.svg' srcHover='/icons/znn-hover.svg' width={32} height={32} />}
-                        title={<SubtextMedium>ZNN</SubtextMedium>}
-                        text={
-                            <>
-                                <TextMedium>$5.08 &nbsp;</TextMedium>
-                                <SubtextMedium> @0.0743 BTC</SubtextMedium>
-                            </>
-                        }
-                    />
-                    <hr className={styles.hr} />
-                    <Datablock
-                        icon={<Icon src='/icons/znn.svg' srcHover='/icons/znn-hover.svg' width={32} height={32} />}
-                        title={<SubtextMedium>ZNN</SubtextMedium>}
-                        text={
-                            <>
-                                <TextMedium>$5.08 &nbsp;</TextMedium>
-                                <SubtextMedium> @0.0743 BTC</SubtextMedium>
-                            </>
-                        }
-                    />
-                </div>
+                
             </div>
         </Card>
     )

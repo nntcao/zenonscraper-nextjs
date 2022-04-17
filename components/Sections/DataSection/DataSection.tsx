@@ -1,7 +1,7 @@
 import Card from '../../GenericComponents/Card/Card'
 import LatestBlocksTable from '../../Tables/LatestBlocksTable/LatestBlocksTable'
 import LatestTransactionsTable from '../../Tables/LatestTransactionsTable/LatestTransactionsTable'
-import GeneralDashboard from '../GeneralDashboard/GeneralDashboard'
+import GeneralDashboard from './GeneralDashboard/GeneralDashboard'
 import styles from './DataSection.module.scss'
 
 export default function DataSection(props) {

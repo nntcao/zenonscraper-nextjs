@@ -1,17 +1,33 @@
 import styles from './Datablock.module.scss'
 
-export default function Datablock({icon, title, text}) {
-    return (
-        <div className={styles.dataBlock}>
-            {icon}
-            <div className={styles.textBody}>
-                <div className={styles.title}>
-                    {title}
+export default function Datablock({icon, title, text, reverse=false}) {
+    if (reverse === true) {
+        return (
+            <div className={styles.dataBlock}>
+                <div className={styles.textBody}>
+                    <div className={styles.title}>
+                        {title}
+                    </div>
+                    <div className={styles.description}>
+                        {text}
+                    </div>
                 </div>
-                <div className={styles.description}>
-                    {text}
+                {icon}
+            </div>
+        )
+    } else {
+        return (
+            <div className={styles.dataBlock}>
+                {icon}
+                <div className={styles.textBody}>
+                    <div className={styles.title}>
+                        {title}
+                    </div>
+                    <div className={styles.description}>
+                        {text}
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
