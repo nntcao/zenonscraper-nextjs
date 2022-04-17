@@ -2,7 +2,6 @@ import styles from "./AccountBlockTable.module.scss"
 import Link from "next/link"
 import * as time from "../../utils/time"
 import { useState } from "react"
-import BigNumber from "bignumber.js";
 
 export default function AccountBlockTable({ accountBlocks }) {
 
@@ -60,10 +59,7 @@ export default function AccountBlockTable({ accountBlocks }) {
                                         </Link>
                                     </td>
                                     <td className={styles.abrow}>
-                                        { 
-                                            // @ts-ignore
-                                            new BigNumber(accountBlock.amount) / (new BigNumber(10) ** new BigNumber(accountBlock.decimals)) === NaN ? new BigNumber(accountBlock.amount) / (new BigNumber(10) ** new BigNumber(accountBlock.decimals)).toString() : 0 
-                                        }
+                                        {Number(accountBlock.amount) / (10 ** Number(accountBlock.decimals))}
                                     </td>
                                     <td className={styles.abrow}>
                                         <Link href={{pathname: '/token/[token]', query: { token: accountBlock.tokenstandard }}}>

@@ -7,7 +7,6 @@ import Layout from '../components/Layout/Layout'
 import Searchbar from '../components/Searchbar/Searchbar'
 import AvgPlasmaPerDayChart from '../components/AveragePlasmaChart/AvgPlasmaPerDay'
 import TransactionsPerDayChart from '../components/AccountBlockTable/TransactionsChart/TransactionsPerDay'
-import BigNumber from "bignumber.js";
 
 export async function getServerSideProps({ req, res }) {
   res.setHeader(
@@ -216,11 +215,7 @@ function AccountBlockComponent({ accountblock }) {
           </div>
         </div>
         <div className={styles.rightrow}>
-          <span className={`${styles.amount} ${styles.rowSubtext}`}>{
-            // @ts-ignore
-            accountblock?.symbol ? (new BigNumber(Math.round(new BigNumber(accountblock.amount) / (new BigNumber(10) ** new BigNumber(accountblock.decimals)) * 100) / 100)).toString() : 'N/A'
-            }
-          </span>
+          <span className={`${styles.amount} ${styles.rowSubtext}`}>{accountblock?.symbol ? (Math.round(Number(accountblock.amount) / (10 ** Number(accountblock.decimals)) * 100) / 100) : 'N/A'}</span>
           <Link href={{ pathname: '/token/[token]', query: { token: accountblock.symbol } }}>
             <a> {accountblock.symbol}</a>
           </Link>
