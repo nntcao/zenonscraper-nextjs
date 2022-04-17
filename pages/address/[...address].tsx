@@ -45,8 +45,13 @@ export async function getServerSideProps(context) {
     `, [address, numPerPage, (page - 1) * numPerPage])
 
     const countBlocksQuery = await db.query(`
-        SELECT COUNT(hash) as countblocks FROM accountblock
-        WHERE address = $1 OR toaddress = $1
+        SELECT (
+            (SELECT COUNT(*) FROM accountblock
+                    WHERE toaddress = $1)
+                +
+            (SELECT COUNT(*) FROM accountblock
+                    WHERE address = $1)
+        ) AS countblocks
     `, [address])
 
     return {
