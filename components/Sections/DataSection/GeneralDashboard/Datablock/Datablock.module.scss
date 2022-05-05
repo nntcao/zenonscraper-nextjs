@@ -12,12 +12,18 @@
     gap: 2px;
 }
 
+.textBodyReverse {
+    align-items: flex-end;
+}
+
 .title {
     display: flex;
     flex-direction: row;
+    white-space: none;
 }
 
 .description {
     display: flex;
     flex-direction: row;
+    white-space: none;
 }

@@ -4,7 +4,7 @@ export default function Datablock({icon, title, text, reverse=false}) {
     if (reverse === true) {
         return (
             <div className={styles.dataBlock}>
-                <div className={styles.textBody}>
+                <div className={`${styles.textBody} ${styles.textBodyReverse}`}>
                     <div className={styles.title}>
                         {title}
                     </div>
