@@ -4,6 +4,7 @@ import styles from './GeneralDashboard.module.scss'
 import TextMedium from '../../../GenericComponents/TextMedium/TextMedium'
 import Icon from '../../../GenericComponents/Icon/Icon'
 import Card from '../../../GenericComponents/Card/Card'
+import HoldersChart from '../../../Charts/HoldersChart/HoldersChart'
 
 export default function GeneralDashboard(props) {
     return (
@@ -31,55 +32,60 @@ export default function GeneralDashboard(props) {
                         }
                     />
                 </div>
+                <div className={styles.vr} />
                 <div className={styles.column}>
-                    <Datablock
-                        icon={<Icon src='/icons/znn.svg' srcHover='/icons/znn-hover.svg' width={32} height={32} />}
-                        title={<SubtextMedium>ZNN</SubtextMedium>}
-                        text={
-                            <>
-                                <TextMedium>$5.08 &nbsp;</TextMedium>
-                                <SubtextMedium> @0.0743 BTC</SubtextMedium>
-                            </>
-                        }
-                    />
+                    <div className={styles.middleColumn}>
+                        <Datablock
+                            icon={<Icon src='/icons/znn.svg' srcHover='/icons/znn-hover.svg' width={32} height={32} />}
+                            title={<SubtextMedium>ZNN</SubtextMedium>}
+                            text={
+                                <>
+                                    <TextMedium>$5.08 &nbsp;</TextMedium>
+                                    <SubtextMedium> @0.0743 BTC</SubtextMedium>
+                                </>
+                            }
+                        />
+                        <Datablock
+                            icon={<></>}
+                            title={<SubtextMedium>ZNN</SubtextMedium>}
+                            text={
+                                <>
+                                    <TextMedium>$5.08 &nbsp;</TextMedium>
+                                    <SubtextMedium> @0.0743 BTC</SubtextMedium>
+                                </>
+                            }
+                            reverse={true}
+                        />
+                    </div>
                     <hr className={styles.hr} />
-                    <Datablock
-                        icon={<Icon src='/icons/znn.svg' srcHover='/icons/znn-hover.svg' width={32} height={32} />}
-                        title={<SubtextMedium>ZNN</SubtextMedium>}
-                        text={
-                            <>
-                                <TextMedium>$5.08 &nbsp;</TextMedium>
-                                <SubtextMedium> @0.0743 BTC</SubtextMedium>
-                            </>
-                        }
-                    />
+                    <div className={styles.middleColumn}>
+                        <Datablock
+                            icon={<Icon src='/icons/znn.svg' srcHover='/icons/znn-hover.svg' width={32} height={32} />}
+                            title={<SubtextMedium>ZNN</SubtextMedium>}
+                            text={
+                                <>
+                                    <TextMedium>$5.08 &nbsp;</TextMedium>
+                                    <SubtextMedium> @0.0743 BTC</SubtextMedium>
+                                </>
+                            }
+                        />
+                        <Datablock
+                            icon={<></>}
+                            title={<SubtextMedium>ZNN</SubtextMedium>}
+                            text={
+                                <>
+                                    <TextMedium>$5.08 &nbsp;</TextMedium>
+                                    <SubtextMedium> @0.0743 BTC</SubtextMedium>
+                                </>
+                            }
+                            reverse={true}
+                        />
+                    </div>
                 </div>
-                <div className={`${styles.column} ${styles.columnReverse}`}>
-                    <Datablock
-                        icon={<Icon src='/icons/znn.svg' srcHover='/icons/znn-hover.svg' width={32} height={32} />}
-                        title={<SubtextMedium>ZNN</SubtextMedium>}
-                        text={
-                            <>
-                                <TextMedium>$5.08 &nbsp;</TextMedium>
-                                <SubtextMedium> @0.0743 BTC</SubtextMedium>
-                            </>
-                        }
-                        reverse={true}
-                    />
-                    <hr className={styles.hr} />
-                    <Datablock
-                        icon={<Icon src='/icons/znn.svg' srcHover='/icons/znn-hover.svg' width={32} height={32} />}
-                        title={<SubtextMedium>ZNN</SubtextMedium>}
-                        text={
-                            <>
-                                <TextMedium>$5.08 &nbsp;</TextMedium>
-                                <SubtextMedium> @0.0743 BTC</SubtextMedium>
-                            </>
-                        }
-                        reverse={true}
-                    />
+                <div className={styles.vr} />
+                <div className={`${styles.column} ${styles.chartWrapper}`}>
+                    <HoldersChart />
                 </div>
-                
             </div>
         </Card>
     )
