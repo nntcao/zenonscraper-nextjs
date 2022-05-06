@@ -26,9 +26,9 @@ export default function HoldersChart(props) {
         labels: ['5/5/2022', '5/4/2022', '5/3/2022'],
         datasets: [{
             label: 'Holders',
-            backgroundColor: 'rgb(255, 99, 132)',
+            backgroundColor: '#0AB30E',
             data: [3, 4, 5],
-            borderColor: 'rgb(255, 99, 132)',
+            borderColor: '#0AB30E',
         }]
     }
 
@@ -39,6 +39,9 @@ export default function HoldersChart(props) {
             display: true,
             text: 'Holder Count Over Last 30 Days',
           },
+          legend: {
+              display: false,
+          }
         },      
     }
 
