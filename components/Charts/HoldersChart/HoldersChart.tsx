@@ -21,7 +21,7 @@ ChartJS.register(
     Legend
 )
   
-export default function HoldersChart(props) {
+function HoldersChart(props) {
     var data = {
         labels: ['5/5/2022', '5/4/2022', '5/3/2022'],
         datasets: [{
@@ -34,6 +34,7 @@ export default function HoldersChart(props) {
 
     var options = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           title: {
             display: true,
@@ -49,3 +50,5 @@ export default function HoldersChart(props) {
         <Line data={data} options={options}/>
     )
 }
+
+export default HoldersChart
