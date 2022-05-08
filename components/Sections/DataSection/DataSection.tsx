@@ -13,12 +13,12 @@ export default function DataSection(props) {
             <div className={styles.container}>
                 <GeneralDashboard />
                 <div className={styles.charts}>
-                    <div className={styles.chartWrapper}>
+                    <Card className={styles.chartWrapper}>
                         <TransactionCountChart />
-                    </div>
-                    <div className={styles.chartWrapper}>
+                    </Card>
+                    <Card className={styles.chartWrapper}>
                         <HoldersChart />
-                    </div>
+                    </Card>
                 </div>
                 <div className={styles.tables}>
                     <Card className={styles.stretchWrapper}
