@@ -4,7 +4,7 @@ import styles from './GeneralDashboard.module.scss'
 import TextMedium from '../../../GenericComponents/TextMedium/TextMedium'
 import Icon from '../../../GenericComponents/Icon/Icon'
 import Card from '../../../GenericComponents/Card/Card'
-import HoldersChart from '../../../Charts/HoldersChart/HoldersChart'
+import HashRateChart from '../../../Charts/HashRateChart/HashRateChart'
 
 export default function GeneralDashboard(props) {
     return (
@@ -84,7 +84,7 @@ export default function GeneralDashboard(props) {
                 </div>
                 <div className={styles.vr} />
                 <div className={`${styles.column} ${styles.chartWrapper}`}>
-                    <HoldersChart />
+                    <HashRateChart />
                 </div>
             </div>
         </Card>

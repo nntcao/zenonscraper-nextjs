@@ -3,6 +3,9 @@ import LatestBlocksTable from '../../Tables/LatestBlocksTable/LatestBlocksTable'
 import LatestTransactionsTable from '../../Tables/LatestTransactionsTable/LatestTransactionsTable'
 import GeneralDashboard from './GeneralDashboard/GeneralDashboard'
 import styles from './DataSection.module.scss'
+import TransactionCountChart from '../../Charts/TransactionCountChart/TransactionCountChart'
+import HashRateChart from '../../Charts/HashRateChart/HashRateChart'
+import HoldersChart from '../../Charts/HoldersChart/HoldersChart'
 
 export default function DataSection(props) {
     return (
@@ -10,8 +13,12 @@ export default function DataSection(props) {
             <div className={styles.container}>
                 <GeneralDashboard />
                 <div className={styles.charts}>
-                    {/* <Chart /> */}
-                    {/* <Chart /> */}
+                    <div className={styles.chartWrapper}>
+                        <TransactionCountChart />
+                    </div>
+                    <div className={styles.chartWrapper}>
+                        <HoldersChart />
+                    </div>
                 </div>
                 <div className={styles.tables}>
                     <Card className={styles.stretchWrapper}

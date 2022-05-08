@@ -27,3 +27,17 @@
     flex-basis: 49%;
     min-width: 580px;
 }
+
+.charts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+
+}
+
+.chartWrapper {
+    width: calc(50% - 8px);
+    height: 245px;
+}
