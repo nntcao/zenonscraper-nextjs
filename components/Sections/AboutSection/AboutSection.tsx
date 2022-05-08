@@ -1,12 +1,13 @@
+import styles from './AboutSection.module.scss'
+import InformationSection from '../InformationSection/InformationSection'
 import TextMedium from '../../GenericComponents/TextMedium/TextMedium'
 import Title from '../../GenericComponents/Title/Title'
-import styles from './AboutSection.module.scss'
 import Image from 'next/image'
 
 export default function AboutSection(props) {
     return (
-        <section className={styles.section}>
-            <div className={styles.container}>
+        <InformationSection 
+            text={
                 <div className={styles.text}>
                     <Title>
                         We develop products that make Zenon Network blockchain data accessible to individuals, development teams, and research organizations
@@ -21,10 +22,12 @@ export default function AboutSection(props) {
                         </TextMedium>   
                     </div>
                 </div>
+            }
+            image={
                 <div className={styles.imageWrapper}>
                     <Image src="/AboutSectionImage.png" width={450} height={450}/>
                 </div>
-            </div>
-        </section>
+            }
+        />
     )
 }
