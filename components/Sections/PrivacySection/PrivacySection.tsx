@@ -32,6 +32,7 @@ export default function PrivacySection(props) {
                     <Image src="/PrivacyImage.png" width={450} height={450}/>
                 </div>
             }
+            className={styles.container}
         />
     )
 }

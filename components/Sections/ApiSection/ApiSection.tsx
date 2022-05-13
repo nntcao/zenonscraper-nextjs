@@ -37,6 +37,7 @@ export default function ApiSection(props) {
                 </div>
             }
             reverse={true}
+            className={styles.container}
         />
     )
 }
