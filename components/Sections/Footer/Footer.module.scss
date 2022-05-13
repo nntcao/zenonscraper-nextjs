@@ -2,7 +2,63 @@
     background-color: var(--color-background-2);
 }
 
-
 .robotoBold {
     font-family: 'Roboto-Bold';
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.container {
+    width: var(--width-content);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 96px;
+    padding-bottom: 96px;
+    margin: auto;
+    gap: 48px;
+}
+
+.options {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    column-gap: 16px;
+    row-gap: 16px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.columnBody {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.socialMedia {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.legal {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
 }
