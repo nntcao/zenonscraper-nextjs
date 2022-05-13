@@ -1,0 +1,21 @@
+
+.text {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+    width: 500px;
+}
+
+.textBody {
+
+}
+
+.listItem {
+    margin: 16px;
+    color: var(--color-text)
+}
+
+.imageWrapper {
+    width: 450px;
+    height: 450px;
+}
