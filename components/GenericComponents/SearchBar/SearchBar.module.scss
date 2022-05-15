@@ -10,15 +10,34 @@
     border: 1px solid var(--color-primary);
     box-shadow: 0px 0px 4px var(--color-secondary-opacity);
     border-radius: 8px;
+
+}
+
+.backgroundBox {
+    background-color: var(--color-primary);
+    padding: 0px;
+    border: none;
+
 }
 
 .start {
     flex-grow: 1;
-
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 4px
+    gap: 4px;
+}
+
+.backgroundStart {
+    background-color: var(--color-background-2);
+
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 6px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+    height: 30px;
 }
 
 .inputBox {
@@ -27,6 +46,16 @@
     font-family: 'Montserrat-Medium';
     width: 100%;
     height: 100%;    
+}
+
+.inputBoxResize {
+    font-size: 10px;
+    height:100%;
+}
+
+.arrowWrapper {
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .inputBox::placeholder {
