@@ -10,14 +10,17 @@ export default function HeaderLinks(props) {
     return (
         <div className={styles.content}>
             <div className={styles.textLinks}>
-                <LinkWrapper href="https://www.zenonscraper.com">
+                <LinkWrapper href="momentum_list">
+                    <TextMedium className={styles.text}>Momentums</TextMedium>
+                </LinkWrapper>
+                <LinkWrapper href="/transaction_list">
+                    <TextMedium className={styles.text}>Transactions</TextMedium>
+                </LinkWrapper>
+                <LinkWrapper href="/token_list">
+                    <TextMedium className={styles.text}>Tokens</TextMedium>
+                </LinkWrapper>
+                <LinkWrapper href="/about">
                     <TextMedium className={styles.text}>About</TextMedium>
-                </LinkWrapper>
-                <LinkWrapper href="https://www.zenonscraper.com">
-                    <TextMedium className={styles.text}>API Guidelines</TextMedium>
-                </LinkWrapper>
-                <LinkWrapper href="https://www.zenonscraper.com">
-                    <TextMedium className={styles.text}>Security</TextMedium>
                 </LinkWrapper>
             </div>
             <div className={styles.iconLinks}>
