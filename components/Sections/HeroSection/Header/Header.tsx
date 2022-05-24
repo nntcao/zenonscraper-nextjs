@@ -1,4 +1,4 @@
-import HeaderLinks from './HeaderLinks/HeaderLinks'
+import HeaderLinks from '../../../GenericComponents/HeaderLinks/HeaderLinks'
 import ZSTitle from '../../../Icons/ZSTitle/ZSTitle'
 import styles from './Header.module.scss'
 
