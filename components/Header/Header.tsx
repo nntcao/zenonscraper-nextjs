@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './Header.module.scss'
-import NavbarMessage from '../NavbarMessage/NavbarMessage'
 import { useEffect, useState } from 'react'
 
 export default function Header() {
@@ -37,7 +36,6 @@ export default function Header() {
                     <NavigationBar isDesktop={isDesktop} showNavigation={showNavigation} setShowNavigation={setShowNavigation} />
                 </div>
             </div>
-            <NavbarMessage>Zenon Scraper is temporarily down for maintenance. Please see <a style={{fontSize:'16px', fontFamily:'Roboto-Bold'}} href="http://explorer.zenon.network/">&nbsp;Zenon Explorer&nbsp;</a> for recent blockchain data.</NavbarMessage>
         </nav>
     )
 }
