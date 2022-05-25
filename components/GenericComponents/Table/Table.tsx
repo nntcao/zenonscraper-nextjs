@@ -6,15 +6,13 @@ import TableHeader from './TableHeader/TableHeader'
 import TableRow from './TableRow/TableRow'
 import TableCell from './TableCell/TableCell'
 
-export default function Table({ title='', fields=[], data=[], children=undefined, header=true }) {
+export default function Table({ title={}, fields=[], data=[], children=undefined, header=true }) {
     let tableRowAltStyle = false
     let counter = 0;
 
     return (
         <div className={styles.tableWithChildren}>
-            {title &&
-                <Subtitle className={styles.title}>{title}</Subtitle>
-            }
+            {title}
             <table className={styles.table}>
                 {fields && header &&
                     <TableHeader>

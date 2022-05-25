@@ -7,6 +7,7 @@ import TextSemibold from '../../GenericComponents/TextSemibold/TextSemibold'
 import RoundedSquare from '../../Icons/RoundedSquare/RoundedSquare'
 import LinkWrapper from '../../GenericComponents/LinkWrapper/LinkWrapper'
 import TextTruncate from '../../GenericComponents/TextTruncate/TextTruncate'
+import Subtitle from '../../GenericComponents/Subtitle/Subtitle'
 
 export default function LatestTransactionsTable(props) {
     const fields = [
@@ -96,7 +97,7 @@ export default function LatestTransactionsTable(props) {
     })
 
     return (
-        <Table title='Latest Transactions'
+        <Table title={<Subtitle className={styles.title}>Latest Transactions</Subtitle>}
             fields={fields}
             header={false}
             data={formattedData}

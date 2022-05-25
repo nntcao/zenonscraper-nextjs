@@ -6,6 +6,7 @@ import TextGlow from '../../GenericComponents/TextGlow/TextGlow'
 import TextSemibold from '../../GenericComponents/TextSemibold/TextSemibold'
 import RoundedSquare from '../../Icons/RoundedSquare/RoundedSquare'
 import LinkWrapper from '../../GenericComponents/LinkWrapper/LinkWrapper'
+import Subtitle from '../../GenericComponents/Subtitle/Subtitle'
 
 export default function LatestBlocksTable(props) {
     const fields = [
@@ -89,7 +90,7 @@ export default function LatestBlocksTable(props) {
     })
 
     return (
-        <Table title='Latest Blocks'
+        <Table title={<Subtitle className={styles.title}>Latest Momentums</Subtitle>}
             fields={fields}
             header={false}
             data={formattedData}
