@@ -5,7 +5,7 @@ import styles from './Header.module.scss'
 
 export default function Header(props) {
     return (
-        <section className={styles.section}>
+        <header className={styles.section}>
             <div className={styles.container}>
                 <div className={styles.logo}>
                     <ZSTitle width='163px' height='38px' />
@@ -17,6 +17,6 @@ export default function Header(props) {
                     <HeaderLinks />
                 </div>
             </div>
-        </section>
+        </header>
     )
 }

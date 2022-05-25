@@ -11,7 +11,7 @@ import styles from './Footer.module.scss'
 
 export default function Footer(props) {
     return (
-        <section className={styles.section}>
+        <footer className={styles.section}>
             <div className={styles.container}>
                 <div className={styles.options}>
                     <div className={styles.column}>
@@ -42,7 +42,7 @@ export default function Footer(props) {
                             </LinkWrapper>
                             <LinkWrapper href="">
                                 <TextMedium>Tokens</TextMedium>
-                            </LinkWrapper>
+                        </LinkWrapper>
                             <LinkWrapper href="">
                                 <TextMedium>Charts</TextMedium>
                             </LinkWrapper>
@@ -102,6 +102,6 @@ export default function Footer(props) {
                     </div>
                 </div>
             </div>
-        </section>
+        </footer>
     )
 }
