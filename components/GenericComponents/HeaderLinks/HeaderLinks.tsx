@@ -8,7 +8,7 @@ import styles from './HeaderLinks.module.scss'
 
 export default function HeaderLinks(props) {
     return (
-        <div className={styles.content}>
+        <nav className={styles.content}>
             <div className={styles.textLinks}>
                 <LinkWrapper href="momentum_list">
                     <TextMedium className={styles.text}>Momentums</TextMedium>
@@ -29,6 +29,6 @@ export default function HeaderLinks(props) {
                 <FacebookIcon />
                 <InstagramIcon />
             </div>
-        </div>
+        </nav>
     )
 }
