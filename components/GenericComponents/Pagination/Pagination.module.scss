@@ -1,0 +1,39 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.word {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    border: none;
+    padding: 10px 12px 10px 12px;
+    background: linear-gradient(135deg, var(--color-gradient));
+    border-radius: 4px;
+}
+
+.word:hover {
+    text-decoration: none;
+}
+
+.word:hover .wordButton {
+    color: var(--color-primary);
+    transition-duration: 50ms;
+    transition: all;
+    text-shadow: 0px 0px 4px rgba(36, 255, 0, 0.5);
+}
+
+.arrow {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    border: none;
+    background: linear-gradient(135deg, var(--color-gradient));
+    border-radius: 4px;
+}
+
+.arrowSvg {
+    transition-duration: 50ms;
+}

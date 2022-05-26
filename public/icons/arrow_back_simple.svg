@@ -1,8 +1,9 @@
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0_229_923" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16">
-<rect width="16" height="16" fill="#C4C4C4"/>
+<svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="40" height="32" rx="4" fill="url(#paint0_linear_676_1277)"/>
+<mask id="mask0_676_1277" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="12" y="8" width="16" height="16">
+<rect x="12" y="8" width="16" height="16" fill="#C4C4C4"/>
 </mask>
-<g mask="url(#mask0_229_923)">
-<path d="M10.6667 14.6667L4 8L10.6667 1.33333L11.85 2.51667L6.36667 8L11.85 13.4833L10.6667 14.6667Z" fill="white"/>
+<g mask="url(#mask0_676_1277)">
+<path d="M22.6667 22.6666L16 15.9999L22.6667 9.33325L23.85 10.5166L18.3667 15.9999L23.85 21.4833L22.6667 22.6666Z" fill="white"/>
 </g>
 </svg>
