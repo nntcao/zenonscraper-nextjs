@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import NextNProgress from 'nextjs-progressbar'
-import * as ga from '../services/ga'
+import * as ga from '../services/GoogleAnalyticsService'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
