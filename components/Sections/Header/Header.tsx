@@ -8,7 +8,7 @@ export default function Header(props) {
         <header className={styles.section}>
             <div className={styles.container}>
                 <div className={styles.logo}>
-                    <ZSTitle width='163px' height='38px' />
+                    <ZSTitle width='172px' height='40px' />
                 </div>
                 <div className={styles.searchBar}>
                     <SearchBar arrow={true}/>
