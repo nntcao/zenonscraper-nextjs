@@ -339,6 +339,7 @@ export default function TransactionListTable(props) {
                 }
                 fields={fields}
                 data={dummyData}
+                classNameCell={styles.cell}
             >
             </Table>
         </Card>

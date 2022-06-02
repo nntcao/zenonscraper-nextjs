@@ -6,7 +6,7 @@ import TableHeader from './TableHeader/TableHeader'
 import TableRow from './TableRow/TableRow'
 import TableCell from './TableCell/TableCell'
 
-export default function Table({ title={}, fields=[], data=[], children=undefined, header=true }) {
+export default function Table({ title={}, fields=[], data=[], children=undefined, header=true, classNameCell={} }) {
     let tableRowAltStyle = false
     let counter = 0;
 
@@ -16,10 +16,10 @@ export default function Table({ title={}, fields=[], data=[], children=undefined
             <table className={styles.table}>
                 {fields && header &&
                     <TableHeader>
-                        <TableRow>
+                        <TableRow className={styles.tableRowAlt}>
                             {fields.map(field => {
                                 return (
-                                    <TableCell key={field.label}>
+                                    <TableCell key={field.label} className={classNameCell}>
                                         {field.label}
                                     </TableCell>
                                 )
