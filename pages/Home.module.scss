@@ -34,11 +34,11 @@
 }
 
 .cards {
-    width: 100%;
+    max-width: 50%;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-self: flex-start;
+    align-self: center;
     flex-wrap: wrap;
         
     .card {
@@ -169,13 +169,12 @@
 
     .cards {
         flex-direction: column;
-        width: 100%;
+        max-width: 100%;
         align-items: center;
 
         .card {
             margin-left: 1rem;
             align-self: center;
-            width: clamp(50vw, 900px, 90vw);
         }
     }
 
